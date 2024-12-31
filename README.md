@@ -11,7 +11,7 @@ The project is part of the [The Odin Project's](https://www.theodinproject.com/)
 
 ## Live Preview
 
-[Shopping Cart](https://splendid-kheer-a6bf4c.netlify.app/)
+[Shopping Cart](https://shopping-cart-aarnif.netlify.app/)
 
 ## Technologies
 
@@ -32,11 +32,11 @@ Dark Mode
 ## Instructions
 
 ```
-HTTPS - git clone https://github.com/aarnif/odin-shopping-cart.git
+HTTPS - git clone https://github.com/aarnif/shopping-cart.git
 
-SSH - git clone git@github.com:aarnif/odin-shopping-cart.git
+SSH - git clone git@github.com:aarnif/shopping-cart.git
 
-cd odin-shopping-cart
+cd shopping-cart
 
 npm install
 
