@@ -1,9 +1,10 @@
 import axios from "axios";
-const baseUrl = "https://aarnif.github.io/db.json";
+
+const baseUrl = import.meta.env.VITE_BASE_URL;
 
 const getAll = async () => {
   const response = await axios.get(`${baseUrl}`);
-  return response.data.art;
+  return response.data;
 };
 
 export default { getAll };
