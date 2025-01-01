@@ -26,6 +26,7 @@
       "id": "0f32fe28-4b96-4db3-8b93-e6b62646b8da",
       "aspectRatio": "30:20",
       "image": "/images/mountain-serenity.png",
+      "tinyImage": "/images/mountain-serenity-tiny.png",
       "type": "landscape"
     },
     {
@@ -54,6 +55,7 @@
       "id": "eb2a2b41-d77a-4b16-be2e-27e80e51e257",
       "aspectRatio": "34:23",
       "image": "/images/sunset-over-fields.png",
+      "tinyImage": "/images/sunset-over-fields-tiny.png",
       "type": "landscape"
     },
     {
@@ -82,6 +84,7 @@
       "id": "4515d28f-7dda-4407-b935-e286849488a3",
       "aspectRatio": "32:24",
       "image": "/images/autumn-whisper.png",
+      "tinyImage": "/images/autumn-whisper-tiny.png",
       "type": "landscape"
     },
     {
@@ -110,6 +113,7 @@
       "id": "9f7c7576-0b50-4a6d-9723-1a466ed4f7c8",
       "aspectRatio": "40:25",
       "image": "/images/winters-glow.png",
+      "tinyImage": "/images/winters-glow-tiny.png",
       "type": "landscape"
     },
     {
@@ -138,6 +142,7 @@
       "id": "10789ddf-fe9e-42aa-8e4e-a58cb356344b",
       "aspectRatio": "36:24",
       "image": "/images/desert-mirage.png",
+      "tinyImage": "/images/desert-mirage-tiny.png",
       "type": "landscape"
     },
     {
@@ -166,6 +171,7 @@
       "id": "3fa26084-b82c-402d-8da3-4ae2a8f98779",
       "aspectRatio": "35:25",
       "image": "/images/coastal-breeze.png",
+      "tinyImage": "/images/coastal-breeze-tiny.png",
       "type": "landscape"
     },
     {
@@ -194,6 +200,7 @@
       "id": "ac59f68f-9f13-443e-b49f-c368feb01956",
       "aspectRatio": "36:24",
       "image": "/images/lakeside-calm.png",
+      "tinyImage": "/images/lakeside-calm-tiny.png",
       "type": "landscape"
     },
     {
@@ -222,6 +229,7 @@
       "id": "8a8710fa-0b4e-4279-b85d-bcb4e55c7beb",
       "aspectRatio": "34:24",
       "image": "/images/misty-valley.png",
+      "tinyImage": "/images/misty-valley-tiny.png",
       "type": "landscape"
     },
     {
@@ -250,6 +258,7 @@
       "id": "a1b2c3d4-e5f6-g7h8-i9j0-k1l2m3n4o5p6",
       "aspectRatio": "25:30",
       "image": "/images/canyon-colors.png",
+      "tinyImage": "/images/canyon-colors-tiny.png",
       "type": "portrait"
     },
     {
@@ -278,6 +287,7 @@
       "id": "b2c3d4e5-f6g7-h8i9-j0k1-l2m3n4o5p6q7",
       "aspectRatio": "20:28",
       "image": "/images/forest-retreat.png",
+      "tinyImage": "/images/forest-retreat-tiny.png",
       "type": "portrait"
     },
     {
@@ -306,6 +316,7 @@
       "id": "c3d4e5f6-g7h8-i9j0-k1l2-m3n4o5p6q7r8",
       "aspectRatio": "24:18",
       "image": "/images/ocean-dawn.png",
+      "tinyImage": "/images/ocean-dawn-tiny.png",
       "type": "landscape"
     },
     {
@@ -334,6 +345,7 @@
       "id": "e5f6g7h8-i9j0-k1l2-m3n4-o5p6q7r8s9t0",
       "aspectRatio": "34:22",
       "image": "/images/meadow-morning.png",
+      "tinyImage": "/images/meadow-morning-tiny.png",
       "type": "landscape"
     },
     {
@@ -362,6 +374,7 @@
       "id": "g7h8i9j0-k1l2-m3n4-o5p6-q7r8s9t0u1v2",
       "aspectRatio": "36:24",
       "image": "/images/highland-vista.png",
+      "tinyImage": "/images/highland-vista-tiny.png",
       "type": "landscape"
     },
     {
@@ -390,6 +403,7 @@
       "id": "i9j0k1l2-m3n4-o5p6-q7r8-s9t0u1v2w3x4",
       "aspectRatio": "30:22",
       "image": "/images/snow-peak-solitude.png",
+      "tinyImage": "/images/snow-peak-solitude-tiny.png",
       "type": "landscape"
     },
     {
@@ -418,6 +432,7 @@
       "id": "j0k1l2m3-n4o5-p6q7-r8s9-t0u1v2w3x4y5",
       "aspectRatio": "28:20",
       "image": "/images/autumn-river-bend.png",
+      "tinyImage": "/images/autumn-river-bend-tiny.png",
       "type": "landscape"
     },
     {
@@ -445,6 +460,7 @@
       "description": "A dense, green forest shrouded in morning mist, with sunlight filtering through the trees.",
       "aspectRatio": "28:18",
       "image": "/images/forest-whispers.png",
+      "tinyImage": "/images/forest-whispers-tiny.png",
       "type": "landscape"
     },
     {
@@ -472,6 +488,7 @@
       "description": "A vibrant sunset casting golden hues over a sprawling desert landscape.",
       "aspectRatio": "32:24",
       "image": "/images/desert-glow.png",
+      "tinyImage": "/images/desert-glow-tiny.png",
       "type": "landscape"
     },
     {
@@ -499,6 +516,7 @@
       "description": "The endless ocean meets a dramatic sky at the horizon, capturing the essence of the sea's tranquility.",
       "aspectRatio": "30:20",
       "image": "/images/oceans-horizon.png",
+      "tinyImage": "/images/oceans-horizon-tiny.png",
       "type": "landscape"
     },
     {
@@ -526,6 +544,7 @@
       "description": "Rolling hills covered in golden wheat, swaying gently under a clear blue sky.",
       "aspectRatio": "34:22",
       "image": "/images/golden-fields.png",
+      "tinyImage": "/images/golden-fields-tiny.png",
       "type": "landscape"
     },
     {
@@ -553,6 +572,7 @@
       "description": "Majestic snow-capped mountains under a star-filled night sky.",
       "aspectRatio": "30:20",
       "image": "/images/snowy-peaks.png",
+      "tinyImage": "/images/snowy-peaks-tiny.png",
       "type": "landscape"
     },
     {
@@ -580,6 +600,7 @@
       "description": "A serene river flanked by trees displaying vibrant autumn colors.",
       "aspectRatio": "29:19",
       "image": "/images/autumn-river.png",
+      "tinyImage": "/images/autumn-river-tiny.png",
       "type": "landscape"
     },
     {
@@ -607,6 +628,7 @@
       "description": "A sprawling vineyard at twilight, with rows of grapevines under a fading purple sky.",
       "aspectRatio": "26:17",
       "image": "/images/twilight-vineyard.png",
+      "tinyImage": "/images/twilight-vineyard-tiny.png",
       "type": "landscape"
     },
     {
@@ -634,6 +656,7 @@
       "description": "Fog envelops the highlands, with distant mountains barely visible through the haze.",
       "aspectRatio": "31:21",
       "image": "/images/misty-highlands.png",
+      "tinyImage": "/images/misty-highlands-tiny.png",
       "type": "landscape"
     },
     {
@@ -661,6 +684,7 @@
       "description": "A peaceful lake reflects the full moon, surrounded by dark silhouettes of trees.",
       "aspectRatio": "27:18",
       "image": "/images/lunar-lake.png",
+      "tinyImage": "/images/lunar-lake-tiny.png",
       "type": "landscape"
     },
     {
@@ -688,6 +712,7 @@
       "description": "Dramatic cliffs overlooking the ocean, with the sun setting in a fiery display of colors.",
       "aspectRatio": "33:22",
       "image": "/images/sunset-cliffs.png",
+      "tinyImage": "/images/sunset-cliffs-tiny.png",
       "type": "landscape"
     }
   ]
