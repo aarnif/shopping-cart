@@ -12,6 +12,7 @@ const Home = () => {
             "Crafted with attention to detail, our artists use various mediums to bring these scenes to life with vibrant colors and intricate textures. Whether you're decorating your home or seeking a meaningful gift, our prints offer unique options for any taste.",
             "Our prints are available in multiple sizes to fit any space and come in high-quality reproductions that preserve the original artwork's depth and detail. Browse our gallery to find your perfect landscape. Each purchase supports our talented artists and adds a touch of nature’s timeless beauty to your surroundings.",
           ]}
+          tinyImageURL="images/product-image-1-tiny.png"
           imageURL="images/product-image-1.png"
         />
       </div>
