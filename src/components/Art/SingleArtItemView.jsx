@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import Icon from "@mdi/react";
-import { mdiChevronLeft, mdiChevronRight } from "@mdi/js";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { AnimatePresence, motion } from "framer-motion";
 
 const SingleArtImageView = ({
@@ -48,20 +47,12 @@ const SingleArtImageView = ({
                 <ul className="flex-grow flex justify-between items-center px-8">
                   <li>
                     <button onClick={handleChangeImageToPrevious}>
-                      <Icon
-                        path={mdiChevronLeft}
-                        size={3}
-                        className="fill-current text-white transition hover:text-slate-200 active:scale-95"
-                      />
+                      <FaChevronLeft className="w-10 h-10 fill-current text-white transition hover:text-slate-200 active:scale-95" />
                     </button>
                   </li>
                   <li>
                     <button onClick={handleChangeImageToNext}>
-                      <Icon
-                        path={mdiChevronRight}
-                        size={3}
-                        className="fill-current text-white transition hover:text-slate-200 active:scale-95"
-                      />
+                      <FaChevronRight className="w-10 h-10 fill-current text-white transition hover:text-slate-200 active:scale-95" />
                     </button>
                   </li>
                 </ul>

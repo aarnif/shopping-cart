@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 
-import Icon from "@mdi/react";
-import { mdiCartOutline } from "@mdi/js";
+import { MdOutlineShoppingCart } from "react-icons/md";
 import { motion } from "framer-motion";
 
 const ShoppingCartItem = ({ shoppingCartItemCount, handleChangeHeroImage }) => {
@@ -13,7 +12,7 @@ const ShoppingCartItem = ({ shoppingCartItemCount, handleChangeHeroImage }) => {
         dark:border-slate-900"
           onClick={handleChangeHeroImage}
         >
-          <Icon path={mdiCartOutline} size={1.4} />
+          <MdOutlineShoppingCart className="w-8 h-8 fill-current" />
         </button>
       </Link>
 

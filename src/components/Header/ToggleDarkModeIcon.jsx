@@ -1,6 +1,7 @@
 import { useState } from "react";
-import Icon from "@mdi/react";
-import { mdiWhiteBalanceSunny, mdiWeatherNight } from "@mdi/js";
+
+import { IoMdSunny } from "react-icons/io";
+import { HiMoon } from "react-icons/hi2";
 
 const ToggleDarkModeIcon = () => {
   const [darkMode, setDarkMode] = useState(false);
@@ -12,8 +13,6 @@ const ToggleDarkModeIcon = () => {
     document.body.classList.toggle("dark");
   };
 
-  const iconSize = 1.4;
-
   return (
     <li className="flex min-w-[80px]">
       <button
@@ -23,9 +22,9 @@ const ToggleDarkModeIcon = () => {
         dark:border-slate-900"
       >
         {darkMode ? (
-          <Icon path={mdiWeatherNight} size={iconSize} />
+          <HiMoon className="w-8 h-8 fill-current" />
         ) : (
-          <Icon path={mdiWhiteBalanceSunny} size={iconSize} />
+          <IoMdSunny className="w-8 h-8 fill-current" />
         )}
       </button>
     </li>

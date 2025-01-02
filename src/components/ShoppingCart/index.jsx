@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
-import Icon from "@mdi/react";
-import { mdiPlusThick, mdiMinusThick, mdiArrowRightThick } from "@mdi/js";
+
+import { FaPlus, FaMinus } from "react-icons/fa";
+import { TiArrowRightThick } from "react-icons/ti";
 import { motion, AnimatePresence } from "framer-motion";
 
 const ShoppingCartHeaderRow = () => {
@@ -71,7 +72,7 @@ const ShoppingCartItem = ({ item, setShoppingCart, setTotalSumOfItems }) => {
             className="w-[40px] h-[40px] flex justify-center items-center border-2 border-slate-700 bg-white
             hover:bg-slate-200 active:scale-95 transition dark:bg-slate-600 dark:hover:bg-slate-700"
           >
-            <Icon path={mdiPlusThick} size={1} />
+            <FaPlus className="w-6 h-6 fill-current" />
           </button>
           <div className="w-[60px] h-[40px] flex justify-center items-center border-2 border-slate-700 bg-white text-2xl font-bold dark:bg-slate-600">
             {quantity}
@@ -81,7 +82,7 @@ const ShoppingCartItem = ({ item, setShoppingCart, setTotalSumOfItems }) => {
             hover:bg-slate-200 active:scale-95 transition dark:bg-slate-600 dark:hover:bg-slate-700"
             onClick={handleDecreaseQuantity}
           >
-            <Icon path={mdiMinusThick} size={1} />
+            <FaMinus className="w-6 h-6 fill-current" />
           </button>
         </div>
       </td>
@@ -171,7 +172,7 @@ const ShoppingCart = ({ shoppingCart, setShoppingCart }) => {
                   transition={{ duration: 0.5, type: "tween" }}
                   variants={buttonIconVariants}
                 >
-                  <Icon path={mdiArrowRightThick} size={1.2} />
+                  <TiArrowRightThick className="w-8 h-8 fill-current" />
                 </motion.div>
               </motion.button>
             </AnimatePresence>
