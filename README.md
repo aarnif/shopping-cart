@@ -21,6 +21,10 @@ The project is part of the [The Odin Project's](https://www.theodinproject.com/)
 - ChatGPT (products and other text generations)
 - Midjourney (product images)
 
+## Icons
+
+- [React Icons](https://react-icons.github.io/react-icons/)
+
 ## Images
 
 ![Shopping Cart](/public/images/light-mode.png)
@@ -39,6 +43,8 @@ SSH - git clone git@github.com:aarnif/shopping-cart.git
 cd shopping-cart
 
 npm install
+
+npm run server # Start the json-server (necessary for local development)
 
 npm run dev # Start the app in development mode
 
