@@ -1,6 +1,8 @@
+import { useState } from "react";
+import { AnimatePresence } from "framer-motion";
+
 import ArtGridItem from "./ArtGridItem";
 import SingleArtItemView from "./SingleArtItemView";
-import { useState } from "react";
 
 const ArtGrid = ({
   art,
@@ -45,17 +47,19 @@ const ArtGrid = ({
           />
         ))}
       </div>
-      {showSingleArtView && (
-        <SingleArtItemView
-          art={art[artItemIndex]}
-          handleMoveToPreviousImage={handleMoveToPreviousImage}
-          handleMoveToNextImage={handleMoveToNextImage}
-          shoppingCart={shoppingCart}
-          setShoppingCart={setShoppingCart}
-          setLatestShoppingCartItem={setLatestShoppingCartItem}
-          setShowSingleArtView={setShowSingleArtView}
-        />
-      )}
+      <AnimatePresence>
+        {showSingleArtView && (
+          <SingleArtItemView
+            art={art[artItemIndex]}
+            handleMoveToPreviousImage={handleMoveToPreviousImage}
+            handleMoveToNextImage={handleMoveToNextImage}
+            shoppingCart={shoppingCart}
+            setShoppingCart={setShoppingCart}
+            setLatestShoppingCartItem={setLatestShoppingCartItem}
+            setShowSingleArtView={setShowSingleArtView}
+          />
+        )}
+      </AnimatePresence>
     </>
   );
 };

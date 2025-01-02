@@ -111,12 +111,6 @@ const SingleArtItemDetails = ({
     } else {
       setShoppingCart((prev) => [...prev, newItem]);
     }
-
-    closeModal();
-  };
-
-  const closeModal = () => {
-    setShowSingleArtView(false);
   };
 
   return (
@@ -215,7 +209,7 @@ const SingleArtItemDetails = ({
                   <button
                     type="button"
                     className="cancel-button"
-                    onClick={closeModal}
+                    onClick={() => setShowSingleArtView(false)}
                   >
                     Cancel
                   </button>
@@ -239,8 +233,24 @@ const SingleArtItemView = ({
   setShowSingleArtView,
 }) => {
   return (
-    <div className="z-10 fixed inset-0 flex justify-center items-center bg-slate-800 bg-opacity-90">
-      <div className="w-[90vw] h-[90vh] flex justify-center bg-slate-200 dark:bg-slate-800">
+    <motion.div
+      key={"singleArtItemOverlay"}
+      className="z-10 fixed inset-0 flex justify-center items-center bg-black bg-opacity-90"
+      initial={{ width: "0vw", opacity: 0 }}
+      animate={{ width: "100vw", opacity: 1, duration: 1.0 }}
+      exit={{ width: "0vw", opacity: 0, transition: { delay: 1.0 } }}
+    >
+      <motion.div
+        key={"singleArtItemModal"}
+        className="w-[90vw] h-[90vh] flex justify-center bg-slate-200 dark:bg-slate-800"
+        initial={{ y: -100, opacity: 0 }}
+        animate={{
+          y: 0,
+          opacity: 1,
+          transition: { delay: 0.8, duration: 0.4 },
+        }}
+        exit={{ y: -100, opacity: 0, transition: { duration: 0.4 } }}
+      >
         <div className="w-full flex justify-between items-center p-12 dark:bg-slate-700">
           <SingleArtImageView
             artTitle={art.title}
@@ -256,8 +266,8 @@ const SingleArtItemView = ({
             setShowSingleArtView={setShowSingleArtView}
           />
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
 
