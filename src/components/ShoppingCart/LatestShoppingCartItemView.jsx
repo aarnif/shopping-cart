@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import Icon from "@mdi/react";
-import { mdiCheck } from "@mdi/js";
+import { FaCheck } from "react-icons/fa";
 
 const AddItemContent = ({ latestShoppingCartItem }) => {
   console.log("Latest shopping cart item: ", latestShoppingCartItem);
@@ -63,7 +62,7 @@ const LatestShoppingCartItemView = ({
           >
             <div className="w-full flex justify-center items-center py-6 mb-8 bg-green-400">
               <div className="w-[40px] h-[40px] mr-2 flex justify-center items-center bg-white rounded-full">
-                <Icon path={mdiCheck} size={1.2} color={"rgb(74 222 128)"} />
+                <FaCheck className="w-6 h-6 fill-current text-green-400" />
               </div>
               <h1 className="text-white text-2xl font-bold text-center">
                 Added following item to cart:

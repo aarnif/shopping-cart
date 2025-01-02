@@ -1,14 +1,12 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faFacebook,
-  faInstagram,
-  faTwitter,
-} from "@fortawesome/free-brands-svg-icons";
+import { FaFacebook } from "react-icons/fa";
+import { FaInstagram } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 
 const SocialMediaLinks = ({ isFooter }) => {
   const classStyles = isFooter
-    ? "fill-current text-white transition group-hover:text-slate-900"
-    : "fill-current text-slate-900 transition group-hover:text-white dark:text-white dark:group-hover:text-slate-900";
+    ? "w-10 h-10 fill-current text-white transition group-hover:text-slate-900"
+    : "w-10 h-10 fill-current text-slate-900 transition group-hover:text-white dark:text-white dark:group-hover:text-slate-900";
+
   return (
     <ul id="social-media-icons" className="flex justify-center items-center">
       <li className="group h-12 w-12 mr-2 flex justify-center items-center rounded-full cursor-pointer transition hover:bg-slate-700 active:scale-95">
@@ -17,11 +15,7 @@ const SocialMediaLinks = ({ isFooter }) => {
           target="_blank"
           className="w-full h-full flex justify-center items-center"
         >
-          <FontAwesomeIcon
-            icon={faFacebook}
-            className={classStyles}
-            size={"2xl"}
-          />
+          <FaFacebook className={classStyles} />
         </a>
       </li>
       <li className="group h-12 w-12 mr-2 flex justify-center items-center rounded-full cursor-pointer transition hover:bg-slate-700 active:scale-95">
@@ -30,11 +24,7 @@ const SocialMediaLinks = ({ isFooter }) => {
           target="_blank"
           className="w-full h-full flex justify-center items-center"
         >
-          <FontAwesomeIcon
-            icon={faInstagram}
-            className={classStyles}
-            size={"2xl"}
-          />
+          <FaInstagram className={classStyles} />
         </a>
       </li>
       <li className="group h-12 w-12 mr-2 flex justify-center items-center rounded-full cursor-pointer transition hover:bg-slate-700 active:scale-95">
@@ -43,11 +33,7 @@ const SocialMediaLinks = ({ isFooter }) => {
           target="_blank"
           className="w-full h-full flex justify-center items-center"
         >
-          <FontAwesomeIcon
-            icon={faTwitter}
-            className={classStyles}
-            size={"2xl"}
-          />
+          <FaXTwitter className={classStyles} />
         </a>
       </li>
     </ul>
