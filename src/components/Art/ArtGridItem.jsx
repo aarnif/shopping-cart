@@ -1,13 +1,19 @@
 import { useState, forwardRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const ArtGridItem = forwardRef(({ artPiece, index, setArtItemIndex }, ref) => {
+const ArtGridItem = ({
+  artPiece,
+  index,
+  setArtItemIndex,
+  setShowSingleArtView,
+}) => {
   const [artWidth, artHeight] = artPiece.aspectRatio.split(":");
   const aspectRatio = artWidth / artHeight;
   const itemHeight = 350;
+
   const handleClick = () => {
     setArtItemIndex(index);
-    ref.current.showModal();
+    setShowSingleArtView(true);
   };
 
   const variants = {
@@ -49,7 +55,6 @@ const ArtGridItem = forwardRef(({ artPiece, index, setArtItemIndex }, ref) => {
       </motion.div>
     </AnimatePresence>
   );
-});
-ArtGridItem.displayName = "ArtGridItem";
+};
 
 export default ArtGridItem;
