@@ -24,6 +24,7 @@ The project is part of the [The Odin Project's](https://www.theodinproject.com/)
 ## Icons
 
 - [React Icons](https://react-icons.github.io/react-icons/)
+- [Material Design Icons](https://pictogrammers.com/library/mdi/)
 
 ## Images
 
