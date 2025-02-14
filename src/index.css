@@ -1,1 +1,31 @@
+@import "@fontsource/roboto/400.css";
+@import "@fontsource/roboto/500.css";
+@import "@fontsource/roboto/700.css";
+
+@import "@fontsource/roboto-condensed/400.css";
+@import "@fontsource/roboto-condensed/500.css";
+@import "@fontsource/roboto-condensed/700.css";
+
 @import "tailwindcss";
+@config "../tailwind.config.js";
+
+@supports ((animation-timeline: scroll()) and (animation-range: 0% 100%)) {
+  @keyframes fade-in-y {
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  #art-card {
+    view-timeline: --art-card;
+  }
+
+  #art-card {
+    opacity: 0;
+    transform: translateY(30%);
+    animation: fade-in-y both linear;
+    animation-timeline: --art-card;
+    animation-range: cover 5% cover 40%;
+  }
+}
