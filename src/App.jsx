@@ -1,10 +1,13 @@
 import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
 
+import { Routes, Route } from "react-router";
+
 import { FaShoppingCart } from "react-icons/fa";
 
 import Header from "./components/Header";
 import Home from "./components/Home";
+import Art from "./components/Art";
 import Footer from "./components/Footer";
 import Menu from "./components/Menu";
 
@@ -18,7 +21,10 @@ const App = () => {
   return (
     <div className="w-full min-h-screen flex flex-col animate-fade-in">
       <Header handleShowMenu={handleShowMenu} />
-      <Home />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/art" element={<Art />} />
+      </Routes>
       <Footer />
       <AnimatePresence>
         {showMenu && <Menu handleShowMenu={handleShowMenu} />}

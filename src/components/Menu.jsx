@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router";
 import { motion } from "framer-motion";
 
 import { FaArrowLeft } from "react-icons/fa";
@@ -23,18 +24,33 @@ const MenuItem = ({ icon, name, callback }) => {
 };
 
 const Menu = ({ handleShowMenu }) => {
+  const navigate = useNavigate();
   const menuItems = [
     {
       name: "Back",
       icon: <FaArrowLeft className="w-6 h-6 fill-current" />,
       callback: handleShowMenu,
     },
-    { name: "Home", icon: <FaHouse className="w-6 h-6 fill-current" /> },
+    {
+      name: "Home",
+      icon: <FaHouse className="w-6 h-6 fill-current" />,
+      callback: () => {
+        navigate("/");
+        handleShowMenu();
+      },
+    },
     {
       name: "Who We Are",
       icon: <FaInfoCircle className="w-6 h-6 fill-current" />,
     },
-    { name: "Art", icon: <FaPalette className="w-6 h-6 fill-current" /> },
+    {
+      name: "Art",
+      icon: <FaPalette className="w-6 h-6 fill-current" />,
+      callback: () => {
+        navigate("/art");
+        handleShowMenu();
+      },
+    },
     {
       name: "Basket",
       icon: <FaShoppingCart className="w-6 h-6 fill-current" />,
