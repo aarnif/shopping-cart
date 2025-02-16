@@ -1,7 +1,7 @@
 import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
 
-import artworks from "../frontend/src/data.js";
+import artworks from "./data.js";
 
 const typeDefs = `
   type Size {
