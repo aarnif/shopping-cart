@@ -24,6 +24,46 @@ const Review = ({ review }) => {
   );
 };
 
+const ReviewStatistic = ({ reviews }) => {
+  const distribution = [
+    { rating: 1, count: 0 },
+    { rating: 2, count: 0 },
+    { rating: 3, count: 0 },
+    { rating: 4, count: 0 },
+    { rating: 5, count: 0 },
+  ];
+
+  reviews.forEach((review) => {
+    distribution[review.rating - 1].count++;
+  });
+
+  return (
+    <div className="flex-col justify-center items-center gap-2 inline-flex overflow-hidden">
+      {distribution.reverse().map(({ rating, count }) => {
+        const value = Math.round((count / reviews.length) * 100);
+        console.log("Value", value);
+        return (
+          <div key={rating} className="w-full flex items-center gap-4">
+            <StarRating rating={rating} />
+            <div className="w-full relative">
+              <div className="absolute w-full h-1 bg-slate-200 rounded-lg" />
+              <div
+                className={`absolute h-1 bg-slate-700 ${
+                  value === 100 ? "rounded-lg" : "rounded-l-lg"
+                }`}
+                style={{
+                  width: `${value}%`,
+                }}
+              />
+            </div>
+            <div className="w-8 text-right text-slate-800 text-xs">{count}</div>
+          </div>
+        );
+      })}
+    </div>
+  );
+};
+
 const ArtWork = () => {
   const navigate = useNavigate();
   const match = useMatch("/art/:id").params;
@@ -102,6 +142,9 @@ const ArtWork = () => {
         <h2 className="text-slate-700 text-base font-bold">
           Customer Reviews ({reviews.length})
         </h2>
+
+        <ReviewStatistic reviews={reviews} />
+
         <div className="w-full flex flex-col gap-4">
           {artwork.reviews.map((review, index) => (
             <Review key={index} review={review} />
