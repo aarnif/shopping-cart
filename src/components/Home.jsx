@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router";
 
-import { IoIosStar } from "react-icons/io";
 import { FaArrowRightLong } from "react-icons/fa6";
 
 import artworks from "../data.js";
+import StarRating from "./StarRating.jsx";
 
 const ArtCard = ({ data }) => {
   const navigate = useNavigate();
@@ -48,22 +48,8 @@ const ArtCard = ({ data }) => {
               {sizes[0].price} €
             </h4>
             <div className="flex gap-2 items-center">
-              <div className="flex">
-                {[...Array(5)].map((_, index) =>
-                  index < averageRating ? (
-                    <IoIosStar
-                      key={index}
-                      className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400 fill-current"
-                    />
-                  ) : (
-                    <IoIosStar
-                      key={index}
-                      className="w-4 h-4 sm:w-5 sm:h-5 text-slate-700 fill-current"
-                    />
-                  )
-                )}
-              </div>
-              <p className="text-slate-700 text-sm sm:text-base font-medium">
+              <StarRating rating={averageRating} />
+              <p className="text-slate-700 text-xs sm:text-base font-medium">
                 {reviews.length} Reviews
               </p>
             </div>
