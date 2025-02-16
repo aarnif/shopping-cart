@@ -1,6 +1,6 @@
 const artworks = [
   {
-    id: 1,
+    id: "1",
     title: "Art Work",
     artist: "Artist Name",
     image: "/images/emotion.webp",
@@ -31,7 +31,7 @@ const artworks = [
     ],
   },
   {
-    id: 2,
+    id: "2",
     title: "Art Work",
     artist: "Artist Name",
     image: "/images/spirit.webp",
@@ -62,7 +62,7 @@ const artworks = [
     ],
   },
   {
-    id: 3,
+    id: "3",
     title: "Art Work",
     artist: "Artist Name",
     image: "/images/doctor.webp",
@@ -87,7 +87,7 @@ const artworks = [
     ],
   },
   {
-    id: 4,
+    id: "4",
     title: "Art Work",
     artist: "Artist Name",
     image: "/images/poppies.webp",
@@ -112,7 +112,7 @@ const artworks = [
     ],
   },
   {
-    id: 5,
+    id: "5",
     title: "Art Work",
     artist: "Artist Name",
     image: "/images/sunflowers.webp",
