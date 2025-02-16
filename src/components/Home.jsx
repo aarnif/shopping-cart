@@ -53,7 +53,7 @@ const ArtCard = ({ data }) => {
                 )}
               </div>
               <p className="text-slate-700 text-sm sm:text-base font-medium">
-                {reviews} Reviews
+                {reviews.length} Reviews
               </p>
             </div>
           </div>
