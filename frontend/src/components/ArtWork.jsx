@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useMatch, useNavigate } from "react-router";
+import { useQuery } from "@apollo/client";
 
-import artworks from "../data.js";
+import { FIND_ARTWORK } from "../graphql/queries.js";
+import Loading from "./Loading.jsx";
 import StarRating from "./StarRating.jsx";
 
 const Review = ({ review }) => {
@@ -66,20 +68,24 @@ const ReviewStatistic = ({ reviews }) => {
 const ArtWork = () => {
   const navigate = useNavigate();
   const match = useMatch("/art/:id").params;
-  const artwork = artworks.find((artwork) => artwork.id === Number(match.id));
+  const [selectedSize, setSelectedSize] = useState(null);
 
-  const {
-    title,
-    artist,
-    image,
-    description,
-    sizes,
-    reviews,
-    averageRating,
-    dimensions,
-  } = artwork;
+  const { data, loading } = useQuery(FIND_ARTWORK, {
+    variables: { id: match.id },
+  });
 
-  const [selectedSize, setSelectedSize] = useState(sizes[0].dimensions);
+  useEffect(() => {
+    if (data) {
+      setSelectedSize(data.findArtWork.sizes[0].dimensions);
+    }
+  }, [data]);
+
+  if (loading) {
+    return <Loading />;
+  }
+
+  const { title, artist, image, description, sizes, reviews } =
+    data.findArtWork;
 
   return (
     <div className="mt-16 w-full flex-grow flex flex-col items-center justify-start bg-white">
@@ -121,7 +127,9 @@ const ArtWork = () => {
         </div>
 
         <h3 className="text-slate-700 text-base text-center font-semibold">
-          {sizes.find((size) => size.dimensions === selectedSize).price} €
+          {selectedSize &&
+            sizes.find((size) => size.dimensions === selectedSize).price}{" "}
+          €
         </h3>
 
         <div className="w-full flex gap-2 justify-center items-center">
@@ -145,7 +153,7 @@ const ArtWork = () => {
         <ReviewStatistic reviews={reviews} />
 
         <div className="w-full flex flex-col gap-4">
-          {artwork.reviews.map((review, index) => (
+          {reviews.map((review, index) => (
             <Review key={index} review={review} />
           ))}
         </div>

@@ -1,6 +1,8 @@
 import { useNavigate } from "react-router";
+import { useQuery } from "@apollo/client";
 
-import artworks from "../data";
+import { ALL_ARTWORKS } from "../graphql/queries.js";
+import Loading from "./Loading.jsx";
 import StarRating from "./StarRating";
 
 const Heading = () => {
@@ -75,11 +77,17 @@ const ArtCard = ({ artwork }) => {
 };
 
 const Art = () => {
+  const { data, loading } = useQuery(ALL_ARTWORKS);
+
+  if (loading) {
+    return <Loading />;
+  }
+
   return (
     <div className="w-full py-28 px-6 min-h-screen flex flex-col items-center justify-start bg-slate-100">
       <Heading />
       <div className="w-full flex flex-col gap-8">
-        {artworks.map((artwork, index) => (
+        {data.allArtWorks.map((artwork, index) => (
           <ArtCard key={index} artwork={artwork} />
         ))}
       </div>

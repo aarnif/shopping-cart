@@ -1,8 +1,10 @@
 import { useNavigate } from "react-router";
+import { useQuery } from "@apollo/client";
 
 import { FaArrowRightLong } from "react-icons/fa6";
 
-import artworks from "../data.js";
+import { ALL_ARTWORKS } from "../graphql/queries.js";
+import Loading from "./Loading.jsx";
 import StarRating from "./StarRating.jsx";
 
 const ArtCard = ({ data }) => {
@@ -70,6 +72,14 @@ const ArtCard = ({ data }) => {
 };
 
 const Home = () => {
+  const { data, loading } = useQuery(ALL_ARTWORKS);
+
+  if (loading) {
+    return <Loading />;
+  }
+
+  const monthsFeatureArtworks = data.allArtWorks.slice(0, 4);
+
   return (
     <div className="relative bg-slate-100 before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-[100vh] before:bg-hero before:bg-cover before:bg-center before:bg-no-repeat">
       <div className="mt-20 relative w-full p-8 flex flex-col">
@@ -95,7 +105,7 @@ const Home = () => {
             This Month&apos;s Featured Artworks
           </h2>
           <div className="w-full flex flex-col gap-8">
-            {artworks.map((artwork, index) => (
+            {monthsFeatureArtworks.map((artwork, index) => (
               <ArtCard key={index} index={index} data={artwork} />
             ))}
           </div>
