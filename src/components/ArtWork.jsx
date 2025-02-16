@@ -41,7 +41,6 @@ const ReviewStatistic = ({ reviews }) => {
     <div className="flex-col justify-center items-center gap-2 inline-flex overflow-hidden">
       {distribution.reverse().map(({ rating, count }) => {
         const value = Math.round((count / reviews.length) * 100);
-        console.log("Value", value);
         return (
           <div key={rating} className="w-full flex items-center gap-4">
             <StarRating rating={rating} />
@@ -74,13 +73,13 @@ const ArtWork = () => {
     artist,
     image,
     description,
-    price,
+    sizes,
     reviews,
     averageRating,
     dimensions,
   } = artwork;
 
-  const [selectedSize, setSelectedSize] = useState(dimensions[0].size);
+  const [selectedSize, setSelectedSize] = useState(sizes[0].dimensions);
 
   return (
     <div className="mt-16 w-full flex-grow flex flex-col items-center justify-start bg-white">
@@ -105,13 +104,13 @@ const ArtWork = () => {
         <p className="text-slate-700 text-base">{description}</p>
 
         <div className="w-full flex flex-wrap gap-2 justify-center items-center">
-          {dimensions.map(({ size, dimensions }) => (
+          {sizes.map(({ dimensions }) => (
             <button
-              key={size}
-              onClick={() => setSelectedSize(size)}
+              key={dimensions}
+              onClick={() => setSelectedSize(dimensions)}
               className={`border border-slate-400 text-slate-700 text-xs py-1.5 px-3 rounded-full transition-all duration-300 ease-in-out 
                   ${
-                    selectedSize === size
+                    selectedSize === dimensions
                       ? "bg-slate-200 border-slate-700"
                       : "hover:bg-slate-200 active:border-slate-700"
                   }`}
@@ -122,7 +121,7 @@ const ArtWork = () => {
         </div>
 
         <h3 className="text-slate-700 text-base text-center font-semibold">
-          {price}
+          {sizes.find((size) => size.dimensions === selectedSize).price} €
         </h3>
 
         <div className="w-full flex gap-2 justify-center items-center">

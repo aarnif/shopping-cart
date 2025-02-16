@@ -5,16 +5,15 @@ const artworks = [
     artist: "Artist Name",
     image: "/images/emotion.webp",
     description: "Card Description",
-    price: "Price €",
     averageRating: 4,
     type: "portrait",
-    dimensions: [
-      { size: "sm", dimensions: "40 x 55 cm" },
-      { size: "m", dimensions: "50 x 70 cm" },
-      { size: "lg", dimensions: "60 x 85 cm" },
-      { size: "xl", dimensions: "70 x 100 cm" },
-      { size: "xxl", dimensions: "85 x 120 cm" },
-      { size: "xxxl", dimensions: "100 x 140 cm" },
+    sizes: [
+      { dimensions: "40 x 55 cm", price: 350 },
+      { dimensions: "50 x 70 cm", price: 450 },
+      { dimensions: "60 x 85 cm", price: 550 },
+      { dimensions: "70 x 100 cm", price: 650 },
+      { dimensions: "85 x 120 cm", price: 750 },
+      { dimensions: "100 x 140 cm", price: 850 },
     ],
     reviews: [
       {
@@ -37,16 +36,15 @@ const artworks = [
     artist: "Artist Name",
     image: "/images/spirit.webp",
     description: "Card Description",
-    price: "Price €",
     averageRating: 5,
     type: "landscape",
-    dimensions: [
-      { size: "sm", dimensions: "55 x 40 cm" },
-      { size: "m", dimensions: "70 x 50 cm" },
-      { size: "lg", dimensions: "85 x 60 cm" },
-      { size: "xl", dimensions: "100 x 70 cm" },
-      { size: "xxl", dimensions: "120 x 85 cm" },
-      { size: "xxxl", dimensions: "140 x 100 cm" },
+    sizes: [
+      { dimensions: "55 x 40 cm", price: 300 },
+      { dimensions: "70 x 50 cm", price: 400 },
+      { dimensions: "85 x 60 cm", price: 500 },
+      { dimensions: "100 x 70 cm", price: 600 },
+      { dimensions: "120 x 85 cm", price: 700 },
+      { dimensions: "140 x 100 cm", price: 800 },
     ],
     reviews: [
       {
@@ -69,16 +67,15 @@ const artworks = [
     artist: "Artist Name",
     image: "/images/doctor.webp",
     description: "Card Description",
-    price: "Price €",
     averageRating: 4,
     type: "portrait",
-    dimensions: [
-      { size: "sm", dimensions: "45 x 60 cm" },
-      { size: "m", dimensions: "55 x 75 cm" },
-      { size: "lg", dimensions: "65 x 90 cm" },
-      { size: "xl", dimensions: "80 x 110 cm" },
-      { size: "xxl", dimensions: "95 x 130 cm" },
-      { size: "xxxl", dimensions: "110 x 150 cm" },
+    sizes: [
+      { dimensions: "55 x 40 cm", price: 300 },
+      { dimensions: "70 x 50 cm", price: 400 },
+      { dimensions: "85 x 60 cm", price: 500 },
+      { dimensions: "100 x 70 cm", price: 600 },
+      { dimensions: "120 x 85 cm", price: 700 },
+      { dimensions: "140 x 100 cm", price: 800 },
     ],
     reviews: [
       {
@@ -95,16 +92,15 @@ const artworks = [
     artist: "Artist Name",
     image: "/images/poppies.webp",
     description: "Card Description",
-    price: "Price €",
     averageRating: 5,
     type: "landscape",
-    dimensions: [
-      { size: "sm", dimensions: "60 x 45 cm" },
-      { size: "m", dimensions: "75 x 55 cm" },
-      { size: "lg", dimensions: "90 x 65 cm" },
-      { size: "xl", dimensions: "110 x 80 cm" },
-      { size: "xxl", dimensions: "130 x 95 cm" },
-      { size: "xxxl", dimensions: "150 x 110 cm" },
+    sizes: [
+      { dimensions: "60 x 45 cm", price: 250 },
+      { dimensions: "75 x 55 cm", price: 350 },
+      { dimensions: "90 x 65 cm", price: 450 },
+      { dimensions: "110 x 80 cm", price: 550 },
+      { dimensions: "130 x 95 cm", price: 650 },
+      { dimensions: "150 x 110 cm", price: 750 },
     ],
     reviews: [
       {
@@ -121,16 +117,15 @@ const artworks = [
     artist: "Artist Name",
     image: "/images/sunflowers.webp",
     description: "Card Description",
-    price: "Price €",
     averageRating: 5,
     type: "landscape",
-    dimensions: [
-      { size: "sm", dimensions: "58 x 42 cm" },
-      { size: "m", dimensions: "72 x 52 cm" },
-      { size: "lg", dimensions: "88 x 65 cm" },
-      { size: "xl", dimensions: "105 x 75 cm" },
-      { size: "xxl", dimensions: "125 x 90 cm" },
-      { size: "xxxl", dimensions: "145 x 105 cm" },
+    sizes: [
+      { dimensions: "58 x 42 cm", price: 200 },
+      { dimensions: "72 x 52 cm", price: 300 },
+      { dimensions: "88 x 65 cm", price: 400 },
+      { dimensions: "105 x 75 cm", price: 500 },
+      { dimensions: "125 x 90 cm", price: 600 },
+      { dimensions: "145 x 105 cm", price: 700 },
     ],
     reviews: [
       {

@@ -42,7 +42,7 @@ const Heading = () => {
 
 const ArtCard = ({ artwork }) => {
   const navigate = useNavigate();
-  const { id, title, artist, image, price, averageRating } = artwork;
+  const { id, title, artist, image, sizes, averageRating } = artwork;
 
   return (
     <div className="w-full flex flex-col gap-2">
@@ -67,7 +67,7 @@ const ArtCard = ({ artwork }) => {
       <div className="flex justify-between items-center">
         <StarRating rating={averageRating} />
         <h4 className="text-slate-900 text-base sm:text-lg font-bold">
-          {price}
+          {sizes[0].price} €
         </h4>
       </div>
     </div>

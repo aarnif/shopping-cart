@@ -1,11 +1,22 @@
+import { useNavigate } from "react-router";
+
 import { IoIosStar } from "react-icons/io";
 import { FaArrowRightLong } from "react-icons/fa6";
 
 import artworks from "../data.js";
 
 const ArtCard = ({ data }) => {
-  const { title, artist, image, description, price, reviews, averageRating } =
-    data;
+  const navigate = useNavigate();
+  const {
+    id,
+    title,
+    artist,
+    image,
+    description,
+    sizes,
+    reviews,
+    averageRating,
+  } = data;
 
   return (
     <div
@@ -34,7 +45,7 @@ const ArtCard = ({ data }) => {
         <div className="w-full p-2 sm:p-4 bg-slate-50 flex justify-between items-center rounded-b-lg">
           <div className="flex flex-col gap-2">
             <h4 className="text-slate-900 text-base sm:text-lg font-bold">
-              {price}
+              {sizes[0].price} €
             </h4>
             <div className="flex gap-2 items-center">
               <div className="flex">
@@ -61,6 +72,7 @@ const ArtCard = ({ data }) => {
             <button
               className="flex p-2 sm:px-8 s:py-4 justify-center items-center text-sm sm:text-base text-slate-900 font-bold bg-slate-200 border-2 border-slate-200 
             rounded-lg cursor-pointer active:border-slate-400 active:inset-shadow-sm transition-all duration-300 ease-in-out"
+              onClick={() => navigate(`/art/${id}`)}
             >
               Buy Here
             </button>
