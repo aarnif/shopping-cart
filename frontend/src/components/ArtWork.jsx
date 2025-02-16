@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useMatch, useNavigate } from "react-router";
 
 import artworks from "../data.js";
-import StarRating from "./StarRating";
+import StarRating from "./StarRating.jsx";
 
 const Review = ({ review }) => {
   const { name, date, rating, text } = review;
