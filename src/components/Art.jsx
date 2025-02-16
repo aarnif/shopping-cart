@@ -1,8 +1,7 @@
 import { useNavigate } from "react-router";
 
-import { IoIosStar } from "react-icons/io";
-
 import artworks from "../data";
+import StarRating from "./StarRating";
 
 const Heading = () => {
   return (
@@ -66,21 +65,7 @@ const ArtCard = ({ artwork }) => {
         />
       </button>
       <div className="flex justify-between items-center">
-        <div className="flex">
-          {[...Array(5)].map((_, index) =>
-            index < averageRating ? (
-              <IoIosStar
-                key={index}
-                className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400 fill-current"
-              />
-            ) : (
-              <IoIosStar
-                key={index}
-                className="w-4 h-4 sm:w-5 sm:h-5 text-slate-700 fill-current"
-              />
-            )
-          )}
-        </div>
+        <StarRating rating={averageRating} />
         <h4 className="text-slate-900 text-base sm:text-lg font-bold">
           {price}
         </h4>

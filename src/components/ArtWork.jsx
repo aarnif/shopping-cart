@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { useMatch, useNavigate } from "react-router";
 
-import { IoIosStar } from "react-icons/io";
-
 import artworks from "../data.js";
+import StarRating from "./StarRating";
 
 const Review = ({ review }) => {
   const { name, date, rating, text } = review;
@@ -17,21 +16,7 @@ const Review = ({ review }) => {
             <h4 className="text-slate-700 text-xs font-semibold ">{name}</h4>
             <p className="text-slate-600 text-xs">{date}</p>
           </div>
-          <div className="flex">
-            {[...Array(5)].map((_, index) =>
-              index < rating ? (
-                <IoIosStar
-                  key={index}
-                  className="w-3 h-3 text-yellow-400 fill-current"
-                />
-              ) : (
-                <IoIosStar
-                  key={index}
-                  className="w-3 h-3 text-slate-700 fill-current"
-                />
-              )
-            )}
-          </div>
+          <StarRating rating={rating} />
         </div>
       </div>
       <p className="text-slate-700 text-xs">{`"${text}"`}</p>
@@ -82,6 +67,7 @@ const ArtWork = () => {
         <div className="w-full flex flex-wrap gap-2 justify-center items-center">
           {dimensions.map(({ size, dimensions }) => (
             <button
+              key={size}
               onClick={() => setSelectedSize(size)}
               className={`border border-slate-400 text-slate-700 text-xs py-1.5 px-3 rounded-full transition-all duration-300 ease-in-out 
                   ${
