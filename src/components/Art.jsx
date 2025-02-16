@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router";
+
 import { IoIosStar } from "react-icons/io";
 
 import artworks from "../data";
@@ -40,7 +42,8 @@ const Heading = () => {
 };
 
 const ArtCard = ({ artwork }) => {
-  const { title, artist, image, price, averageRating } = artwork;
+  const navigate = useNavigate();
+  const { id, title, artist, image, price, averageRating } = artwork;
 
   return (
     <div className="w-full flex flex-col gap-2">
@@ -52,15 +55,16 @@ const ArtCard = ({ artwork }) => {
           By {artist}
         </h4>
       </div>
-      <div className="w-full h-auto bg-slate-300">
+      <button
+        className="w-full h-auto bg-slate-300"
+        onClick={() => navigate(`/art/${id}`)}
+      >
         <img
           src={image}
           alt={`${title} by ${artist}`}
-          width={500}
-          height={500}
           className="h-full w-full object-cover"
         />
-      </div>
+      </button>
       <div className="flex justify-between items-center">
         <div className="flex">
           {[...Array(5)].map((_, index) =>

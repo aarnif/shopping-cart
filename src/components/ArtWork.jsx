@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useMatch } from "react-router";
+import { useMatch, useNavigate } from "react-router";
 
 import { IoIosStar } from "react-icons/io";
 
@@ -40,6 +40,7 @@ const Review = ({ review }) => {
 };
 
 const ArtWork = () => {
+  const navigate = useNavigate();
   const match = useMatch("/art/:id").params;
   const artwork = artworks.find((artwork) => artwork.id === Number(match.id));
 
@@ -99,7 +100,10 @@ const ArtWork = () => {
         </h3>
 
         <div className="w-full flex gap-2 justify-center items-center">
-          <button className="flex-grow basis-[50%] border border-slate-400 text-slate-700 font-semibold text-sm py-2 px-4 rounded-lg transition-all duration-300 ease-in-out">
+          <button
+            className="flex-grow basis-[50%] border border-slate-400 text-slate-700 font-semibold text-sm py-2 px-4 rounded-lg transition-all duration-300 ease-in-out"
+            onClick={() => navigate("/art")}
+          >
             Back
           </button>
           <button

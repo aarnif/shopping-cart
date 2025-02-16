@@ -8,6 +8,7 @@ import { FaShoppingCart } from "react-icons/fa";
 import Header from "./components/Header";
 import Home from "./components/Home";
 import Art from "./components/Art";
+import ArtWork from "./components/ArtWork";
 import Footer from "./components/Footer";
 import Menu from "./components/Menu";
 
@@ -24,6 +25,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/art" element={<Art />} />
+        <Route path="/art/:id" element={<ArtWork />} />
       </Routes>
       <Footer />
       <AnimatePresence>
