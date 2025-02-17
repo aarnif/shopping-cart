@@ -1,10 +1,11 @@
 const artworks = [
   {
     id: "1",
-    title: "Art Work",
-    artist: "Artist Name",
+    title: "A Vision in Color",
+    artist: "Liora Senn",
     image: "/images/emotion.webp",
-    description: "Card Description",
+    description:
+      "Bold brushstrokes and rich hues of purple, blue, and red bring this abstract masterpiece to life. A striking blend of movement and emotion, this piece captures energy and depth in every layer.",
     averageRating: 4,
     type: "portrait",
     sizes: [
@@ -32,10 +33,11 @@ const artworks = [
   },
   {
     id: "2",
-    title: "Art Work",
-    artist: "Artist Name",
+    title: "The Spirit of Freedom",
+    artist: "Elias Varnen",
     image: "/images/spirit.webp",
-    description: "Card Description",
+    description:
+      "Vivid colors and flowing forms embody the untamed essence of movement. This artwork captures the raw energy and boundless freedom of a soul unrestrained.",
     averageRating: 5,
     type: "landscape",
     sizes: [
@@ -63,10 +65,11 @@ const artworks = [
   },
   {
     id: "3",
-    title: "Art Work",
-    artist: "Artist Name",
+    title: "Guardian of Healing",
+    artist: "Lucien Moreau",
     image: "/images/doctor.webp",
-    description: "Card Description",
+    description:
+      "A quiet devotion unfolds in flowing color, where light and movement intertwine with the weight of knowledge and the urgency of compassion. Each brushstroke lingers, a testament to hands that heal and time that passes.",
     averageRating: 4,
     type: "portrait",
     sizes: [
@@ -88,10 +91,11 @@ const artworks = [
   },
   {
     id: "4",
-    title: "Art Work",
-    artist: "Artist Name",
+    title: "Whispers of the Bloom",
+    artist: "Camille Verdain",
     image: "/images/poppies.webp",
-    description: "Card Description",
+    description:
+      "An impressionist vision of a sunlit poppy field, where vivid colors and dynamic brushstrokes capture the beauty of nature in motion.",
     averageRating: 5,
     type: "landscape",
     sizes: [
@@ -113,10 +117,11 @@ const artworks = [
   },
   {
     id: "5",
-    title: "Art Work",
-    artist: "Artist Name",
+    title: "Sunflowers at Dusk",
+    artist: "Elias Varnen",
     image: "/images/sunflowers.webp",
-    description: "Card Description",
+    description:
+      "An impressionist vision of a sunflower field at dusk, where vibrant yellows and warm golden hues dance across the canvas, brought to life by dynamic brushstrokes that capture the fleeting beauty of twilight.",
     averageRating: 5,
     type: "landscape",
     sizes: [
