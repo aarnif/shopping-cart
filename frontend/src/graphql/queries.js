@@ -23,8 +23,8 @@ export const ART_DETAILS = gql`
 `;
 
 export const ALL_ARTWORKS = gql`
-  query allArtWorks {
-    allArtWorks {
+  query AllArtWorks($sortBy: String) {
+    allArtWorks(sortBy: $sortBy) {
       ...ArtDetails
     }
   }
@@ -33,7 +33,7 @@ export const ALL_ARTWORKS = gql`
 `;
 
 export const FIND_ARTWORK = gql`
-  query findArtWork($id: ID!) {
+  query FindArtWork($id: ID!) {
     findArtWork(id: $id) {
       ...ArtDetails
     }

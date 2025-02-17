@@ -30,7 +30,7 @@ const typeDefs = `
 
   type Query {
     artWorksCount: Int!
-    allArtWorks: [ArtWork!]!
+    allArtWorks(sortBy: String): [ArtWork!]!
     findArtWork(id: ID!): ArtWork
   }
 `;
@@ -38,7 +38,17 @@ const typeDefs = `
 const resolvers = {
   Query: {
     artWorksCount: () => artworks.length,
-    allArtWorks: () => artworks,
+    allArtWorks: (root, args) => {
+      if (args.sortBy === "artist") {
+        return artworks.sort((a, b) => a.artist.localeCompare(b.artist));
+      } else if (args.sortBy === "price") {
+        return artworks.sort((a, b) => a.sizes[0].price - b.sizes[0].price);
+      } else if (args.sortBy === "rating") {
+        return artworks.sort((a, b) => b.averageRating - a.averageRating);
+      } else {
+        return artworks.sort((a, b) => a.title.localeCompare(b.title));
+      }
+    },
     findArtWork: (root, args) =>
       artworks.find((artwork) => artwork.id === args.id),
   },

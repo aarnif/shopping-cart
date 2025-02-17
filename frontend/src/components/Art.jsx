@@ -1,42 +1,53 @@
 import { useNavigate } from "react-router";
+import { useState } from "react";
 import { useQuery } from "@apollo/client";
 
 import { ALL_ARTWORKS } from "../graphql/queries.js";
 import Loading from "./Loading.jsx";
 import StarRating from "./StarRating";
 
-const Heading = () => {
+const Heading = ({ selectedSort, setSelectedSort }) => {
+  const buttons = [
+    {
+      name: "title",
+      text: "Title",
+      callback: () => setSelectedSort("title"),
+    },
+    {
+      name: "artist",
+      text: "Artist",
+      callback: () => setSelectedSort("artist"),
+    },
+    {
+      name: "rating",
+      text: "Rating",
+      callback: () => setSelectedSort("rating"),
+    },
+    {
+      name: "price",
+      text: "Price",
+      callback: () => setSelectedSort("price"),
+    },
+  ];
+
   return (
     <div className="mb-4 w-full flex justify-between items-center">
       <h2 className="text-2xl font-bold text-slate-900">Art</h2>
       <ul className="flex gap-1">
-        <li>
-          <button
-            className="flex py-2 px-4 justify-center items-center text-sm text-slate-900 font-bold 
-                bg-white border-1 border-slate-500 rounded-full cursor-pointer 
-                active:inset-shadow-sm active:bg-slate-100 transition-all duration-300 ease-in-out"
-          >
-            A-Z
-          </button>
-        </li>
-        <li>
-          <button
-            className="flex py-2 px-4 justify-center items-center text-sm text-slate-900 font-bold 
-                bg-white border-1 border-slate-500 rounded-full cursor-pointer 
-                active:inset-shadow-sm active:bg-slate-100 transition-all duration-300 ease-in-out"
-          >
-            Popularity
-          </button>
-        </li>
-        <li>
-          <button
-            className="flex py-2 px-4 justify-center items-center text-sm text-slate-900 font-bold 
-                bg-white border-1 border-slate-500 rounded-full cursor-pointer 
-                active:inset-shadow-sm active:bg-slate-100 transition-all duration-300 ease-in-out"
-          >
-            Price
-          </button>
-        </li>
+        {buttons.map((button) => (
+          <li key={button.name}>
+            <button
+              className={`flex py-1.25 px-2.5 justify-center items-center text-sm text-slate-900 font-medium
+              ${
+                selectedSort === button.name ? "bg-slate-200 " : "bg-white"
+              } border-1 border-slate-500 rounded-full cursor-pointer 
+              active:inset-shadow-sm active:bg-slate-100 transition-all duration-300 ease-in-out`}
+              onClick={button.callback}
+            >
+              {button.text}
+            </button>
+          </li>
+        ))}
       </ul>
     </div>
   );
@@ -77,7 +88,10 @@ const ArtCard = ({ artwork }) => {
 };
 
 const Art = () => {
-  const { data, loading } = useQuery(ALL_ARTWORKS);
+  const [selectedSort, setSelectedSort] = useState("title");
+  const { data, loading } = useQuery(ALL_ARTWORKS, {
+    variables: { sortBy: selectedSort },
+  });
 
   if (loading) {
     return <Loading />;
@@ -85,8 +99,8 @@ const Art = () => {
 
   return (
     <div className="w-full py-28 px-6 min-h-screen flex flex-col items-center justify-start bg-slate-100">
-      <Heading />
-      <div className="w-full flex flex-col gap-8">
+      <Heading selectedSort={selectedSort} setSelectedSort={setSelectedSort} />
+      <div key={"art"} className="w-full flex flex-col gap-8">
         {data.allArtWorks.map((artwork, index) => (
           <ArtCard key={index} artwork={artwork} />
         ))}
