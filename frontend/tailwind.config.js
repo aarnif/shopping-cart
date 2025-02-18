@@ -18,6 +18,11 @@ export default {
         "0%": { transform: "scale(0)" },
         "100%": { transform: "scale(1)" },
       },
+      zoomInAndOut: {
+        "0%": { transform: "scale(1)" },
+        "50%": { transform: "scale(1.5)" },
+        "100%": { transform: "scale(1)" },
+      },
       hopIn: {
         "0%": { opacity: 0, transform: "translateY(100px)" },
         "50%": { opacity: 0.5, transform: "translateY(-40px)" },
@@ -27,6 +32,7 @@ export default {
     animation: {
       "fade-in": "fadeIn 0.3s ease-in-out",
       "scale-in": "scaleIn 0.3s ease-in-out",
+      "zoom-in-and-out": "zoomInAndOut 0.5s ease-in-out",
       "hop-in": "hopIn 1s ease-in-out",
     },
   },

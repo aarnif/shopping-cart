@@ -13,11 +13,17 @@ import Footer from "./components/Footer";
 import Menu from "./components/Menu";
 
 const App = () => {
+  const [shoppingCart, setShoppingCart] = useState([]);
   const [showMenu, setShowMenu] = useState(false);
 
   const handleShowMenu = () => {
     setShowMenu(!showMenu);
   };
+
+  const numberOfItemsInCart = shoppingCart.reduce(
+    (acc, item) => acc + item.quantity,
+    0
+  );
 
   return (
     <div className="w-full min-h-screen flex flex-col animate-fade-in">
@@ -25,7 +31,15 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/art" element={<Art />} />
-        <Route path="/art/:id" element={<ArtWork />} />
+        <Route
+          path="/art/:id"
+          element={
+            <ArtWork
+              shoppingCart={shoppingCart}
+              setShoppingCart={setShoppingCart}
+            />
+          }
+        />
       </Routes>
       <Footer />
       <AnimatePresence>
@@ -36,6 +50,18 @@ const App = () => {
              rounded-full shadow-xl cursor-pointer active:border-rose-900 active:inset-shadow-sm transition-all duration-300 ease-in-out"
       >
         <FaShoppingCart className="w-6 h-6 fill-current" />
+        {shoppingCart.length > 0 && (
+          <div
+            key={numberOfItemsInCart}
+            className={`absolute -bottom-1 -right-1 w-4.5 h-4.5 flex justify-center items-center bg-green-700 text-white text-xs font-bold rounded-full ${
+              numberOfItemsInCart === 1
+                ? "animate-scale-in"
+                : "animate-zoom-in-and-out"
+            }`}
+          >
+            {numberOfItemsInCart}
+          </div>
+        )}
       </button>
     </div>
   );
