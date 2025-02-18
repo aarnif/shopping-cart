@@ -1,12 +1,7 @@
 import { useNavigate } from "react-router";
 import { useState } from "react";
 import { useQuery } from "@apollo/client";
-import {
-  useScroll,
-  useMotionValueEvent,
-  AnimatePresence,
-  motion,
-} from "framer-motion";
+import { useScroll, useMotionValueEvent } from "framer-motion";
 
 import { ALL_ARTWORKS } from "../graphql/queries.js";
 import Loading from "./Loading.jsx";
@@ -94,12 +89,12 @@ const ArtCard = ({ artwork }) => {
 };
 
 const Art = () => {
-  const numberOfArtworksToBefetched = 3;
+  const numberOfArtworksToBeFetched = 3;
   const [selectedSort, setSelectedSort] = useState("title");
   const { data, loading, fetchMore } = useQuery(ALL_ARTWORKS, {
     variables: {
       sortBy: selectedSort,
-      first: numberOfArtworksToBefetched,
+      first: numberOfArtworksToBeFetched,
       after: null,
     },
     fetchPolicy: "cache-and-network",
@@ -120,7 +115,7 @@ const Art = () => {
       variables: {
         after: data.allArtWorks.pageInfo.endCursor,
         sortBy: selectedSort,
-        first: numberOfArtworksToBefetched,
+        first: numberOfArtworksToBeFetched,
       },
       updateQuery: (previousData, { fetchMoreResult }) => {
         if (
@@ -149,7 +144,9 @@ const Art = () => {
     <div className="w-full py-28 px-6 min-h-screen flex flex-col items-center justify-start bg-slate-100">
       <Heading selectedSort={selectedSort} setSelectedSort={setSelectedSort} />
       {loading ? (
-        <Loading />
+        <div className="mt-8">
+          <Loading />
+        </div>
       ) : (
         <div key={"art"} className="w-full flex flex-col gap-8">
           {data.allArtWorks.edges.map((edge, index) => (
