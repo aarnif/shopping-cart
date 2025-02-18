@@ -1,6 +1,12 @@
 import { useNavigate } from "react-router";
 import { useState } from "react";
 import { useQuery } from "@apollo/client";
+import {
+  useScroll,
+  useMotionValueEvent,
+  AnimatePresence,
+  motion,
+} from "framer-motion";
 
 import { ALL_ARTWORKS } from "../graphql/queries.js";
 import Loading from "./Loading.jsx";
@@ -99,6 +105,14 @@ const Art = () => {
     fetchPolicy: "cache-and-network",
   });
 
+  // Infinite scroll that loads more artworks when the user reaches the bottom of the page
+  const { scrollYProgress } = useScroll();
+  useMotionValueEvent(scrollYProgress, "change", (progress) => {
+    if (progress >= 0.99) {
+      loadMore();
+    }
+  });
+
   const loadMore = () => {
     if (!data?.allArtWorks?.pageInfo?.hasNextPage) return;
 
@@ -131,24 +145,18 @@ const Art = () => {
     });
   };
 
-  if (loading) {
-    return <Loading />;
-  }
-
   return (
     <div className="w-full py-28 px-6 min-h-screen flex flex-col items-center justify-start bg-slate-100">
       <Heading selectedSort={selectedSort} setSelectedSort={setSelectedSort} />
-      <div key={"art"} className="w-full flex flex-col gap-8">
-        {data.allArtWorks.edges.map((edge, index) => (
-          <ArtCard key={index} artwork={edge.node} />
-        ))}
-        <button
-          className="w-full py-2 bg-slate-900 text-white font-bold rounded-md"
-          onClick={loadMore}
-        >
-          Load More
-        </button>
-      </div>
+      {loading ? (
+        <Loading />
+      ) : (
+        <div key={"art"} className="w-full flex flex-col gap-8">
+          {data.allArtWorks.edges.map((edge, index) => (
+            <ArtCard key={index} artwork={edge.node} />
+          ))}
+        </div>
+      )}
     </div>
   );
 };
