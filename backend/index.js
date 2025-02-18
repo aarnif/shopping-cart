@@ -66,6 +66,7 @@ const sortComparators = {
 const resolvers = {
   Query: {
     artWorksCount: () => artworks.length,
+    // This resolver was generated with the help of ChatGPT o3-mini-high model
     allArtWorks: (root, { sortBy = "title", first = 3, after }) => {
       const sortedArtworks = [...artworks].sort(
         sortComparators[sortBy] || sortComparators.title
