@@ -141,18 +141,25 @@ const Art = () => {
   };
 
   return (
-    <div className="w-full py-28 px-6 min-h-screen flex flex-col items-center justify-start bg-slate-100">
+    <div className="w-full pt-28 pb-14 px-6 min-h-screen flex flex-col items-center justify-start bg-slate-100">
       <Heading selectedSort={selectedSort} setSelectedSort={setSelectedSort} />
       {loading ? (
         <div className="mt-8">
           <Loading />
         </div>
       ) : (
-        <div key={"art"} className="w-full flex flex-col gap-8">
-          {data.allArtWorks.edges.map((edge, index) => (
-            <ArtCard key={index} artwork={edge.node} />
-          ))}
-        </div>
+        <>
+          <div key={"art"} className="w-full flex flex-col gap-8">
+            {data.allArtWorks.edges.map((edge, index) => (
+              <ArtCard key={index} artwork={edge.node} />
+            ))}
+          </div>
+          {!data.allArtWorks.pageInfo.hasNextPage && (
+            <div className="mt-8 text-slate-700 text-sm font-medium">
+              No more artworks available.
+            </div>
+          )}
+        </>
       )}
     </div>
   );
