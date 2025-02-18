@@ -72,13 +72,15 @@ const ArtCard = ({ data }) => {
 };
 
 const Home = () => {
-  const { data, loading } = useQuery(ALL_ARTWORKS);
+  const { data, loading } = useQuery(ALL_ARTWORKS, {
+    variables: { sortBy: "", first: 4, after: null },
+  });
 
   if (loading) {
     return <Loading />;
   }
 
-  const monthsFeatureArtworks = data.allArtWorks.slice(0, 4);
+  console.log("data", data);
 
   return (
     <div className="relative bg-slate-100 before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-[100vh] before:bg-hero before:bg-cover before:bg-center before:bg-no-repeat">
@@ -105,8 +107,8 @@ const Home = () => {
             This Month&apos;s Featured Artworks
           </h2>
           <div className="w-full flex flex-col gap-8">
-            {monthsFeatureArtworks.map((artwork, index) => (
-              <ArtCard key={index} index={index} data={artwork} />
+            {data.allArtWorks.edges.map((edge, index) => (
+              <ArtCard key={index} index={index} data={edge.node} />
             ))}
           </div>
         </div>

@@ -28,26 +28,78 @@ const typeDefs = `
     reviews: [Review!]!
   }
 
+  type ArtWorksConnection {
+    totalCount: Int
+    edges: [ArtWorkEdge]
+    pageInfo: PageInfo!
+  }
+ 
+  type ArtWorkEdge {
+    cursor: ID!
+    node: ArtWork!
+  }
+
+  type PageInfo {
+    startCursor: ID
+    endCursor: ID
+    hasNextPage: Boolean!
+  }
+
   type Query {
     artWorksCount: Int!
-    allArtWorks(sortBy: String): [ArtWork!]!
+    allArtWorks(sortBy: String, first: Int, after: ID): ArtWorksConnection!
     findArtWork(id: ID!): ArtWork
   }
 `;
 
+const encodeCursor = (id) => Buffer.from(id.toString()).toString("base64");
+const decodeCursor = (cursor) =>
+  Buffer.from(cursor, "base64").toString("ascii");
+
+const sortComparators = {
+  title: (a, b) => a.title.localeCompare(b.title),
+  artist: (a, b) => a.artist.localeCompare(b.artist),
+  price: (a, b) => a.sizes[0].price - b.sizes[0].price,
+  rating: (a, b) => b.averageRating - a.averageRating,
+};
+
 const resolvers = {
   Query: {
     artWorksCount: () => artworks.length,
-    allArtWorks: (root, args) => {
-      if (args.sortBy === "artist") {
-        return artworks.sort((a, b) => a.artist.localeCompare(b.artist));
-      } else if (args.sortBy === "price") {
-        return artworks.sort((a, b) => a.sizes[0].price - b.sizes[0].price);
-      } else if (args.sortBy === "rating") {
-        return artworks.sort((a, b) => b.averageRating - a.averageRating);
-      } else {
-        return artworks.sort((a, b) => a.title.localeCompare(b.title));
-      }
+    allArtWorks: (root, { sortBy = "title", first = 3, after }) => {
+      const sortedArtworks = [...artworks].sort(
+        sortComparators[sortBy] || sortComparators.title
+      );
+
+      const startIndex = after
+        ? sortedArtworks.findIndex(
+            (artwork) => artwork.id.toString() === decodeCursor(after)
+          ) + 1
+        : 0;
+
+      const paginatedArtworks = sortedArtworks.slice(
+        startIndex,
+        startIndex + first
+      );
+
+      const edges = paginatedArtworks.map((artwork) => ({
+        cursor: encodeCursor(artwork.id.toString()),
+        node: artwork,
+      }));
+
+      const startCursor = edges.length ? edges[0].cursor : null;
+      const endCursor = edges.length ? edges[edges.length - 1].cursor : null;
+      const hasNextPage = startIndex + first < sortedArtworks.length;
+
+      return {
+        totalCount: sortedArtworks.length,
+        edges,
+        pageInfo: {
+          startCursor,
+          endCursor,
+          hasNextPage,
+        },
+      };
     },
     findArtWork: (root, args) =>
       artworks.find((artwork) => artwork.id === args.id),

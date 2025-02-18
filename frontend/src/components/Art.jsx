@@ -88,10 +88,48 @@ const ArtCard = ({ artwork }) => {
 };
 
 const Art = () => {
+  const numberOfArtworksToBefetched = 3;
   const [selectedSort, setSelectedSort] = useState("title");
-  const { data, loading } = useQuery(ALL_ARTWORKS, {
-    variables: { sortBy: selectedSort },
+  const { data, loading, fetchMore } = useQuery(ALL_ARTWORKS, {
+    variables: {
+      sortBy: selectedSort,
+      first: numberOfArtworksToBefetched,
+      after: null,
+    },
+    fetchPolicy: "cache-and-network",
   });
+
+  const loadMore = () => {
+    if (!data?.allArtWorks?.pageInfo?.hasNextPage) return;
+
+    fetchMore({
+      variables: {
+        after: data.allArtWorks.pageInfo.endCursor,
+        sortBy: selectedSort,
+        first: numberOfArtworksToBefetched,
+      },
+      updateQuery: (previousData, { fetchMoreResult }) => {
+        if (
+          !fetchMoreResult ||
+          fetchMoreResult.allArtWorks.edges.length === 0
+        ) {
+          return previousData;
+        }
+
+        return {
+          allArtWorks: {
+            __typename: previousData.allArtWorks.__typename,
+            totalCount: fetchMoreResult.allArtWorks.totalCount,
+            edges: [
+              ...previousData.allArtWorks.edges,
+              ...fetchMoreResult.allArtWorks.edges,
+            ],
+            pageInfo: fetchMoreResult.allArtWorks.pageInfo,
+          },
+        };
+      },
+    });
+  };
 
   if (loading) {
     return <Loading />;
@@ -101,9 +139,15 @@ const Art = () => {
     <div className="w-full py-28 px-6 min-h-screen flex flex-col items-center justify-start bg-slate-100">
       <Heading selectedSort={selectedSort} setSelectedSort={setSelectedSort} />
       <div key={"art"} className="w-full flex flex-col gap-8">
-        {data.allArtWorks.map((artwork, index) => (
-          <ArtCard key={index} artwork={artwork} />
+        {data.allArtWorks.edges.map((edge, index) => (
+          <ArtCard key={index} artwork={edge.node} />
         ))}
+        <button
+          className="w-full py-2 bg-slate-900 text-white font-bold rounded-md"
+          onClick={loadMore}
+        >
+          Load More
+        </button>
       </div>
     </div>
   );

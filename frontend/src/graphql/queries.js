@@ -23,9 +23,20 @@ export const ART_DETAILS = gql`
 `;
 
 export const ALL_ARTWORKS = gql`
-  query AllArtWorks($sortBy: String) {
-    allArtWorks(sortBy: $sortBy) {
-      ...ArtDetails
+  query AllArtWorks($sortBy: String, $first: Int, $after: ID) {
+    allArtWorks(sortBy: $sortBy, first: $first, after: $after) {
+      pageInfo {
+        startCursor
+        endCursor
+        hasNextPage
+      }
+      totalCount
+      edges {
+        cursor
+        node {
+          ...ArtDetails
+        }
+      }
     }
   }
 
