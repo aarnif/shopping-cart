@@ -52,8 +52,12 @@ const Menu = ({ handleShowMenu }) => {
       },
     },
     {
-      name: "Basket",
+      name: "Cart",
       icon: <FaShoppingCart className="w-6 h-6 fill-current" />,
+      callback: () => {
+        navigate("/cart");
+        handleShowMenu();
+      },
     },
   ];
 
