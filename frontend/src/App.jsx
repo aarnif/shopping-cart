@@ -25,7 +25,7 @@ const App = () => {
   };
 
   const handleAddItemToCart = (artWork, selectedSize) => {
-    console.log("Add art work to cart:", artWork.title);
+    console.log("Add art work to cart:", artWork.id);
 
     const newItem = {
       id: uuidv4(),
@@ -56,6 +56,28 @@ const App = () => {
     }
   };
 
+  const handleRemoveItemFromCart = (id) => {
+    console.log("Remove item from cart:", id);
+
+    const checkIfItemHasOneQuantityLeft = shoppingCart.find(
+      (item) => item.id === id && item.quantity === 1
+    );
+
+    if (checkIfItemHasOneQuantityLeft) {
+      console.log("Item has one quantity, remove from cart");
+      setShoppingCart((prevState) =>
+        prevState.filter((item) => item.id !== id)
+      );
+    } else {
+      console.log("Item has more than one quantity, decrease quantity");
+      setShoppingCart((prevState) =>
+        prevState.map((item) =>
+          item.id === id ? { ...item, quantity: item.quantity - 1 } : item
+        )
+      );
+    }
+  };
+
   const numberOfItemsInCart = shoppingCart.reduce(
     (acc, item) => acc + item.quantity,
     0
@@ -77,6 +99,7 @@ const App = () => {
             <Cart
               shoppingCart={shoppingCart}
               handleAddItemToCart={handleAddItemToCart}
+              handleRemoveItemFromCart={handleRemoveItemFromCart}
             />
           }
         />

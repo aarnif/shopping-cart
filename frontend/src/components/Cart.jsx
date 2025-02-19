@@ -1,6 +1,6 @@
 import { FaMinus, FaPlus } from "react-icons/fa6";
 
-const CartItem = ({ item, handleAddItemToCart }) => {
+const CartItem = ({ item, handleAddItemToCart, handleRemoveItemFromCart }) => {
   const { title, artist, image, quantity, size } = item;
   return (
     <div className="bg-white rounded-lg shadow-xl">
@@ -28,6 +28,7 @@ const CartItem = ({ item, handleAddItemToCart }) => {
             <button
               className="w-6 h-6 flex justify-center items-center rounded-l-full
             hover:bg-slate-200 active:bg-slate-200 active:inset-shadow-sm transition-all duration-300 ease-in-out"
+              onClick={() => handleRemoveItemFromCart(item.id)}
             >
               <FaMinus className="w-3.5 h-3.5 fill-current text-slate-700" />
             </button>
@@ -54,7 +55,11 @@ const CartItem = ({ item, handleAddItemToCart }) => {
   );
 };
 
-const Cart = ({ shoppingCart, handleAddItemToCart }) => {
+const Cart = ({
+  shoppingCart,
+  handleAddItemToCart,
+  handleRemoveItemFromCart,
+}) => {
   return (
     <div className="mt-16 w-full flex-grow flex flex-col items-center justify-start bg-slate-100">
       <div className="w-full flex flex-col gap-4 p-4">
@@ -65,6 +70,7 @@ const Cart = ({ shoppingCart, handleAddItemToCart }) => {
               key={item.id}
               item={item}
               handleAddItemToCart={handleAddItemToCart}
+              handleRemoveItemFromCart={handleRemoveItemFromCart}
             />
           ))
         ) : (
