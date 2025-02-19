@@ -1,4 +1,4 @@
-import { FaMinus, FaPlus } from "react-icons/fa6";
+import { FaMinus, FaPlus, FaArrowRightLong } from "react-icons/fa6";
 
 const CartItem = ({ item, handleAddItemToCart, handleRemoveItemFromCart }) => {
   const { title, artist, image, quantity, size } = item;
@@ -55,13 +55,51 @@ const CartItem = ({ item, handleAddItemToCart, handleRemoveItemFromCart }) => {
   );
 };
 
+const OrderSummary = ({ shoppingCart }) => {
+  const totalItemsCost = shoppingCart.reduce(
+    (acc, item) => acc + item.quantity * item.size.price,
+    0
+  );
+  const shippingCost = 9.99;
+
+  return (
+    <div className="w-full p-4 flex flex-col items-center gap-4 bg-white rounded-lg shadow-xl">
+      <h2 className="text-center text-slate-800 font-bold">Order Summary</h2>
+      <div className="w-full flex flex-col gap-2">
+        <div className="w-full flex justify-between">
+          <p className="text-center text-slate-700 text-sm">Items</p>
+          <p className="text-center text-slate-700 text-sm">
+            {totalItemsCost} €
+          </p>
+        </div>
+        <div className="w-full flex justify-between">
+          <p className="text-center text-slate-700 text-sm">Shipping</p>
+          <p className="text-center text-slate-700 text-sm">{shippingCost} €</p>
+        </div>
+        <div className="w-full flex justify-between">
+          <p className="text-center text-slate-800 text-base font-semibold">
+            Total
+          </p>
+          <p className="text-center text-slate-800 text-base font-semibold">
+            {totalItemsCost + shippingCost} €
+          </p>
+        </div>
+      </div>
+      <button className="w-full p-2 flex justify-center items-center gap-2 bg-green-500 rounded-lg shadow-xl">
+        <p className="text-white text-sm font-bold">Checkout</p>
+        <FaArrowRightLong className="w-4 h-4 text-white fill-current" />
+      </button>
+    </div>
+  );
+};
+
 const Cart = ({
   shoppingCart,
   handleAddItemToCart,
   handleRemoveItemFromCart,
 }) => {
   return (
-    <div className="mt-16 w-full flex-grow flex flex-col items-center justify-start bg-slate-100">
+    <div className="py-16 w-full flex-grow flex flex-col items-center justify-start bg-slate-100">
       <div className="w-full flex flex-col gap-4 p-4">
         <h1 className="text-xl text-slate-900 font-bold">Cart</h1>
         {shoppingCart.length > 0 ? (
@@ -76,6 +114,7 @@ const Cart = ({
         ) : (
           <p className="text-slate-700 text-base">Your cart is empty</p>
         )}
+        <OrderSummary shoppingCart={shoppingCart} />
       </div>
     </div>
   );
