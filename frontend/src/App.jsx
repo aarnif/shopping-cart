@@ -37,16 +37,13 @@ const App = () => {
     };
 
     const checkIfItemWithSameSizeAndTitleInCart = shoppingCart.find(
-      (item) =>
-        newItem.title === item.title &&
-        newItem.selectedSize === item.selectedSize
+      (item) => newItem.title === item.title && newItem.size === item.size
     );
 
     if (checkIfItemWithSameSizeAndTitleInCart) {
       console.log("Item with same size already in cart, increase quantity");
       const updatedCart = shoppingCart.map((item) =>
-        item.title === newItem.title &&
-        item.selectedSize === newItem.selectedSize
+        item.title === newItem.title && item.size === newItem.size
           ? { ...item, quantity: item.quantity + 1 }
           : item
       );
