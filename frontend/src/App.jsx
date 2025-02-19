@@ -13,11 +13,14 @@ import ArtWork from "./components/ArtWork";
 import Cart from "./components/Cart";
 import Footer from "./components/Footer";
 import Menu from "./components/Menu";
+import LatestItemModal from "./components/LatestItemModal";
 
 const App = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const [showLatestItemModal, setShowLatestItemModal] = useState(false);
   const [shoppingCart, setShoppingCart] = useState([]);
+  const [latestItem, setLatestItem] = useState(null);
   const [showMenu, setShowMenu] = useState(false);
 
   const handleShowMenu = () => {
@@ -50,6 +53,11 @@ const App = () => {
       setShoppingCart(updatedCart);
     } else {
       setShoppingCart((prevState) => [...prevState, newItem]);
+    }
+    setLatestItem(newItem);
+
+    if (location.pathname !== "/cart") {
+      setShowLatestItemModal(true);
     }
   };
 
@@ -104,6 +112,12 @@ const App = () => {
       <Footer />
       <AnimatePresence>
         {showMenu && <Menu handleShowMenu={handleShowMenu} />}
+        {showLatestItemModal && (
+          <LatestItemModal
+            latestItem={latestItem}
+            setShowLatestItemModal={setShowLatestItemModal}
+          />
+        )}
       </AnimatePresence>
       {location.pathname !== "/cart" && (
         <button

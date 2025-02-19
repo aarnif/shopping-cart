@@ -3,9 +3,9 @@ import { useNavigate } from "react-router";
 import { FaMinus, FaPlus, FaArrowRightLong } from "react-icons/fa6";
 
 const CartItem = ({ item, handleAddItemToCart, handleRemoveItemFromCart }) => {
-  const { title, artist, image, quantity, size } = item;
+  const { id, title, artist, image, quantity, size } = item;
   return (
-    <div className="bg-white rounded-lg shadow-xl">
+    <div key={id} className="bg-white rounded-lg shadow-xl">
       <div className="p-4 flex flex-col gap-4">
         <div className="w-full flex justify-between gap-4">
           <div className="flex-grow">
@@ -129,18 +129,18 @@ const Cart = ({
     <div className="py-16 w-full flex-grow flex flex-col items-center justify-start bg-slate-100">
       <div className="w-full flex flex-col gap-4 p-4">
         {shoppingCart.length > 0 ? (
-          shoppingCart.map((item) => (
-            <>
-              <h1 className="text-xl text-slate-900 font-bold">Cart</h1>
+          <>
+            <h1 className="text-xl text-slate-900 font-bold">Cart</h1>
+            {shoppingCart.map((item) => (
               <CartItem
                 key={item.id}
                 item={item}
                 handleAddItemToCart={handleAddItemToCart}
                 handleRemoveItemFromCart={handleRemoveItemFromCart}
               />
-              <OrderSummary shoppingCart={shoppingCart} />
-            </>
-          ))
+            ))}
+            <OrderSummary shoppingCart={shoppingCart} />
+          </>
         ) : (
           <EmptyCart />
         )}
