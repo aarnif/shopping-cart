@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router";
+
 import { FaMinus, FaPlus, FaArrowRightLong } from "react-icons/fa6";
 
 const CartItem = ({ item, handleAddItemToCart, handleRemoveItemFromCart }) => {
@@ -85,9 +87,34 @@ const OrderSummary = ({ shoppingCart }) => {
           </p>
         </div>
       </div>
-      <button className="w-full p-2 flex justify-center items-center gap-2 bg-green-500 rounded-lg shadow-xl">
+      <button
+        className="w-full p-2 flex justify-center items-center gap-2 bg-green-500 hover:bg-green-600 rounded-lg shadow-xl
+      active:bg-green-700 active:inset-shadow-sm transition-all duration-300 ease-in-out"
+      >
         <p className="text-white text-sm font-bold">Checkout</p>
         <FaArrowRightLong className="w-4 h-4 text-white fill-current" />
+      </button>
+    </div>
+  );
+};
+
+const EmptyCart = () => {
+  const navigate = useNavigate();
+
+  return (
+    <div className="pt-8 px-4 flex flex-col items-center gap-4">
+      <div className="flex flex-col items-center gap-1">
+        <h2 className="text-slate-700 text-base font-medium">
+          Looks like your cart is still empty.
+        </h2>
+      </div>
+      <button
+        className="py-2 px-4 max-w-[200px] flex justify-center items-center gap-2 text-white font-bold bg-rose-700 border-2 border-rose-700
+         rounded-lg cursor-pointer active:border-rose-900 active:inset-shadow-sm transition-all duration-300 ease-in-out"
+        onClick={() => navigate("/art")}
+      >
+        <p>Start Shopping</p>
+        <FaArrowRightLong className="w-5 h-5 text-white fill-current" />
       </button>
     </div>
   );
@@ -101,20 +128,22 @@ const Cart = ({
   return (
     <div className="py-16 w-full flex-grow flex flex-col items-center justify-start bg-slate-100">
       <div className="w-full flex flex-col gap-4 p-4">
-        <h1 className="text-xl text-slate-900 font-bold">Cart</h1>
         {shoppingCart.length > 0 ? (
           shoppingCart.map((item) => (
-            <CartItem
-              key={item.id}
-              item={item}
-              handleAddItemToCart={handleAddItemToCart}
-              handleRemoveItemFromCart={handleRemoveItemFromCart}
-            />
+            <>
+              <h1 className="text-xl text-slate-900 font-bold">Cart</h1>
+              <CartItem
+                key={item.id}
+                item={item}
+                handleAddItemToCart={handleAddItemToCart}
+                handleRemoveItemFromCart={handleRemoveItemFromCart}
+              />
+              <OrderSummary shoppingCart={shoppingCart} />
+            </>
           ))
         ) : (
-          <p className="text-slate-700 text-base">Your cart is empty</p>
+          <EmptyCart />
         )}
-        <OrderSummary shoppingCart={shoppingCart} />
       </div>
     </div>
   );
