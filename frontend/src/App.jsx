@@ -3,6 +3,7 @@ import { AnimatePresence } from "framer-motion";
 
 import { Routes, Route, useNavigate, useLocation } from "react-router";
 
+import { v4 as uuidv4 } from "uuid";
 import { FaShoppingCart } from "react-icons/fa";
 
 import Header from "./components/Header";
@@ -23,6 +24,40 @@ const App = () => {
     setShowMenu(!showMenu);
   };
 
+  const handleAddToCart = (artWork, selectedSize) => {
+    console.log("Add art work to cart:", artWork.title);
+
+    const newItem = {
+      id: uuidv4(),
+      title: artWork.title,
+      artist: artWork.artist,
+      image: artWork.image,
+      selectedSize: selectedSize,
+      quantity: 1,
+      price: artWork.sizes.find((size) => size.dimensions === selectedSize)
+        .price,
+    };
+
+    const checkIfItemWithSameSizeAndTitleInCart = shoppingCart.find(
+      (item) =>
+        newItem.title === item.title &&
+        newItem.selectedSize === item.selectedSize
+    );
+
+    if (checkIfItemWithSameSizeAndTitleInCart) {
+      console.log("Item with same size already in cart, increase quantity");
+      const updatedCart = shoppingCart.map((item) =>
+        item.title === newItem.title &&
+        item.selectedSize === newItem.selectedSize
+          ? { ...item, quantity: item.quantity + 1 }
+          : item
+      );
+      setShoppingCart(updatedCart);
+    } else {
+      setShoppingCart((prevState) => [...prevState, newItem]);
+    }
+  };
+
   const numberOfItemsInCart = shoppingCart.reduce(
     (acc, item) => acc + item.quantity,
     0
@@ -36,12 +71,7 @@ const App = () => {
         <Route path="/art" element={<Art />} />
         <Route
           path="/art/:id"
-          element={
-            <ArtWork
-              shoppingCart={shoppingCart}
-              setShoppingCart={setShoppingCart}
-            />
-          }
+          element={<ArtWork handleAddToCart={handleAddToCart} />}
         />
         <Route
           path="/cart"

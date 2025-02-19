@@ -1,9 +1,9 @@
 import { FaMinus, FaPlus } from "react-icons/fa6";
 
 const CartItem = ({ item }) => {
-  const { title, artist, image, selectedSize, quantity, price } = item;
+  const { id, title, artist, image, selectedSize, quantity, price } = item;
   return (
-    <div className="bg-white rounded-lg shadow-xl">
+    <div key={id} className="bg-white rounded-lg shadow-xl">
       <div className="p-4 flex flex-col gap-4">
         <div className="w-full flex justify-between gap-4">
           <div className="flex-grow">

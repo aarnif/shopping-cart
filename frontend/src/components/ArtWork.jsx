@@ -65,7 +65,7 @@ const ReviewStatistic = ({ reviews }) => {
   );
 };
 
-const ArtWork = ({ shoppingCart, setShoppingCart }) => {
+const ArtWork = ({ handleAddToCart }) => {
   const navigate = useNavigate();
   const match = useMatch("/art/:id").params;
   const [selectedSize, setSelectedSize] = useState(null);
@@ -79,39 +79,6 @@ const ArtWork = ({ shoppingCart, setShoppingCart }) => {
       setSelectedSize(data.findArtWork.sizes[0].dimensions);
     }
   }, [data]);
-
-  const handleAddToCart = (artWork) => {
-    console.log("Add art work to cart:", artWork.title);
-
-    const newItem = {
-      title: artWork.title,
-      artist: artWork.artist,
-      image: artWork.image,
-      selectedSize: selectedSize,
-      quantity: 1,
-      price: artWork.sizes.find((size) => size.dimensions === selectedSize)
-        .price,
-    };
-
-    const checkIfItemWithSameSizeAndTitleInCart = shoppingCart.find(
-      (item) =>
-        newItem.title === item.title &&
-        newItem.selectedSize === item.selectedSize
-    );
-
-    if (checkIfItemWithSameSizeAndTitleInCart) {
-      console.log("Item with same size already in cart, increase quantity");
-      const updatedCart = shoppingCart.map((item) =>
-        item.title === newItem.title &&
-        item.selectedSize === newItem.selectedSize
-          ? { ...item, quantity: item.quantity + 1 }
-          : item
-      );
-      setShoppingCart(updatedCart);
-    } else {
-      setShoppingCart((prevState) => [...prevState, newItem]);
-    }
-  };
 
   if (loading) {
     return <Loading />;
@@ -175,7 +142,7 @@ const ArtWork = ({ shoppingCart, setShoppingCart }) => {
           <button
             className="flex-grow basis-[50%] border bg-slate-800 border-slate-800 text-white font-bold text-sm py-2 px-4 rounded-lg shadow-xl
           hover:bg-slate-900 hover:border-slate-900 active:bg-slate-900 active:border-black active:inset-shadow-sm transition-all duration-300 ease-in-out"
-            onClick={() => handleAddToCart(data.findArtWork)}
+            onClick={() => handleAddToCart(data.findArtWork, selectedSize)}
           >
             Add to Cart
           </button>
