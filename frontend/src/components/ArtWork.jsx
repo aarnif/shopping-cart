@@ -65,7 +65,7 @@ const ReviewStatistic = ({ reviews }) => {
   );
 };
 
-const ArtWork = ({ handleAddToCart }) => {
+const ArtWork = ({ handleAddItemToCart }) => {
   const navigate = useNavigate();
   const match = useMatch("/art/:id").params;
   const [selectedSize, setSelectedSize] = useState(null);
@@ -142,7 +142,14 @@ const ArtWork = ({ handleAddToCart }) => {
           <button
             className="flex-grow basis-[50%] border bg-slate-800 border-slate-800 text-white font-bold text-sm py-2 px-4 rounded-lg shadow-xl
           hover:bg-slate-900 hover:border-slate-900 active:bg-slate-900 active:border-black active:inset-shadow-sm transition-all duration-300 ease-in-out"
-            onClick={() => handleAddToCart(data.findArtWork, selectedSize)}
+            onClick={() =>
+              handleAddItemToCart(
+                data.findArtWork,
+                data.findArtWork.sizes.find(
+                  (size) => size.dimensions === selectedSize
+                )
+              )
+            }
           >
             Add to Cart
           </button>

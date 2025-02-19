@@ -24,7 +24,7 @@ const App = () => {
     setShowMenu(!showMenu);
   };
 
-  const handleAddToCart = (artWork, selectedSize) => {
+  const handleAddItemToCart = (artWork, selectedSize) => {
     console.log("Add art work to cart:", artWork.title);
 
     const newItem = {
@@ -32,10 +32,8 @@ const App = () => {
       title: artWork.title,
       artist: artWork.artist,
       image: artWork.image,
-      selectedSize: selectedSize,
+      size: selectedSize,
       quantity: 1,
-      price: artWork.sizes.find((size) => size.dimensions === selectedSize)
-        .price,
     };
 
     const checkIfItemWithSameSizeAndTitleInCart = shoppingCart.find(
@@ -71,14 +69,14 @@ const App = () => {
         <Route path="/art" element={<Art />} />
         <Route
           path="/art/:id"
-          element={<ArtWork handleAddToCart={handleAddToCart} />}
+          element={<ArtWork handleAddItemToCart={handleAddItemToCart} />}
         />
         <Route
           path="/cart"
           element={
             <Cart
               shoppingCart={shoppingCart}
-              setShoppingCart={setShoppingCart}
+              handleAddItemToCart={handleAddItemToCart}
             />
           }
         />
