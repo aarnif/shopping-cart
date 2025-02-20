@@ -29,7 +29,7 @@ const AlertModal = ({ title, message, handleClose }) => {
               {title}
             </h2>
           </div>
-          <div className="self-stretch h-12 text-yellow-800 text-sm">
+          <div className="self-stretch h-12 text-yellow-700 text-sm">
             {message}
           </div>
 

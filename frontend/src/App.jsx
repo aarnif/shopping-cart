@@ -14,11 +14,13 @@ import Cart from "./components/Cart";
 import Footer from "./components/Footer";
 import Menu from "./components/Menu";
 import LatestItemModal from "./components/LatestItemModal";
+import AlertModal from "./components/AlertModal";
 
 const App = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [showLatestItemModal, setShowLatestItemModal] = useState(false);
+  const [showAlertModal, setShowAlertModal] = useState(false);
   const [shoppingCart, setShoppingCart] = useState([]);
   const [latestItem, setLatestItem] = useState(null);
   const [showMenu, setShowMenu] = useState(false);
@@ -105,6 +107,7 @@ const App = () => {
               shoppingCart={shoppingCart}
               handleAddItemToCart={handleAddItemToCart}
               handleRemoveItemFromCart={handleRemoveItemFromCart}
+              handleShowAlertModal={() => setShowAlertModal(true)}
             />
           }
         />
@@ -116,6 +119,13 @@ const App = () => {
           <LatestItemModal
             latestItem={latestItem}
             setShowLatestItemModal={setShowLatestItemModal}
+          />
+        )}
+        {showAlertModal && (
+          <AlertModal
+            title="Alert!"
+            message="The proceed from checkout is not implemented!"
+            handleClose={() => setShowAlertModal(false)}
           />
         )}
       </AnimatePresence>

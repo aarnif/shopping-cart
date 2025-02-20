@@ -57,7 +57,7 @@ const CartItem = ({ item, handleAddItemToCart, handleRemoveItemFromCart }) => {
   );
 };
 
-const OrderSummary = ({ shoppingCart }) => {
+const OrderSummary = ({ shoppingCart, handleShowAlertModal }) => {
   const totalItemsCost = shoppingCart.reduce(
     (acc, item) => acc + item.quantity * item.size.price,
     0
@@ -90,6 +90,7 @@ const OrderSummary = ({ shoppingCart }) => {
       <button
         className="w-full p-2 flex justify-center items-center gap-2 bg-green-500 hover:bg-green-600 rounded-lg shadow-xl
       active:bg-green-700 active:inset-shadow-sm transition-all duration-300 ease-in-out"
+        onClick={handleShowAlertModal}
       >
         <p className="text-white text-sm font-bold">Checkout</p>
         <FaArrowRightLong className="w-4 h-4 text-white fill-current" />
@@ -124,6 +125,7 @@ const Cart = ({
   shoppingCart,
   handleAddItemToCart,
   handleRemoveItemFromCart,
+  handleShowAlertModal,
 }) => {
   return (
     <div className="py-16 w-full flex-grow flex flex-col items-center justify-start bg-slate-100">
@@ -139,7 +141,10 @@ const Cart = ({
                 handleRemoveItemFromCart={handleRemoveItemFromCart}
               />
             ))}
-            <OrderSummary shoppingCart={shoppingCart} />
+            <OrderSummary
+              shoppingCart={shoppingCart}
+              handleShowAlertModal={handleShowAlertModal}
+            />
           </>
         ) : (
           <EmptyCart />
