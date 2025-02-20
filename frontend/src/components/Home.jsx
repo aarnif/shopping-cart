@@ -7,8 +7,7 @@ import { ALL_ARTWORKS } from "../graphql/queries.js";
 import Loading from "./Loading.jsx";
 import StarRating from "./StarRating.jsx";
 
-const ArtCard = ({ data }) => {
-  const navigate = useNavigate();
+const ArtCard = ({ data, navigate }) => {
   const {
     id,
     title,
@@ -72,6 +71,7 @@ const ArtCard = ({ data }) => {
 };
 
 const Home = () => {
+  const navigate = useNavigate();
   const { data, loading } = useQuery(ALL_ARTWORKS, {
     variables: { sortBy: "", first: 4, after: null },
   });
@@ -97,6 +97,7 @@ const Home = () => {
           <button
             className="flex gap-2 mt-4 px-4 py-2 justify-center items-center text-white font-bold bg-rose-700 border-2 border-rose-700
              rounded-lg cursor-pointer active:border-rose-900 active:inset-shadow-sm transition-all duration-300 ease-in-out"
+            onClick={() => navigate("/art")}
           >
             <p>Buy Here</p>
             <FaArrowRightLong className="w-5 h-5 text-white fill-current" />
@@ -108,7 +109,12 @@ const Home = () => {
           </h2>
           <div className="w-full flex flex-col gap-8">
             {data.allArtWorks.edges.map((edge, index) => (
-              <ArtCard key={index} index={index} data={edge.node} />
+              <ArtCard
+                key={index}
+                index={index}
+                data={edge.node}
+                navigate={navigate}
+              />
             ))}
           </div>
         </div>
