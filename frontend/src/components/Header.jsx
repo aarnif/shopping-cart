@@ -43,13 +43,13 @@ const HeaderNav = () => {
       <Title />
       <ul className="w-full max-w-[450px] flex justify-between items-center">
         <li className="flex justify-center items-center hover:underline cursor-pointer active:underline">
-          Home
+          <button onClick={() => navigate("/")}>Home</button>
         </li>
         <li className="flex justify-center items-center hover:underline cursor-pointer active:underline">
-          Who We Are
+          <button>Who We Are</button>
         </li>
         <li className="flex justify-center items-center hover:underline cursor-pointer active:underline">
-          Shop
+          <button onClick={() => navigate("/art")}>Shop</button>
         </li>
         <li className="flex justify-center items-center">
           <button
