@@ -65,32 +65,6 @@ const artworks = [
   },
   {
     id: "3",
-    title: "Guardian of Healing",
-    artist: "Lucien Moreau",
-    image: "/images/guardian_of_healing.webp",
-    description:
-      "A quiet devotion unfolds in flowing color, where light and movement intertwine with the weight of knowledge and the urgency of compassion. Each brushstroke lingers, a testament to hands that heal and time that passes.",
-    averageRating: 4,
-    type: "portrait",
-    sizes: [
-      { dimensions: "55 x 40 cm", price: 300 },
-      { dimensions: "70 x 50 cm", price: 400 },
-      { dimensions: "85 x 60 cm", price: 500 },
-      { dimensions: "100 x 70 cm", price: 600 },
-      { dimensions: "120 x 85 cm", price: 700 },
-      { dimensions: "140 x 100 cm", price: 800 },
-    ],
-    reviews: [
-      {
-        name: "Noah W.",
-        date: "May 15, 2025",
-        rating: 4,
-        text: "A great addition to my office, but shipping took longer than expected.",
-      },
-    ],
-  },
-  {
-    id: "4",
     title: "Whispers of the Bloom",
     artist: "Camille Verdain",
     image: "/images/whispers_of_the_bloom.webp",
@@ -112,6 +86,32 @@ const artworks = [
         date: "June 22, 2025",
         rating: 5,
         text: "Absolutely love this piece! It fits perfectly in my dining room.",
+      },
+    ],
+  },
+  {
+    id: "4",
+    title: "Guardian of Healing",
+    artist: "Lucien Moreau",
+    image: "/images/guardian_of_healing.webp",
+    description:
+      "A quiet devotion unfolds in flowing color, where light and movement intertwine with the weight of knowledge and the urgency of compassion. Each brushstroke lingers, a testament to hands that heal and time that passes.",
+    averageRating: 4,
+    type: "portrait",
+    sizes: [
+      { dimensions: "55 x 40 cm", price: 300 },
+      { dimensions: "70 x 50 cm", price: 400 },
+      { dimensions: "85 x 60 cm", price: 500 },
+      { dimensions: "100 x 70 cm", price: 600 },
+      { dimensions: "120 x 85 cm", price: 700 },
+      { dimensions: "140 x 100 cm", price: 800 },
+    ],
+    reviews: [
+      {
+        name: "Noah W.",
+        date: "May 15, 2025",
+        rating: 4,
+        text: "A great addition to my office, but shipping took longer than expected.",
       },
     ],
   },
