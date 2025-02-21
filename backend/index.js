@@ -48,6 +48,7 @@ const typeDefs = `
   type Query {
     artWorksCount: Int!
     allArtWorks(sortBy: String, first: Int, after: ID): ArtWorksConnection!
+    featuredArtWorks: [ArtWork!]!
     findArtWork(id: ID!): ArtWork
   }
 `;
@@ -102,6 +103,7 @@ const resolvers = {
         },
       };
     },
+    featuredArtWorks: () => artworks.slice(0, 4),
     findArtWork: (root, args) =>
       artworks.find((artwork) => artwork.id === args.id),
   },

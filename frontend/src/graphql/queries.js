@@ -43,6 +43,16 @@ export const ALL_ARTWORKS = gql`
   ${ART_DETAILS}
 `;
 
+export const FEATURED_ARTWORKS = gql`
+  query FeaturedArtWorks {
+    featuredArtWorks {
+      ...ArtDetails
+    }
+  }
+
+  ${ART_DETAILS}
+`;
+
 export const FIND_ARTWORK = gql`
   query FindArtWork($id: ID!) {
     findArtWork(id: $id) {
