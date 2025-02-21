@@ -3,7 +3,7 @@ import { useQuery } from "@apollo/client";
 
 import { FaArrowRightLong } from "react-icons/fa6";
 
-import { ALL_ARTWORKS } from "../graphql/queries.js";
+import { FEATURED_ARTWORKS } from "../graphql/queries.js";
 import Loading from "./Loading.jsx";
 import StarRating from "./StarRating.jsx";
 
@@ -14,6 +14,7 @@ const ArtCard = ({ data, navigate }) => {
     artist,
     image,
     description,
+    type,
     sizes,
     reviews,
     averageRating,
@@ -22,7 +23,9 @@ const ArtCard = ({ data, navigate }) => {
   return (
     <div
       id="art-card"
-      className="w-full flex flex-col bg-white shadow-lg rounded-lg"
+      className={`w-full ${
+        type === "portrait" && "sm:max-w-[400px]"
+      } flex flex-col bg-white shadow-lg rounded-lg`}
     >
       <div className="w-full h-[300px] bg-slate-300 rounded-t-lg">
         <img
@@ -72,19 +75,15 @@ const ArtCard = ({ data, navigate }) => {
 
 const Home = () => {
   const navigate = useNavigate();
-  const { data, loading } = useQuery(ALL_ARTWORKS, {
-    variables: { sortBy: "", first: 4, after: null },
-  });
+  const { data, loading } = useQuery(FEATURED_ARTWORKS);
 
   if (loading) {
     return <Loading />;
   }
 
-  console.log("data", data);
-
   return (
     <div className="relative bg-slate-100 before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-[100vh] before:bg-hero before:bg-cover before:bg-center before:bg-no-repeat">
-      <div className="mt-20 relative w-full p-8 flex flex-col">
+      <div className="mt-20 sm:mt-32 relative w-full px-8 sm:px-12 py-8 flex flex-col">
         <div className="animate-hop-in flex justify-center items-center flex-col">
           <h1 className="text-white text-center font-roboto-condensed text-2xl font-bold">
             We are <span className="italic font-medium">cultivators</span>,{" "}
@@ -103,19 +102,35 @@ const Home = () => {
             <FaArrowRightLong className="w-5 h-5 text-white fill-current" />
           </button>
         </div>
-        <div className="my-12">
-          <h2 className="mb-2 text-white text-center font-roboto-condensed text-xl font-semibold">
+        <div className="my-12 sm:my-16">
+          <h2 className="mb-2 sm:mb-4 text-white text-center font-roboto-condensed text-xl font-semibold">
             This Month&apos;s Featured Artworks
           </h2>
           <div className="w-full flex flex-col gap-8">
-            {data.allArtWorks.edges.map((edge, index) => (
+            <div className="w-full flex flex-col sm:flex-row justify-center items-center sm:items-end gap-8">
               <ArtCard
-                key={index}
-                index={index}
-                data={edge.node}
+                key={data.featuredArtWorks[0].id}
+                data={data.featuredArtWorks[0]}
                 navigate={navigate}
               />
-            ))}
+              <ArtCard
+                key={data.featuredArtWorks[1].id}
+                data={data.featuredArtWorks[1]}
+                navigate={navigate}
+              />
+            </div>
+            <div className="w-full flex flex-col sm:flex-row justify-center items-center sm:items-start gap-8">
+              <ArtCard
+                key={data.featuredArtWorks[2].id}
+                data={data.featuredArtWorks[2]}
+                navigate={navigate}
+              />
+              <ArtCard
+                key={data.featuredArtWorks[3].id}
+                data={data.featuredArtWorks[3]}
+                navigate={navigate}
+              />
+            </div>
           </div>
         </div>
       </div>
