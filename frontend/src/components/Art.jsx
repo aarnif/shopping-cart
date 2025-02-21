@@ -34,7 +34,7 @@ const Heading = ({ selectedSort, setSelectedSort }) => {
   return (
     <div className="mb-4 w-full flex justify-between items-center">
       <h2 className="text-2xl font-bold text-slate-900">Art</h2>
-      <ul className="flex gap-1">
+      <ul className="flex gap-1 sm:gap-2">
         {buttons.map((button) => (
           <li key={button.name}>
             <button
@@ -59,7 +59,7 @@ const ArtCard = ({ artwork }) => {
   const { id, title, artist, image, sizes, averageRating } = artwork;
 
   return (
-    <div className="w-full flex flex-col gap-2">
+    <div className="mb-2 w-full flex flex-col gap-2 break-inside-avoid">
       <div className="w-full flex justify-between items-center">
         <h3 className="text-slate-900 text-base sm:text-xl font-bold font-roboto-condensed">
           {title}
@@ -89,7 +89,7 @@ const ArtCard = ({ artwork }) => {
 };
 
 const Art = () => {
-  const numberOfArtworksToBeFetched = 3;
+  const numberOfArtworksToBeFetched = 20;
   const [selectedSort, setSelectedSort] = useState("title");
   const { data, loading, fetchMore } = useQuery(ALL_ARTWORKS, {
     variables: {
@@ -149,7 +149,7 @@ const Art = () => {
         </div>
       ) : (
         <>
-          <div key={"art"} className="w-full flex flex-col gap-8">
+          <div key={"art"} className="columns-1 md:columns-2 gap-4">
             {data.allArtWorks.edges.map((edge, index) => (
               <ArtCard key={index} artwork={edge.node} />
             ))}
