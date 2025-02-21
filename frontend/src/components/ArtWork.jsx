@@ -90,14 +90,15 @@ const ArtWork = ({ handleAddItemToCart }) => {
   return (
     <div className="mt-16 p-4 w-full flex-grow flex flex-col items-center justify-start bg-white">
       <div className="w-full flex flex-col items-center md:flex-row gap-4">
-        <div className="w-full h-auto bg-slate-300 shadow-xl">
+        <div className="flex justify-center">
           <img
             src={image}
             alt={`${title} by ${artist}`}
-            className="h-full w-full object-cover"
+            className="max-w-full max-h-[700px] md:max-h-[100%] object-contain shadow-xl"
           />
         </div>
-        <div className="w-full flex flex-col gap-4">
+
+        <div className="w-full flex flex-col gap-4 md:max-w-[450px]">
           <div>
             <h2 className="text-slate-900 text-xl font-bold text-center font-roboto-condensed">
               {title}
@@ -132,15 +133,15 @@ const ArtWork = ({ handleAddItemToCart }) => {
             €
           </h3>
 
-          <div className="w-full flex gap-2 justify-center items-center">
+          <div className="w-full flex flex-row md:flex-col gap-2 justify-center items-center">
             <button
-              className="flex-grow basis-[50%] border border-slate-400 text-slate-700 font-semibold text-sm py-2 px-4 rounded-lg transition-all duration-300 ease-in-out"
+              className="md:w-full flex-grow basis-[50%] border border-slate-400 text-slate-700 font-semibold text-sm py-2 px-4 rounded-lg transition-all duration-300 ease-in-out"
               onClick={() => navigate("/art")}
             >
               Back
             </button>
             <button
-              className="flex-grow basis-[50%] border bg-slate-800 border-slate-800 text-white font-bold text-sm py-2 px-4 rounded-lg shadow-xl
+              className="md:w-full flex-grow basis-[50%] border bg-slate-800 border-slate-800 text-white font-bold text-sm py-2 px-4 rounded-lg shadow-xl
           hover:bg-slate-900 hover:border-slate-900 active:bg-slate-900 active:border-black active:inset-shadow-sm transition-all duration-300 ease-in-out"
               onClick={() =>
                 handleAddItemToCart(
