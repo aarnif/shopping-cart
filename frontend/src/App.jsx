@@ -131,7 +131,7 @@ const App = () => {
       </AnimatePresence>
       {location.pathname !== "/cart" && (
         <button
-          className="fixed bottom-4 right-4 flex p-3 justify-center items-center text-white font-bold bg-rose-700 border-2 border-rose-700
+          className="fixed bottom-4 right-4 flex sm:hidden p-3 justify-center items-center text-white font-bold bg-rose-700 border-2 border-rose-700
              rounded-full shadow-xl cursor-pointer active:border-rose-900 active:inset-shadow-sm transition-all duration-300 ease-in-out"
           onClick={() => navigate("/cart")}
         >
