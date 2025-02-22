@@ -17,6 +17,19 @@
     }
   }
 
+  @keyframes fade-to-black {
+    to {
+      color: black;
+    }
+  }
+
+  #nav-items {
+    color: white;
+    animation: fade-to-black both linear;
+    animation-timeline: scroll();
+    animation-range: 90vh 100vh;
+  }
+
   #art-card {
     view-timeline: --art-card;
   }
