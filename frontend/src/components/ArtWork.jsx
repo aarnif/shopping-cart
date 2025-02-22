@@ -87,9 +87,13 @@ const ArtWork = ({ handleAddItemToCart }) => {
   const { title, artist, image, description, sizes, reviews } =
     data.findArtWork;
 
+  const selectedSizePrice = sizes.find(
+    (size) => size.dimensions === selectedSize
+  )?.price;
+
   return (
     <div className="mt-16 p-4 w-full flex-grow flex flex-col items-center justify-start bg-white">
-      <div className="w-full flex flex-col items-center md:flex-row gap-4">
+      <div className="w-full max-w-[1400px] flex flex-col items-center md:flex-row gap-4">
         <div className="flex justify-center">
           <img
             src={image}
@@ -115,7 +119,7 @@ const ArtWork = ({ handleAddItemToCart }) => {
               <button
                 key={dimensions}
                 onClick={() => setSelectedSize(dimensions)}
-                className={`border border-slate-400 text-slate-700 text-xs py-1.5 px-3 rounded-full transition-all duration-300 ease-in-out 
+                className={`border border-slate-400 text-slate-700 text-xs py-1.5 px-3 rounded-full cursor-pointer transition-all duration-300 ease-in-out 
                   ${
                     selectedSize === dimensions
                       ? "bg-slate-200 border-slate-700"
@@ -127,21 +131,23 @@ const ArtWork = ({ handleAddItemToCart }) => {
             ))}
           </div>
 
-          <h3 className="text-slate-700 text-base text-center font-semibold">
-            {selectedSize &&
-              sizes.find((size) => size.dimensions === selectedSize).price}{" "}
-            €
+          <h3
+            key={selectedSizePrice}
+            className="text-slate-700 text-base text-center font-semibold animate-zoom-in-and-out"
+          >
+            {selectedSize && selectedSizePrice} €
           </h3>
 
           <div className="w-full flex flex-row md:flex-col gap-2 justify-center items-center">
             <button
-              className="md:w-full flex-grow basis-[50%] border border-slate-400 text-slate-700 font-semibold text-sm py-2 px-4 rounded-lg transition-all duration-300 ease-in-out"
+              className="md:w-full flex-grow basis-[50%] border border-slate-400 text-slate-700 font-semibold text-sm py-2 px-4 rounded-lg cursor-pointer 
+              hover:bg-slate-100 active:border-slate-500 active:bg-slate-100 active:inset-shadow-sm transition-all duration-300 ease-in-out"
               onClick={() => navigate("/art")}
             >
               Back
             </button>
             <button
-              className="md:w-full flex-grow basis-[50%] border bg-slate-800 border-slate-800 text-white font-bold text-sm py-2 px-4 rounded-lg shadow-xl
+              className="md:w-full flex-grow basis-[50%] border bg-slate-800 border-slate-800 text-white font-bold text-sm py-2 px-4 rounded-lg shadow-xl cursor-pointer
           hover:bg-slate-900 hover:border-slate-900 active:bg-slate-900 active:border-black active:inset-shadow-sm transition-all duration-300 ease-in-out"
               onClick={() =>
                 handleAddItemToCart(
@@ -157,7 +163,7 @@ const ArtWork = ({ handleAddItemToCart }) => {
           </div>
         </div>
       </div>
-      <div className="mt-4 w-full flex flex-col gap-4">
+      <div className="mt-4 w-full max-w-[1400px] flex flex-col gap-4">
         <h2 className="text-slate-700 text-base font-bold">
           Customer Reviews ({reviews.length})
         </h2>
