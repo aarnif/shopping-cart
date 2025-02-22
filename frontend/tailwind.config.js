@@ -33,6 +33,10 @@ export default {
         "50%": { transform: "rotate(45deg)" },
         "100%": { transform: "rotate(0deg)" },
       },
+      rotate360degrees: {
+        "0%": { transform: "rotate(0deg)" },
+        "100%": { transform: "rotate(360deg)" },
+      },
     },
     animation: {
       "fade-in": "fadeIn 0.3s ease-in-out",
@@ -40,6 +44,7 @@ export default {
       "zoom-in-and-out": "zoomInAndOut 0.5s ease-in-out",
       "hop-in": "hopIn 1s ease-in-out",
       "rotate-45-degrees": "rotate45degrees 1s ease-in-out",
+      "rotate-infinite": "rotate360degrees 0.8s linear infinite",
     },
   },
   plugins: [],
