@@ -5,7 +5,7 @@ import { FaMinus, FaPlus, FaArrowRightLong } from "react-icons/fa6";
 const CartItem = ({ item, handleAddItemToCart, handleRemoveItemFromCart }) => {
   const { id, title, artist, image, quantity, size } = item;
   return (
-    <div key={id} className="bg-white rounded-lg shadow-xl">
+    <div key={id} className="w-full bg-white rounded-lg shadow-xl">
       <div className="p-4 flex flex-col gap-4">
         <div className="w-full flex justify-between gap-4">
           <div className="flex-grow">
@@ -65,7 +65,7 @@ const OrderSummary = ({ shoppingCart, handleShowAlertModal }) => {
   const shippingCost = 9.99;
 
   return (
-    <div className="w-full p-4 flex flex-col items-center gap-4 bg-white rounded-lg shadow-xl">
+    <div className="p-4 flex flex-col items-center gap-4 bg-white rounded-lg shadow-xl">
       <h2 className="text-center text-slate-800 font-bold">Order Summary</h2>
       <div className="w-full flex flex-col gap-2">
         <div className="w-full flex justify-between">
@@ -129,22 +129,28 @@ const Cart = ({
 }) => {
   return (
     <div className="py-16 w-full flex-grow flex flex-col items-center justify-start bg-slate-100">
-      <div className="w-full flex flex-col gap-4 p-4">
+      <div className="w-full flex flex-col items-center gap-4 p-4">
         {shoppingCart.length > 0 ? (
           <>
             <h1 className="text-xl text-slate-900 font-bold">Cart</h1>
-            {shoppingCart.map((item) => (
-              <CartItem
-                key={item.id}
-                item={item}
-                handleAddItemToCart={handleAddItemToCart}
-                handleRemoveItemFromCart={handleRemoveItemFromCart}
-              />
-            ))}
-            <OrderSummary
-              shoppingCart={shoppingCart}
-              handleShowAlertModal={handleShowAlertModal}
-            />
+            <div className="w-full flex flex-col sm:flex-row sm:justify-center gap-4">
+              <div className="w-full flex flex-col gap-4">
+                {shoppingCart.map((item) => (
+                  <CartItem
+                    key={item.id}
+                    item={item}
+                    handleAddItemToCart={handleAddItemToCart}
+                    handleRemoveItemFromCart={handleRemoveItemFromCart}
+                  />
+                ))}
+              </div>
+              <div className="w-full sm:max-w-[300px]">
+                <OrderSummary
+                  shoppingCart={shoppingCart}
+                  handleShowAlertModal={handleShowAlertModal}
+                />
+              </div>
+            </div>
           </>
         ) : (
           <EmptyCart />
