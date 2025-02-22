@@ -38,30 +38,61 @@ const MobileHeaderNav = ({ handleShowMenu }) => {
 
 const HeaderNav = () => {
   const navigate = useNavigate();
+
+  const navItems = [
+    { name: "home", text: "Home", callback: () => navigate("/") },
+    { name: "about", text: "Who We Are", callback: () => {} },
+    { name: "shop", text: "Shop", callback: () => navigate("/art") },
+    {
+      name: "cart",
+      text: <FaShoppingCart className="w-7 h-7 fill-current" />,
+      callback: () => navigate("/cart"),
+    },
+    {
+      name: "mode",
+      text: <ToggleDarkMode />,
+      callback: () => {},
+    },
+  ];
+
   return (
     <nav className="hidden sm:flex w-full">
       <Title />
       <ul className="w-full max-w-[450px] flex justify-between items-center">
-        <li className="flex justify-center items-center hover:underline cursor-pointer active:underline">
-          <button onClick={() => navigate("/")}>Home</button>
-        </li>
-        <li className="flex justify-center items-center hover:underline cursor-pointer active:underline">
-          <button>Who We Are</button>
-        </li>
-        <li className="flex justify-center items-center hover:underline cursor-pointer active:underline">
-          <button onClick={() => navigate("/art")}>Shop</button>
-        </li>
-        <li className="flex justify-center items-center">
-          <button
-            className="flex justify-center items-center cursor-pointer transition-all duration-300 ease-in-out"
-            onClick={() => navigate("/cart")}
-          >
-            <FaShoppingCart className="w-7 h-7 fill-current" />
-          </button>
-        </li>
-        <li className="flex justify-center items-center cursor-pointer">
-          <ToggleDarkMode />
-        </li>
+        {navItems.map((item) => {
+          if (item.name === "cart") {
+            return (
+              <li key={item.name} className="flex justify-center items-center">
+                <button
+                  className="flex justify-center items-center cursor-pointer transition-all duration-300 ease-in-out hover:animate-rotate-45-degrees"
+                  onClick={item.callback}
+                >
+                  {item.text}
+                </button>
+              </li>
+            );
+          } else if (item.name === "mode") {
+            return (
+              <li
+                key={item.name}
+                className="flex justify-center items-center cursor-pointer"
+              >
+                {item.text}
+              </li>
+            );
+          } else {
+            return (
+              <li
+                key={item.name}
+                className="flex justify-center items-center hover:underline cursor-pointer active:underline"
+              >
+                <button className="cursor-pointer" onClick={item.callback}>
+                  {item.text}
+                </button>
+              </li>
+            );
+          }
+        })}
       </ul>
     </nav>
   );

@@ -28,12 +28,18 @@ export default {
         "50%": { opacity: 0.5, transform: "translateY(-40px)" },
         "100%": { opacity: 1, transform: "translateY(0)" },
       },
+      rotate45degrees: {
+        "0%": { transform: "rotate(0deg)" },
+        "50%": { transform: "rotate(45deg)" },
+        "100%": { transform: "rotate(0deg)" },
+      },
     },
     animation: {
       "fade-in": "fadeIn 0.3s ease-in-out",
       "scale-in": "scaleIn 0.3s ease-in-out",
       "zoom-in-and-out": "zoomInAndOut 0.5s ease-in-out",
       "hop-in": "hopIn 1s ease-in-out",
+      "rotate-45-degrees": "rotate45degrees 1s ease-in-out",
     },
   },
   plugins: [],
