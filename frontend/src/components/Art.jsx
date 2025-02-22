@@ -32,7 +32,7 @@ const Heading = ({ selectedSort, setSelectedSort }) => {
   ];
 
   return (
-    <div className="mb-4 w-full flex justify-between items-center">
+    <div className="mb-4 w-full max-w-[1400px] flex justify-between items-center">
       <h2 className="text-2xl font-bold text-slate-900">Art</h2>
       <ul className="flex gap-1 sm:gap-2">
         {buttons.map((button) => (
@@ -41,7 +41,7 @@ const Heading = ({ selectedSort, setSelectedSort }) => {
               className={`flex py-1.25 px-2.5 justify-center items-center text-sm text-slate-900 font-medium
               ${
                 selectedSort === button.name ? "bg-slate-200 " : "bg-white"
-              } border-1 border-slate-500 rounded-full cursor-pointer 
+              } border-1 border-slate-500 rounded-full cursor-pointer hover:bg-slate-100
               active:inset-shadow-sm active:bg-slate-100 transition-all duration-300 ease-in-out`}
               onClick={button.callback}
             >
@@ -54,36 +54,76 @@ const Heading = ({ selectedSort, setSelectedSort }) => {
   );
 };
 
-const ArtCard = ({ artwork }) => {
-  const navigate = useNavigate();
+const ArtWorkTitle = ({ title, artist }) => (
+  <div className="w-full flex justify-between items-center">
+    <h3 className="text-slate-900 xl:text-slate-50 text-base sm:text-xl font-bold font-roboto-condensed">
+      {title}
+    </h3>
+    <h4 className="text-slate-800 xl:text-slate-200 text-sm sm:text-base italic">
+      By {artist}
+    </h4>
+  </div>
+);
+
+const ArtWorkReviewsAndPrice = ({ averageRating, sizes }) => (
+  <div className="flex justify-between items-center">
+    <StarRating rating={averageRating} />
+    <h4 className="text-slate-900 xl:text-slate-200 text-base sm:text-lg font-bold">
+      {sizes[0].price} €
+    </h4>
+  </div>
+);
+
+const MobileAndTabletView = ({ artwork, navigate }) => {
   const { id, title, artist, image, sizes, averageRating } = artwork;
 
   return (
-    <div className="mb-2 w-full flex flex-col gap-2 break-inside-avoid">
-      <div className="w-full flex justify-between items-center">
-        <h3 className="text-slate-900 text-base sm:text-xl font-bold font-roboto-condensed">
-          {title}
-        </h3>
-        <h4 className="text-slate-800 text-sm sm:text-base italic">
-          By {artist}
-        </h4>
-      </div>
+    <div className="mb-2 w-full flex xl:hidden flex-col gap-2">
+      <ArtWorkTitle title={title} artist={artist} />
       <button
-        className="w-full h-auto bg-slate-300"
+        className="w-full h-auto bg-slate-300 cursor-pointer"
         onClick={() => navigate(`/art/${id}`)}
       >
-        <img
-          src={image}
-          alt={`${title} by ${artist}`}
-          className="h-full w-full object-cover"
-        />
+        <ArtWorkImage image={image} title={title} artist={artist} />
       </button>
-      <div className="flex justify-between items-center">
-        <StarRating rating={averageRating} />
-        <h4 className="text-slate-900 text-base sm:text-lg font-bold">
-          {sizes[0].price} €
-        </h4>
-      </div>
+      <ArtWorkReviewsAndPrice averageRating={averageRating} sizes={sizes} />
+    </div>
+  );
+};
+
+const ArtWorkImage = ({ image, title, artist }) => (
+  <img
+    src={image}
+    alt={`${title} by ${artist}`}
+    className="h-full w-full object-cover"
+  />
+);
+
+const DesktopView = ({ artwork, navigate }) => {
+  const { id, title, artist, image, sizes, averageRating } = artwork;
+
+  return (
+    <div className="relative mb-2 xl:mb-4 w-full hidden xl:flex flex-col group">
+      <ArtWorkImage image={image} title={title} artist={artist} />
+      <button
+        className="absolute inset-0 p-4 flex flex-col justify-between bg-black/50 cursor-pointer opacity-0
+      group-hover:opacity-100 transition-all duration-300 ease-in-out"
+        onClick={() => navigate(`/art/${id}`)}
+      >
+        <ArtWorkTitle title={title} artist={artist} />
+        <ArtWorkReviewsAndPrice averageRating={averageRating} sizes={sizes} />
+      </button>
+    </div>
+  );
+};
+
+const ArtCard = ({ artwork }) => {
+  const navigate = useNavigate();
+
+  return (
+    <div className="break-inside-avoid">
+      <MobileAndTabletView artwork={artwork} navigate={navigate} />
+      <DesktopView artwork={artwork} navigate={navigate} />
     </div>
   );
 };
@@ -149,7 +189,10 @@ const Art = () => {
         </div>
       ) : (
         <>
-          <div key={"art"} className="columns-1 md:columns-2 gap-4">
+          <div
+            key={"art"}
+            className="w-full max-w-[1400px] columns-1 md:columns-2 xl:columns-3 gap-4"
+          >
             {data.allArtWorks.edges.map((edge, index) => (
               <ArtCard key={index} artwork={edge.node} />
             ))}
