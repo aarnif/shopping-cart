@@ -32,12 +32,12 @@ const ToggleDarkMode = () => {
       {theme === "dark" ? (
         <HiMoon
           key="dark"
-          className="w-6 h-6 md:dark:text-slate-100 fill-current animate-scale-in"
+          className="w-6 h-6 dark:text-slate-100 fill-current animate-scale-in"
         />
       ) : (
         <IoSunnyOutline
           key="light"
-          className="w-6 h-6 md:dark:text-slate-100 fill-current animate-scale-in"
+          className="w-6 h-6 dark:text-slate-100 fill-current animate-scale-in"
         />
       )}
     </button>
