@@ -58,10 +58,10 @@ const Heading = ({ selectedSort, setSelectedSort }) => {
 
 const ArtWorkTitle = ({ title, artist }) => (
   <div className="w-full flex justify-between items-center">
-    <h3 className="text-slate-900 dark:text-slate-50 text-base sm:text-xl font-bold font-roboto-condensed">
+    <h3 className="text-slate-900 dark:text-slate-50 xl:text-slate-50 text-base sm:text-xl font-bold font-roboto-condensed">
       {title}
     </h3>
-    <h4 className="text-slate-800 dark:text-slate-200 text-sm sm:text-base italic">
+    <h4 className="text-slate-800 dark:text-slate-200 xl:text-slate-200 text-sm sm:text-base italic">
       By {artist}
     </h4>
   </div>
@@ -70,7 +70,7 @@ const ArtWorkTitle = ({ title, artist }) => (
 const ArtWorkReviewsAndPrice = ({ averageRating, sizes }) => (
   <div className="flex justify-between items-center">
     <StarRating rating={averageRating} />
-    <h4 className="text-slate-900 dark:text-slate-200 text-base sm:text-lg font-bold">
+    <h4 className="text-slate-900 dark:text-slate-200 xl:text-slate-200 text-base sm:text-lg font-bold">
       {sizes[0].price} €
     </h4>
   </div>
@@ -108,7 +108,7 @@ const DesktopView = ({ artwork, navigate }) => {
     <div className="relative mb-2 xl:mb-4 w-full hidden xl:flex flex-col group">
       <ArtWorkImage image={image} title={title} artist={artist} />
       <button
-        className="absolute inset-0 p-4 flex flex-col justify-between bg-black/50 dark:bg-slate-900/50 cursor-pointer opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out"
+        className="absolute inset-0 p-4 flex flex-col justify-between bg-black/50 cursor-pointer opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out"
         onClick={() => navigate(`/art/${id}`)}
       >
         <ArtWorkTitle title={title} artist={artist} />
