@@ -12,20 +12,20 @@ const Review = ({ review }) => {
   return (
     <div className="flex flex-col sm:flex-row gap-2">
       <div className="w-full sm:w-auto flex gap-2 sm:gap-4 items-center">
-        <div className="w-10 min-w-10 h-10 md:min-w-12 md:h-12 xl:min-w-14 xl:h-14 bg-slate-300 rounded-full"></div>
+        <div className="w-10 min-w-10 h-10 md:min-w-12 md:h-12 xl:min-w-14 xl:h-14 bg-slate-300 dark:bg-slate-600 rounded-full"></div>
         <div className="w-full flex flex-col justify-center sm:gap-1">
           <div className="min-w-[100px] flex flex-row sm:flex-col justify-between items-center sm:items-start">
-            <h4 className="text-slate-700 text-xs md:text-sm xl:text-base font-semibold">
+            <h4 className="text-slate-700 dark:text-slate-300 text-xs md:text-sm xl:text-base font-semibold">
               {name}
             </h4>
-            <p className="text-slate-600 text-xs md:text-sm xl:text-base">
+            <p className="text-slate-600 dark:text-slate-400 text-xs md:text-sm xl:text-base">
               {date}
             </p>
           </div>
           <StarRating rating={rating} />
         </div>
       </div>
-      <p className="text-slate-700 text-xs md:text-sm xl:text-base">{`"${text}"`}</p>
+      <p className="text-slate-700 dark:text-slate-300 text-xs md:text-sm xl:text-base">{`"${text}"`}</p>
     </div>
   );
 };
@@ -51,9 +51,9 @@ const ReviewStatistic = ({ reviews }) => {
           <div key={rating} className="w-full flex items-center gap-4">
             <StarRating rating={rating} />
             <div className="w-full relative">
-              <div className="absolute w-full h-1 bg-slate-200 rounded-lg" />
+              <div className="absolute w-full h-1 bg-slate-200 dark:bg-slate-500 rounded-lg" />
               <div
-                className={`absolute h-1 bg-slate-700 ${
+                className={`absolute h-1 bg-slate-700 dark:bg-slate-300 ${
                   value === 100 ? "rounded-lg" : "rounded-l-lg"
                 }`}
                 style={{
@@ -61,7 +61,7 @@ const ReviewStatistic = ({ reviews }) => {
                 }}
               />
             </div>
-            <div className="w-8 text-right text-slate-800 text-xs md:text-sm xl:text-base">
+            <div className="w-8 text-right text-slate-800 dark:text-slate-100 text-xs md:text-sm xl:text-base">
               {count}
             </div>
           </div>
@@ -98,7 +98,7 @@ const ArtWork = ({ handleAddItemToCart }) => {
   )?.price;
 
   return (
-    <div className="py-32 p-4 w-full flex-grow flex flex-col items-center justify-start bg-white">
+    <div className="py-32 p-4 w-full flex-grow flex flex-col items-center justify-start bg-white dark:bg-slate-800">
       <div className="w-full max-w-[1400px] flex flex-col items-center md:flex-row gap-4">
         <div className="flex justify-center">
           <img
@@ -110,26 +110,28 @@ const ArtWork = ({ handleAddItemToCart }) => {
 
         <div className="w-full flex flex-col gap-4 md:max-w-[450px]">
           <div>
-            <h2 className="text-slate-900 text-lg md:text-xl font-bold text-center font-roboto-condensed">
+            <h2 className="text-slate-900 dark:text-slate-100 text-lg md:text-xl font-bold text-center font-roboto-condensed">
               {title}
             </h2>
-            <h3 className="text-slate-700 text-base italic text-center">
+            <h3 className="text-slate-700 dark:text-slate-300 text-base italic text-center">
               By {artist}
             </h3>
           </div>
 
-          <p className="text-slate-700 text-base">{description}</p>
+          <p className="text-slate-700 dark:text-slate-300 text-base">
+            {description}
+          </p>
 
           <div className="w-full flex flex-wrap gap-2 justify-center items-center">
             {sizes.map(({ dimensions }) => (
               <button
                 key={dimensions}
                 onClick={() => setSelectedSize(dimensions)}
-                className={`border border-slate-400 text-slate-700 text-xs md:text-sm py-1.5 px-3 rounded-full cursor-pointer transition-all duration-300 ease-in-out 
+                className={`border border-slate-400 dark:border-slate-500 text-slate-700 dark:text-slate-300 text-xs md:text-sm py-1.5 px-3 rounded-full cursor-pointer transition-all duration-300 ease-in-out 
                   ${
                     selectedSize === dimensions
-                      ? "bg-slate-200 border-slate-700"
-                      : "hover:bg-slate-200 active:border-slate-700"
+                      ? "bg-slate-200 dark:bg-slate-600 border-slate-700 dark:border-slate-400"
+                      : "hover:bg-slate-200 dark:hover:bg-slate-700 active:border-slate-700 dark:active:border-slate-400"
                   }`}
               >
                 {dimensions}
@@ -139,22 +141,20 @@ const ArtWork = ({ handleAddItemToCart }) => {
 
           <h3
             key={selectedSizePrice}
-            className="text-slate-700 text-base text-center font-semibold animate-zoom-in-and-out"
+            className="text-slate-700 dark:text-slate-300 text-base text-center font-semibold animate-zoom-in-and-out"
           >
             {selectedSize && selectedSizePrice} €
           </h3>
 
-          <div className="w-full flex flex-row md:flex-col gap-2 justify-center items-center">
+          <div className="w-full flex flex-col md:flex-row gap-2 justify-center items-center">
             <button
-              className="md:w-full flex-grow basis-[50%] border border-slate-400 text-slate-700 font-semibold text-sm md:text-base xl:text-lg py-2 px-4 rounded-lg cursor-pointer 
-              hover:bg-slate-100 active:border-slate-500 active:bg-slate-100 active:inset-shadow-sm transition-all duration-300 ease-in-out"
+              className="md:w-full flex-grow basis-[50%] border border-slate-400 dark:border-slate-500 text-slate-700 dark:text-slate-300 font-semibold text-sm md:text-base xl:text-lg py-2 px-4 rounded-lg cursor-pointer hover:bg-slate-100 dark:hover:bg-slate-700 active:border-slate-500 dark:active:border-slate-400 active:bg-slate-100 dark:active:bg-slate-700 active:inset-shadow-sm transition-all duration-300 ease-in-out"
               onClick={() => navigate("/art")}
             >
               Back
             </button>
             <button
-              className="md:w-full flex-grow basis-[50%] border bg-slate-800 border-slate-800 text-white font-bold text-sm md:text-base xl:text-lg py-2 px-4 rounded-lg shadow-xl cursor-pointer
-          hover:bg-slate-900 hover:border-slate-900 active:bg-slate-900 active:border-black active:inset-shadow-sm transition-all duration-300 ease-in-out"
+              className="md:w-full flex-grow basis-[50%] border bg-slate-800 dark:bg-slate-700 border-slate-800 dark:border-slate-700 text-white font-bold text-sm md:text-base xl:text-lg py-2 px-4 rounded-lg shadow-xl cursor-pointer hover:bg-slate-900 dark:hover:bg-slate-600 hover:border-slate-900 dark:hover:border-slate-600 active:bg-slate-900 dark:active:bg-slate-600 active:border-black dark:active:border-slate-600 active:inset-shadow-sm transition-all duration-300 ease-in-out"
               onClick={() =>
                 handleAddItemToCart(
                   data.findArtWork,
@@ -170,7 +170,7 @@ const ArtWork = ({ handleAddItemToCart }) => {
         </div>
       </div>
       <div className="mt-4 w-full max-w-[1400px] flex flex-col gap-4">
-        <h2 className="text-slate-700 text-base md:text-lg font-bold">
+        <h2 className="text-slate-700 dark:text-slate-300 text-base md:text-lg font-bold">
           Customer Reviews ({reviews.length})
         </h2>
 
