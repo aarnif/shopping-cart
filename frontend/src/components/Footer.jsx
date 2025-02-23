@@ -16,21 +16,23 @@ const SocialMediaButton = ({ icon }) => {
 
 const Footer = () => {
   const socialMediaIcons = [
-    <FaFacebook className="w-5 h-5 fill-current" />,
-    <FaInstagram className="w-5 h-5 fill-current" />,
-    <FaLinkedin className="w-5 h-5 fill-current" />,
-    <FaXTwitter className="w-5 h-5 fill-current" />,
+    <FaFacebook className="w-5 h-5 sm:w-6 sm:h-6 fill-current" />,
+    <FaInstagram className="w-5 h-5 sm:w-6 sm:h-6 fill-current" />,
+    <FaLinkedin className="w-5 h-5 sm:w-6 sm:h-6 fill-current" />,
+    <FaXTwitter className="w-5 h-5 sm:w-6 sm:h-6 fill-current" />,
   ];
 
   return (
-    <footer className="p-2 sm:p-4 w-full flex justify-center items-center bg-white text-slate-900">
-      <div className="w-full flex flex-col sm:flex-row justify-center sm:justify-between items-center gap-4">
+    <footer className="p-2 sm:p-3 w-full flex justify-center items-center bg-white text-slate-900">
+      <div className="w-full flex flex-col sm:flex-row justify-center sm:justify-between items-center gap-2">
         <ul className="flex gap-4">
           {socialMediaIcons.map((icon, index) => (
             <SocialMediaButton key={index} icon={icon} />
           ))}
         </ul>
-        <p className="text-sm font-medium">© 2025 Artful Finds Inc.</p>
+        <p className="text-sm sm:text-base font-medium">
+          © 2025 Artful Finds Inc.
+        </p>
       </div>
     </footer>
   );
