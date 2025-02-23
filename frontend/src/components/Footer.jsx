@@ -5,8 +5,8 @@ const SocialMediaButton = ({ icon }) => {
   return (
     <li>
       <button
-        className="p-2 flex justify-center items-center rounded-full cursor-pointer border border-white 
-      hover:bg-slate-100 active:bg-slate-100 active:border-slate-200 active:inset-shadow-sm transition-all duration-300 ease-in-out"
+        className="p-2 flex justify-center items-center rounded-full cursor-pointer border border-white dark:border-slate-950 
+          hover:bg-slate-100 dark:hover:bg-slate-700 active:bg-slate-100 dark:active:bg-slate-700 active:border-slate-200 dark:active:border-slate-950 active:inset-shadow-sm transition-all duration-300 ease-in-out"
       >
         {icon}
       </button>
@@ -23,7 +23,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="p-2 sm:p-3 w-full flex justify-center items-center bg-white text-slate-900">
+    <footer className="p-2 sm:p-3 w-full flex justify-center items-center bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100">
       <div className="w-full flex flex-col sm:flex-row justify-center sm:justify-between items-center gap-2">
         <ul className="flex gap-4">
           {socialMediaIcons.map((icon, index) => (

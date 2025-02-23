@@ -1,3 +1,5 @@
+import { useState, useEffect } from "react";
+
 import { useNavigate, useLocation } from "react-router";
 
 import { IoMdMenu } from "react-icons/io";
@@ -44,7 +46,9 @@ const HeaderNav = () => {
     { name: "shop", text: "Shop", callback: () => navigate("/art") },
     {
       name: "cart",
-      text: <FaShoppingCart className="w-6 h-6 fill-current" />,
+      text: (
+        <FaShoppingCart className="w-6 h-6 dark:text-slate-100 fill-current" />
+      ),
       callback: () => navigate("/cart"),
     },
     {
@@ -86,10 +90,10 @@ const HeaderNav = () => {
             return (
               <li
                 key={item.name}
-                className="flex justify-center items-center font-medium hover:underline cursor-pointer active:underline"
+                className="flex justify-center items-center font-medium"
               >
                 <button
-                  className="cursor-pointer text-base"
+                  className="cursor-pointer text-base dark:text-slate-100 font-medium hover:underline"
                   onClick={item.callback}
                 >
                   {item.text}

@@ -33,16 +33,18 @@ const Heading = ({ selectedSort, setSelectedSort }) => {
 
   return (
     <div className="mb-4 w-full max-w-[1400px] flex justify-between items-center">
-      <h2 className="text-2xl font-bold text-slate-900">Art</h2>
+      <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-100">
+        Art
+      </h2>
       <ul className="flex gap-1 sm:gap-2">
         {buttons.map((button) => (
           <li key={button.name}>
             <button
-              className={`flex py-1.25 px-2.5 justify-center items-center text-sm text-slate-900 font-medium
-              ${
-                selectedSort === button.name ? "bg-slate-200 " : "bg-white"
-              } border-1 border-slate-500 rounded-full cursor-pointer hover:bg-slate-100
-              active:inset-shadow-sm active:bg-slate-100 transition-all duration-300 ease-in-out`}
+              className={`flex py-1.25 px-2.5 justify-center items-center text-sm text-slate-900 dark:text-slate-100 font-medium ${
+                selectedSort === button.name
+                  ? "bg-slate-200 dark:bg-slate-700"
+                  : "bg-white dark:bg-slate-800"
+              } border-1 border-slate-500 dark:border-slate-600 rounded-full cursor-pointer hover:bg-slate-100 dark:hover:bg-slate-700 active:inset-shadow-sm active:bg-slate-100 dark:active:bg-slate-700 transition-all duration-300 ease-in-out`}
               onClick={button.callback}
             >
               {button.text}
@@ -56,10 +58,10 @@ const Heading = ({ selectedSort, setSelectedSort }) => {
 
 const ArtWorkTitle = ({ title, artist }) => (
   <div className="w-full flex justify-between items-center">
-    <h3 className="text-slate-900 xl:text-slate-50 text-base sm:text-xl font-bold font-roboto-condensed">
+    <h3 className="text-slate-900 dark:text-slate-50 text-base sm:text-xl font-bold font-roboto-condensed">
       {title}
     </h3>
-    <h4 className="text-slate-800 xl:text-slate-200 text-sm sm:text-base italic">
+    <h4 className="text-slate-800 dark:text-slate-200 text-sm sm:text-base italic">
       By {artist}
     </h4>
   </div>
@@ -68,7 +70,7 @@ const ArtWorkTitle = ({ title, artist }) => (
 const ArtWorkReviewsAndPrice = ({ averageRating, sizes }) => (
   <div className="flex justify-between items-center">
     <StarRating rating={averageRating} />
-    <h4 className="text-slate-900 xl:text-slate-200 text-base sm:text-lg font-bold">
+    <h4 className="text-slate-900 dark:text-slate-200 text-base sm:text-lg font-bold">
       {sizes[0].price} €
     </h4>
   </div>
@@ -81,7 +83,7 @@ const MobileAndTabletView = ({ artwork, navigate }) => {
     <div className="mb-2 w-full flex xl:hidden flex-col gap-2">
       <ArtWorkTitle title={title} artist={artist} />
       <button
-        className="w-full h-auto bg-slate-300 cursor-pointer"
+        className="w-full h-auto bg-slate-300 dark:bg-slate-600 cursor-pointer"
         onClick={() => navigate(`/art/${id}`)}
       >
         <ArtWorkImage image={image} title={title} artist={artist} />
@@ -106,8 +108,7 @@ const DesktopView = ({ artwork, navigate }) => {
     <div className="relative mb-2 xl:mb-4 w-full hidden xl:flex flex-col group">
       <ArtWorkImage image={image} title={title} artist={artist} />
       <button
-        className="absolute inset-0 p-4 flex flex-col justify-between bg-black/50 cursor-pointer opacity-0
-      group-hover:opacity-100 transition-all duration-300 ease-in-out"
+        className="absolute inset-0 p-4 flex flex-col justify-between bg-black/50 dark:bg-slate-900/50 cursor-pointer opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out"
         onClick={() => navigate(`/art/${id}`)}
       >
         <ArtWorkTitle title={title} artist={artist} />
@@ -181,7 +182,7 @@ const Art = () => {
   };
 
   return (
-    <div className="w-full pt-28 pb-14 px-6 min-h-screen flex flex-col items-center justify-start bg-slate-100">
+    <div className="w-full pt-28 pb-14 px-6 min-h-screen flex flex-col items-center justify-start bg-slate-100 dark:bg-slate-800">
       <Heading selectedSort={selectedSort} setSelectedSort={setSelectedSort} />
       {loading ? (
         <div className="mt-8">
@@ -198,7 +199,7 @@ const Art = () => {
             ))}
           </div>
           {!data.allArtWorks.pageInfo.hasNextPage && (
-            <div className="mt-8 text-slate-700 text-sm font-medium">
+            <div className="mt-8 text-slate-700 dark:text-slate-300 text-sm font-medium">
               No more artworks available.
             </div>
           )}
