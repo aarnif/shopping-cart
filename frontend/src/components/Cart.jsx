@@ -121,18 +121,18 @@ const EmptyCart = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="pt-8 px-4 flex flex-col items-center gap-4">
+    <div className="pt-8 md:pt-12 xl:pt-16 px-4 flex flex-col items-center gap-4">
       <div className="flex flex-col items-center gap-1">
-        <h2 className="text-slate-700 dark:text-slate-300 text-base font-medium">
+        <h2 className="text-slate-700 dark:text-slate-300 text-base xl:text-lg font-medium">
           Looks like your cart is still empty.
         </h2>
       </div>
       <button
-        className="py-2 px-4 max-w-[200px] flex justify-center items-center gap-2 text-white font-bold bg-rose-700 dark:bg-rose-800 border-2 border-rose-700 dark:border-rose-800 rounded-lg cursor-pointer active:border-rose-900 active:inset-shadow-sm transition-all duration-300 ease-in-out"
+        className="py-2 px-4 max-w-[200px] flex justify-center items-center gap-2 text-base xl:text-lg text-white font-bold bg-rose-700 dark:bg-rose-800 border-2 border-rose-700 dark:border-rose-800 rounded-lg cursor-pointer active:border-rose-900 active:inset-shadow-sm transition-all duration-300 ease-in-out"
         onClick={() => navigate("/art")}
       >
         <p>Start Shopping</p>
-        <FaArrowRightLong className="w-5 h-5 text-white fill-current" />
+        <FaArrowRightLong className="w-5 h-5 xl:w-6 xl:h-6 text-white fill-current" />
       </button>
     </div>
   );
