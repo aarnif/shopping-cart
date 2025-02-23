@@ -182,7 +182,7 @@ const Art = () => {
   };
 
   return (
-    <div className="w-full pt-28 pb-14 px-6 min-h-screen flex flex-col items-center justify-start bg-slate-100 dark:bg-slate-800">
+    <div className="w-full pt-28 pb-14 px-6 min-h-screen flex flex-col items-center justify-start bg-slate-100 dark:bg-slate-900">
       <Heading selectedSort={selectedSort} setSelectedSort={setSelectedSort} />
       {loading ? (
         <div className="mt-8">

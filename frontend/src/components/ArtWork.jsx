@@ -98,7 +98,7 @@ const ArtWork = ({ handleAddItemToCart }) => {
   )?.price;
 
   return (
-    <div className="py-32 p-4 w-full flex-grow flex flex-col items-center justify-start bg-white dark:bg-slate-800">
+    <div className="py-32 p-4 w-full flex-grow flex flex-col items-center justify-start bg-white dark:bg-slate-900">
       <div className="w-full max-w-[1400px] flex flex-col items-center md:flex-row gap-4">
         <div className="flex justify-center">
           <img
@@ -148,13 +148,13 @@ const ArtWork = ({ handleAddItemToCart }) => {
 
           <div className="w-full flex flex-col md:flex-row gap-2 justify-center items-center">
             <button
-              className="md:w-full flex-grow basis-[50%] border border-slate-400 dark:border-slate-500 text-slate-700 dark:text-slate-300 font-semibold text-sm md:text-base xl:text-lg py-2 px-4 rounded-lg cursor-pointer hover:bg-slate-100 dark:hover:bg-slate-700 active:border-slate-500 dark:active:border-slate-400 active:bg-slate-100 dark:active:bg-slate-700 active:inset-shadow-sm transition-all duration-300 ease-in-out"
+              className="w-full flex-grow basis-[50%] border border-slate-400 dark:border-slate-500 text-slate-700 dark:text-slate-300 font-semibold text-sm md:text-base xl:text-lg py-2 px-4 rounded-lg cursor-pointer hover:bg-slate-100 dark:hover:bg-slate-700 active:border-slate-500 dark:active:border-slate-400 active:bg-slate-100 dark:active:bg-slate-700 active:inset-shadow-sm transition-all duration-300 ease-in-out"
               onClick={() => navigate("/art")}
             >
               Back
             </button>
             <button
-              className="md:w-full flex-grow basis-[50%] border bg-slate-800 dark:bg-slate-700 border-slate-800 dark:border-slate-700 text-white font-bold text-sm md:text-base xl:text-lg py-2 px-4 rounded-lg shadow-xl cursor-pointer hover:bg-slate-900 dark:hover:bg-slate-600 hover:border-slate-900 dark:hover:border-slate-600 active:bg-slate-900 dark:active:bg-slate-600 active:border-black dark:active:border-slate-600 active:inset-shadow-sm transition-all duration-300 ease-in-out"
+              className="w-full flex-grow basis-[50%] border bg-slate-800 dark:bg-slate-700 border-slate-800 dark:border-slate-700 text-white font-bold text-sm md:text-base xl:text-lg py-2 px-4 rounded-lg shadow-xl cursor-pointer hover:bg-slate-900 dark:hover:bg-slate-600 hover:border-slate-900 dark:hover:border-slate-600 active:bg-slate-900 dark:active:bg-slate-600 active:border-black dark:active:border-slate-600 active:inset-shadow-sm transition-all duration-300 ease-in-out"
               onClick={() =>
                 handleAddItemToCart(
                   data.findArtWork,
