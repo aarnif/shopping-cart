@@ -30,11 +30,11 @@ const ToggleDarkMode = () => {
       className="flex justify-center items-center cursor-pointer transition-all duration-300 ease-in-out"
     >
       {theme === "dark" ? (
-        <HiMoon key="dark" className="w-7 h-7 fill-current animate-scale-in" />
+        <HiMoon key="dark" className="w-6 h-6 fill-current animate-scale-in" />
       ) : (
         <IoSunnyOutline
           key="light"
-          className="w-7 h-7 fill-current animate-scale-in"
+          className="w-6 h-6 fill-current animate-scale-in"
         />
       )}
     </button>

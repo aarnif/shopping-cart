@@ -6,7 +6,7 @@ import { FaShoppingCart } from "react-icons/fa";
 import ToggleDarkMode from "./ToggleDarkMode";
 
 const Title = () => (
-  <h1 className="w-full text-rose-700 text-center md:text-left font-roboto-condensed text-2xl font-bold">
+  <h1 className="w-full text-rose-700 text-center md:text-left font-roboto-condensed text-xl md:text-2xl xl:text-3xl font-bold">
     Artful Finds
   </h1>
 );
@@ -20,7 +20,7 @@ const MobileHeaderNav = ({ handleShowMenu }) => {
             className="flex justify-center items-center cursor-pointer transition-all duration-300 ease-in-out"
             onClick={handleShowMenu}
           >
-            <IoMdMenu className="w-7 h-7 fill-current" />
+            <IoMdMenu className="w-6 h-6 fill-current" />
           </button>
         </li>
         <li className="flex justify-center items-center">
@@ -44,7 +44,7 @@ const HeaderNav = () => {
     { name: "shop", text: "Shop", callback: () => navigate("/art") },
     {
       name: "cart",
-      text: <FaShoppingCart className="w-7 h-7 fill-current" />,
+      text: <FaShoppingCart className="w-6 h-6 fill-current" />,
       callback: () => navigate("/cart"),
     },
     {
@@ -88,7 +88,10 @@ const HeaderNav = () => {
                 key={item.name}
                 className="flex justify-center items-center font-medium hover:underline cursor-pointer active:underline"
               >
-                <button className="cursor-pointer" onClick={item.callback}>
+                <button
+                  className="cursor-pointer text-base"
+                  onClick={item.callback}
+                >
                   {item.text}
                 </button>
               </li>
