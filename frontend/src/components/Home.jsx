@@ -60,7 +60,8 @@ const ArtCard = ({ data, navigate }) => {
           </div>
           <div>
             <button
-              className="flex p-2 md:px-8 s:py-4 justify-center items-center text-sm md:text-base xl:text-lg text-slate-900 dark:text-white font-bold bg-slate-200 dark:bg-slate-600 border-2 border-slate-200 dark:border-slate-600 rounded-lg cursor-pointer active:border-slate-400 dark:active:border-slate-500 active:inset-shadow-sm transition-all duration-300 ease-in-out"
+              className="flex p-2 md:px-8 s:py-4 justify-center items-center text-sm md:text-base xl:text-lg text-slate-900 dark:text-white font-bold bg-slate-200 dark:bg-slate-600 border-2 border-slate-200 dark:border-slate-600 
+              rounded-lg cursor-pointer hover:bg-slate-300 hover:border-slate-300 active:border-slate-400 dark:hover:bg-slate-500 dark:hover:border-slate-500 dark:active:border-slate-600 active:inset-shadow-sm transition-all duration-300 ease-in-out"
               onClick={() => navigate(`/art/${id}`)}
             >
               Buy Here
@@ -104,7 +105,9 @@ const HeroContent = ({ navigate }) => {
         artistic expression.
       </h1>
       <button
-        className="flex gap-2 mt-4 px-4 py-2 justify-center items-center text-base md:text-lg xl:text-xl text-white font-bold bg-rose-700 dark:bg-rose-800 border-2 border-rose-700 dark:border-rose-800 rounded-lg cursor-pointer active:border-rose-900 active:inset-shadow-sm transition-all duration-300 ease-in-out"
+        className="flex gap-2 mt-4 px-4 py-2 justify-center items-center text-base md:text-lg xl:text-xl text-white font-bold 
+        bg-rose-700 border-2 border-rose-700 rounded-lg cursor-pointer hover:bg-rose-800
+        hover:border-rose-800 active:border-rose-900 active:inset-shadow-sm transition-all duration-300 ease-in-out"
         onClick={() => navigate("/art")}
       >
         <p>Buy Here</p>
