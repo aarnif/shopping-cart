@@ -75,7 +75,7 @@ const resolvers = {
 
       const startIndex = after
         ? sortedArtworks.findIndex(
-            (artwork) => artwork.id.toString() === decodeCursor(after)
+            (artwork) => artwork.id === decodeCursor(after)
           ) + 1
         : 0;
 
@@ -85,7 +85,7 @@ const resolvers = {
       );
 
       const edges = paginatedArtworks.map((artwork) => ({
-        cursor: encodeCursor(artwork.id.toString()),
+        cursor: encodeCursor(artwork.id),
         node: artwork,
       }));
 
