@@ -122,7 +122,7 @@ const ArtCard = ({ artwork }) => {
   const navigate = useNavigate();
 
   return (
-    <div className="break-inside-avoid">
+    <div key={artwork.id} className="break-inside-avoid animate-fade-in">
       <MobileAndTabletView artwork={artwork} navigate={navigate} />
       <DesktopView artwork={artwork} navigate={navigate} />
     </div>
@@ -200,7 +200,7 @@ const Art = () => {
   const artWorks = splitArrayIntoColumns(data?.allArtWorks?.edges || []);
 
   return (
-    <div className="w-full pt-28 pb-14 px-6 min-h-screen flex flex-col items-center justify-start bg-slate-100 dark:bg-slate-900">
+    <div className="w-full py-24 md:py-28 xl:py-32 px-6 min-h-screen flex flex-col items-center justify-start bg-slate-100 dark:bg-slate-900">
       <Heading selectedSort={selectedSort} setSelectedSort={setSelectedSort} />
       {loading ? (
         <div className="mt-8">
