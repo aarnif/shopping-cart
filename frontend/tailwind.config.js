@@ -15,6 +15,10 @@ export default {
         "0%": { opacity: 0 },
         "100%": { opacity: 1 },
       },
+      fadeFromDown: {
+        "0%": { opacity: 0, transform: "translateY(100px)" },
+        "100%": { opacity: 1, transform: "translateY(0)" },
+      },
       scaleIn: {
         "0%": { transform: "scale(0)" },
         "100%": { transform: "scale(1)" },
@@ -41,6 +45,7 @@ export default {
     },
     animation: {
       "fade-in": "fadeIn 0.3s ease-in-out",
+      "fade-from-down": "fadeFromDown 0.5s ease-in-out",
       "scale-in": "scaleIn 0.3s ease-in-out",
       "zoom-in-and-out": "zoomInAndOut 0.5s ease-in-out",
       "hop-in": "hopIn 1s ease-in-out",

@@ -87,24 +87,28 @@ const ArtWork = ({ handleAddItemToCart }) => {
   }, [data]);
 
   if (loading) {
-    return <Loading />;
+    return (
+      <div className="p-4 w-full flex-grow flex flex-col items-center justify-center bg-white dark:bg-slate-900">
+        <Loading />
+      </div>
+    );
   }
 
   const { title, artist, image, description, sizes, reviews } =
-    data.findArtWork;
+    data?.findArtWork;
 
   const selectedSizePrice = sizes.find(
     (size) => size.dimensions === selectedSize
   )?.price;
 
   return (
-    <div className="py-32 p-4 w-full flex-grow flex flex-col items-center justify-start bg-white dark:bg-slate-900">
-      <div className="w-full max-w-[1400px] flex flex-col items-center md:flex-row gap-4">
+    <div className="py-24 md:py-28 xl:py-32 px-4 md:px-6 xl:px-8 w-full flex-grow flex flex-col items-center justify-start bg-white dark:bg-slate-900">
+      <div className="w-full max-w-[1400px] flex flex-col justify-center items-center md:flex-row gap-4 md:gap-8 xl:gap-16 animate-fade-from-down">
         <div className="flex justify-center">
           <img
             src={image}
             alt={`${title} by ${artist}`}
-            className="max-w-full max-h-[700px] md:max-h-[100%] object-contain shadow-xl"
+            className="max-w-full max-h-[1000px] object-contain shadow-xl"
           />
         </div>
 
@@ -169,7 +173,7 @@ const ArtWork = ({ handleAddItemToCart }) => {
           </div>
         </div>
       </div>
-      <div className="mt-4 w-full max-w-[1400px] flex flex-col gap-4">
+      <div className="mt-8 w-full max-w-[1400px] flex flex-col gap-4 animate-fade-from-down">
         <h2 className="text-slate-700 dark:text-slate-300 text-base md:text-lg font-bold">
           Customer Reviews ({reviews.length})
         </h2>
