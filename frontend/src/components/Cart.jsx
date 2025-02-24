@@ -104,8 +104,8 @@ const OrderSummary = ({ shoppingCart, handleShowAlertModal }) => {
         </div>
       </div>
       <button
-        className="w-full p-2 flex justify-center items-center gap-2 bg-green-500 hover:bg-green-600 dark:bg-green-600 dark:hover:bg-green-700 rounded-lg shadow-xl cursor-pointer
-        active:bg-green-700 dark:active:bg-green-800 active:inset-shadow-sm transition-all duration-300 ease-in-out"
+        className="w-full p-2 flex justify-center items-center gap-2 bg-green-500 border-green-500 rounded-lg shadow-xl cursor-pointer 
+        hover:bg-green-600 hover:border-green-600 active:bg-green-600 active:border-green-700 active:inset-shadow-sm transition-all duration-300 ease-in-out"
         onClick={handleShowAlertModal}
       >
         <p className="text-white text-sm md:text-base xl:text-lg font-bold">
@@ -128,7 +128,9 @@ const EmptyCart = () => {
         </h2>
       </div>
       <button
-        className="py-2 px-4 max-w-[200px] flex justify-center items-center gap-2 text-base xl:text-lg text-white font-bold bg-rose-700 dark:bg-rose-800 border-2 border-rose-700 dark:border-rose-800 rounded-lg cursor-pointer active:border-rose-900 active:inset-shadow-sm transition-all duration-300 ease-in-out"
+        className="py-2 px-4 max-w-[200px] flex justify-center items-center gap-2 text-base xl:text-lg text-white font-bold bg-rose-700 
+        border-2 border-rose-700 rounded-lg cursor-pointer hover:bg-rose-800
+        hover:border-rose-800 active:border-rose-900 active:inset-shadow-sm transition-all duration-300 ease-in-out"
         onClick={() => navigate("/art")}
       >
         <p>Start Shopping</p>
