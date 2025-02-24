@@ -5,6 +5,8 @@ export const ART_DETAILS = gql`
     id
     title
     artist
+    width
+    height
     averageRating
     description
     image

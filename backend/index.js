@@ -20,6 +20,8 @@ const typeDefs = `
     id: ID!
     title: String!
     artist: String!
+    width: Int!
+    height: Int!
     image: String!
     description: String!
     averageRating: Float!

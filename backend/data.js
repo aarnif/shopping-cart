@@ -99,7 +99,7 @@ const artworks = [
     description:
       "A quiet devotion unfolds in flowing color, where light and movement intertwine with the weight of knowledge and the urgency of compassion. Each brushstroke lingers, a testament to hands that heal and time that passes.",
     averageRating: 4,
-    type: "portrait",
+    type: "square",
     sizes: [
       { dimensions: "55 x 40 cm", price: 300 },
       { dimensions: "70 x 50 cm", price: 400 },
@@ -157,7 +157,7 @@ const artworks = [
     description:
       "A mesmerizing woodland scene where sunlight filters through dense foliage, casting an ethereal glow on the forest path. Rich in greens and deep blues, this painting evokes serenity and mystery, drawing viewers into nature’s embrace.",
     averageRating: 4.5,
-    type: "landscape",
+    type: "square",
     sizes: [
       { dimensions: "40 x 55 cm", price: 375 },
       { dimensions: "50 x 70 cm", price: 475 },
@@ -195,7 +195,7 @@ const artworks = [
     description:
       "An enchanting city skyline illuminated by the warm glow of twilight. The vibrant mix of purples, oranges, and blues brings depth and emotion to this mesmerizing urban scene, where reflections dance on the shimmering water below.",
     averageRating: 4.8,
-    type: "landscape",
+    type: "square",
     sizes: [
       { dimensions: "40 x 55 cm", price: 420 },
       { dimensions: "50 x 70 cm", price: 520 },
@@ -252,7 +252,7 @@ const artworks = [
     description:
       "A breathtaking mountain range bathed in the golden hues of dawn. Snow-capped peaks rise dramatically above a tranquil lake, as mist gently rolls over the valleys. This stunning landscape captures the grandeur and serenity of nature at its finest.",
     averageRating: 4.9,
-    type: "landscape",
+    type: "square",
     sizes: [
       { dimensions: "40 x 55 cm", price: 450 },
       { dimensions: "50 x 70 cm", price: 550 },
@@ -1205,4 +1205,25 @@ const artworks = [
   },
 ];
 
-export default artworks;
+// Add new fields afterwards to the data
+const updatedArtworks = artworks.map((artwork) => ({
+  ...artwork,
+  width:
+    artwork.type === "landscape"
+      ? 1792
+      : artwork.type === "portrait"
+      ? 1024
+      : 1024,
+  height:
+    artwork.type === "landscape"
+      ? 1024
+      : artwork.type === "portrait"
+      ? 1792
+      : 1024,
+  averageRating: artwork.reviews.length
+    ? artwork.reviews.reduce((acc, review) => acc + review.rating, 0) /
+      artwork.reviews.length
+    : 0,
+}));
+
+export default updatedArtworks;
