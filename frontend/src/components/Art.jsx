@@ -130,7 +130,7 @@ const ArtCard = ({ artwork }) => {
 };
 
 const Art = () => {
-  const numberOfArtworksToBeFetched = 20;
+  const numberOfArtworksToBeFetched = 10;
   const [selectedSort, setSelectedSort] = useState("title");
   const { data, loading, fetchMore } = useQuery(ALL_ARTWORKS, {
     variables: {
@@ -181,6 +181,24 @@ const Art = () => {
     });
   };
 
+  // Split the artworks into columns based on their height in order to balance column heights in the mansonry layout
+  const splitArrayIntoColumns = (arr, numberOfCols = 3) => {
+    const columns = Array.from({ length: numberOfCols }, () => []);
+    const heightOfTheColumns = Array(numberOfCols).fill(0);
+
+    arr.forEach((artwork) => {
+      const shortestColumn = heightOfTheColumns.indexOf(
+        Math.min(...heightOfTheColumns)
+      );
+      columns[shortestColumn].push(artwork);
+      heightOfTheColumns[shortestColumn] += artwork.node.height;
+    });
+
+    return columns;
+  };
+
+  const artWorks = splitArrayIntoColumns(data?.allArtWorks?.edges || []);
+
   return (
     <div className="w-full pt-28 pb-14 px-6 min-h-screen flex flex-col items-center justify-start bg-slate-100 dark:bg-slate-900">
       <Heading selectedSort={selectedSort} setSelectedSort={setSelectedSort} />
@@ -192,11 +210,23 @@ const Art = () => {
         <>
           <div
             key={"art"}
-            className="w-full max-w-[1400px] columns-1 md:columns-2 xl:columns-3 gap-4"
+            className="w-full max-w-[1400px] grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4"
           >
-            {data.allArtWorks.edges.map((edge, index) => (
-              <ArtCard key={index} artwork={edge.node} />
-            ))}
+            <div>
+              {artWorks[0].map((edge, index) => (
+                <ArtCard key={index} artwork={edge.node} />
+              ))}
+            </div>
+            <div>
+              {artWorks[1].map((edge, index) => (
+                <ArtCard key={index} artwork={edge.node} />
+              ))}
+            </div>
+            <div>
+              {artWorks[2].map((edge, index) => (
+                <ArtCard key={index} artwork={edge.node} />
+              ))}
+            </div>
           </div>
           {!data.allArtWorks.pageInfo.hasNextPage && (
             <div className="mt-8 text-slate-700 dark:text-slate-300 text-sm font-medium">
