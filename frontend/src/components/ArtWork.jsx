@@ -6,6 +6,23 @@ import { FIND_ARTWORK } from "../graphql/queries.js";
 import Loading from "./Loading.jsx";
 import StarRating from "./StarRating.jsx";
 
+const FullScreenImageView = ({ fullScreenImageUri, setShowImageView }) => {
+  return (
+    <button
+      className="fixed inset-0 flex justify-center items-center bg-black/50 z-10 animate-fade-in"
+      onClick={() => setShowImageView(false)}
+    >
+      <div className="p-16 w-full h-full flex justify-center items-center">
+        <img
+          src={fullScreenImageUri}
+          alt="Full screen image"
+          className="max-h-full max-w-full object-contain"
+        />
+      </div>
+    </button>
+  );
+};
+
 const Review = ({ review }) => {
   const { name, date, rating, text } = review;
 
@@ -75,6 +92,7 @@ const ArtWork = ({ handleAddItemToCart }) => {
   const navigate = useNavigate();
   const match = useMatch("/art/:id").params;
   const [selectedSize, setSelectedSize] = useState(null);
+  const [showImageView, setShowImageView] = useState(false);
 
   const { data, loading } = useQuery(FIND_ARTWORK, {
     variables: { id: match.id },
@@ -104,13 +122,16 @@ const ArtWork = ({ handleAddItemToCart }) => {
   return (
     <div className="py-24 md:py-28 xl:py-32 px-4 md:px-6 xl:px-8 w-full flex-grow flex flex-col items-center justify-start bg-white dark:bg-slate-900">
       <div className="w-full max-w-[1400px] flex flex-col justify-center items-center md:flex-row gap-4 md:gap-8 xl:gap-16 animate-fade-from-down">
-        <div className="flex justify-center">
+        <button
+          className="flex justify-center cursor-pointer"
+          onClick={() => setShowImageView(true)}
+        >
           <img
             src={image}
             alt={`${title} by ${artist}`}
             className="max-w-full max-h-[1000px] object-contain shadow-xl"
           />
-        </div>
+        </button>
 
         <div className="w-full flex flex-col gap-4 md:max-w-[450px]">
           <div>
@@ -186,6 +207,12 @@ const ArtWork = ({ handleAddItemToCart }) => {
           ))}
         </div>
       </div>
+      {showImageView && (
+        <FullScreenImageView
+          fullScreenImageUri={image}
+          setShowImageView={setShowImageView}
+        />
+      )}
     </div>
   );
 };
