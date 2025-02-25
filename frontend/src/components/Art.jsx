@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useQuery } from "@apollo/client";
 import { useScroll, useMotionValueEvent } from "framer-motion";
 
+import useResponsiveWidth from "../hooks/useResponsiveWidth.js";
 import { ALL_ARTWORKS } from "../graphql/queries.js";
 import Loading from "./Loading.jsx";
 import StarRating from "./StarRating";
@@ -130,7 +131,8 @@ const ArtCard = ({ artwork }) => {
 };
 
 const Art = () => {
-  const numberOfArtworksToBeFetched = 10;
+  const numberOfArtworksToBeFetched = 20;
+  const width = useResponsiveWidth();
   const [selectedSort, setSelectedSort] = useState("title");
   const { data, loading, fetchMore } = useQuery(ALL_ARTWORKS, {
     variables: {
@@ -140,6 +142,9 @@ const Art = () => {
     },
     fetchPolicy: "cache-and-network",
   });
+
+  // Number of columns based on the screen width, use tailwinds css md and xl as breakpoints
+  const numberOfColumns = width >= 1280 ? 3 : width >= 768 ? 2 : 1;
 
   // Infinite scroll that loads more artworks when the user reaches the bottom of the page
   const { scrollYProgress } = useScroll();
@@ -197,7 +202,10 @@ const Art = () => {
     return columns;
   };
 
-  const artWorks = splitArrayIntoColumns(data?.allArtWorks?.edges || []);
+  const artWorks = splitArrayIntoColumns(
+    data?.allArtWorks?.edges || [],
+    numberOfColumns
+  );
 
   return (
     <div className="w-full py-24 md:py-28 xl:py-32 px-6 min-h-screen flex flex-col items-center justify-start bg-slate-100 dark:bg-slate-900">
@@ -212,21 +220,13 @@ const Art = () => {
             key={"art"}
             className="w-full max-w-[1400px] grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4"
           >
-            <div>
-              {artWorks[0].map((edge, index) => (
-                <ArtCard key={index} artwork={edge.node} />
-              ))}
-            </div>
-            <div>
-              {artWorks[1].map((edge, index) => (
-                <ArtCard key={index} artwork={edge.node} />
-              ))}
-            </div>
-            <div>
-              {artWorks[2].map((edge, index) => (
-                <ArtCard key={index} artwork={edge.node} />
-              ))}
-            </div>
+            {artWorks.map((column, index) => (
+              <div key={index}>
+                {column.map((edge, index) => (
+                  <ArtCard key={index} artwork={edge.node} />
+                ))}
+              </div>
+            ))}
           </div>
           {!data.allArtWorks.pageInfo.hasNextPage && (
             <div className="mt-8 text-slate-700 dark:text-slate-300 text-sm font-medium">
