@@ -37,22 +37,27 @@ const Heading = ({ selectedSort, setSelectedSort }) => {
       <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-100">
         Art
       </h2>
-      <ul className="flex gap-1 sm:gap-2">
-        {buttons.map((button) => (
-          <li key={button.name}>
-            <button
-              className={`flex py-1.25 px-2.5 justify-center items-center text-sm text-slate-900 dark:text-slate-100 font-medium ${
-                selectedSort === button.name
-                  ? "bg-slate-200 dark:bg-slate-700"
-                  : "bg-white dark:bg-slate-800"
-              } border-1 border-slate-500 dark:border-slate-600 rounded-full cursor-pointer hover:bg-slate-100 dark:hover:bg-slate-700 active:inset-shadow-sm active:bg-slate-100 dark:active:bg-slate-700 transition-all duration-300 ease-in-out`}
-              onClick={button.callback}
-            >
-              {button.text}
-            </button>
-          </li>
-        ))}
-      </ul>
+      <div className="flex items-center gap-4">
+        <h2 className="text-base xl:text-lg font-bold text-slate-900 dark:text-slate-100">
+          Sort By
+        </h2>
+        <ul className="flex gap-1 sm:gap-2">
+          {buttons.map((button) => (
+            <li key={button.name}>
+              <button
+                className={`flex py-1.25 px-2.5 justify-center items-center text-sm xl:text-base text-slate-900 dark:text-slate-100 font-medium ${
+                  selectedSort === button.name
+                    ? "bg-slate-200 dark:bg-slate-700"
+                    : "bg-white dark:bg-slate-800"
+                } border-1 border-slate-500 dark:border-slate-600 rounded-full cursor-pointer hover:bg-slate-100 dark:hover:bg-slate-700 active:inset-shadow-sm active:bg-slate-100 dark:active:bg-slate-700 transition-all duration-300 ease-in-out`}
+                onClick={button.callback}
+              >
+                {button.text}
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };
