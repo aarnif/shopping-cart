@@ -92,7 +92,11 @@ const App = () => {
 
   return (
     <div className="w-full min-h-screen flex flex-col animate-fade-in">
-      <Header handleShowMenu={handleShowMenu} />
+      <Header
+        handleShowMenu={handleShowMenu}
+        shoppingCart={shoppingCart}
+        numberOfItemsInCart={numberOfItemsInCart}
+      />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/art" element={<Art />} />

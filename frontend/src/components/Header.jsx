@@ -39,7 +39,7 @@ const MobileHeaderNav = ({ handleShowMenu }) => {
   );
 };
 
-const HeaderNav = () => {
+const HeaderNav = ({ shoppingCart, numberOfItemsInCart }) => {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -71,13 +71,28 @@ const HeaderNav = () => {
         {navItems.map((item) => {
           if (item.name === "cart") {
             return (
-              <li key={item.name} className="flex justify-center items-center">
+              <li
+                key={item.name}
+                className="relative flex justify-center items-center"
+              >
                 <button
                   className="flex justify-center items-center cursor-pointer transition-all duration-300 ease-in-out hover:animate-rotate-45-degrees"
                   onClick={item.callback}
                 >
                   {item.text}
                 </button>
+                {shoppingCart.length > 0 && (
+                  <div
+                    key={numberOfItemsInCart}
+                    className={`pointer-events-none absolute -bottom-2 -right-2 w-5 h-5 flex justify-center items-center bg-green-700 text-white text-sm font-bold rounded-full ${
+                      numberOfItemsInCart === 1
+                        ? "animate-scale-in"
+                        : "animate-zoom-in-and-out"
+                    }`}
+                  >
+                    {numberOfItemsInCart}
+                  </div>
+                )}
               </li>
             );
           } else if (item.name === "mode") {
@@ -110,11 +125,14 @@ const HeaderNav = () => {
   );
 };
 
-const Header = ({ handleShowMenu }) => {
+const Header = ({ handleShowMenu, shoppingCart, numberOfItemsInCart }) => {
   return (
     <header className="z-10 px-4 md:px-8 py-4 fixed w-full flex justify-center items-center bg-white dark:bg-slate-950 md:dark:bg-slate-950/0 md:bg-white/0 md:backdrop-blur-xs">
       <MobileHeaderNav handleShowMenu={handleShowMenu} />
-      <HeaderNav />
+      <HeaderNav
+        shoppingCart={shoppingCart}
+        numberOfItemsInCart={numberOfItemsInCart}
+      />
     </header>
   );
 };
