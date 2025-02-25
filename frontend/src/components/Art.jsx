@@ -47,9 +47,9 @@ const Heading = ({ selectedSort, setSelectedSort }) => {
               <button
                 className={`flex py-1.25 px-2.5 justify-center items-center text-sm xl:text-base text-slate-900 dark:text-slate-100 font-medium ${
                   selectedSort === button.name
-                    ? "bg-slate-200 dark:bg-slate-700"
+                    ? "bg-slate-200 dark:bg-slate-600"
                     : "bg-white dark:bg-slate-800"
-                } border-1 border-slate-500 dark:border-slate-600 rounded-full cursor-pointer hover:bg-slate-100 dark:hover:bg-slate-700 active:inset-shadow-sm active:bg-slate-100 dark:active:bg-slate-700 transition-all duration-300 ease-in-out`}
+                } border-1 border-slate-500 dark:border-slate-600 rounded-full cursor-pointer hover:bg-slate-200 dark:hover:bg-slate-600 active:inset-shadow-sm active:bg-slate-200 dark:active:bg-slate-600 transition-all duration-300 ease-in-out`}
                 onClick={button.callback}
               >
                 {button.text}
