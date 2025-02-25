@@ -23,7 +23,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="p-2 sm:p-3 w-full flex justify-center items-center bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100">
+    <footer className="px-4 md:px-6 xl:px-8 py-3 w-full flex justify-center items-center bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100">
       <div className="w-full flex flex-col sm:flex-row justify-center sm:justify-between items-center gap-2">
         <ul className="flex gap-4">
           {socialMediaIcons.map((icon, index) => (
