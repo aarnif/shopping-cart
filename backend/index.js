@@ -7,8 +7,16 @@ import artworks from "./data.js";
 connectToDatabase();
 
 const typeDefs = `
+  type Image {
+    type: String!
+    width: Int!
+    height: Int!
+    uri: String!
+  }
+
   type Size {
-    dimensions: String!
+    width: Int!
+    height: Int!
     price: Int!
   }
     
@@ -23,9 +31,7 @@ const typeDefs = `
     id: ID!
     title: String!
     artist: String!
-    width: Int!
-    height: Int!
-    image: String!
+    image: Image!
     description: String!
     averageRating: Float!
     type: String!

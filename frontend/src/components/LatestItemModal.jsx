@@ -70,7 +70,7 @@ const LatestItemModal = ({ latestItem, setShowLatestItemModal }) => {
           <div className="w-full flex justify-center items-center">
             <img
               className="w-auto max-h-[240px] md:max-h-[320px] xl:max-h-[400px] object-contain"
-              src={image}
+              src={image.uri}
               alt={title}
             />
           </div>
@@ -85,7 +85,7 @@ const LatestItemModal = ({ latestItem, setShowLatestItemModal }) => {
             </div>
             <div className="flex flex-col gap-4">
               <p className="text-slate-700 dark:text-slate-300 text-xs md:text-sm xl:text-base font-medium">
-                {size.dimensions}
+                {`${size.width} x ${size.height} cm`}
               </p>
               <p className="text-slate-700 dark:text-slate-300 text-sm md:text-base xl:text-lg font-bold">
                 {size.price} €

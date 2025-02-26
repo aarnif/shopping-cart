@@ -32,6 +32,8 @@ const App = () => {
   const handleAddItemToCart = (artWork, selectedSize) => {
     console.log("Add art work to cart:", artWork.id);
 
+    console.log("Selected size:", selectedSize);
+
     const newItem = {
       id: uuidv4(),
       title: artWork.title,
@@ -40,6 +42,8 @@ const App = () => {
       size: selectedSize,
       quantity: 1,
     };
+
+    console.log("New item:", newItem);
 
     const checkIfItemWithSameSizeAndTitleInCart = shoppingCart.find(
       (item) => newItem.title === item.title && newItem.size === item.size

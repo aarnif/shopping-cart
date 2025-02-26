@@ -5,21 +5,25 @@ export const ART_DETAILS = gql`
     id
     title
     artist
-    width
-    height
-    averageRating
-    description
-    image
-    reviews {
-      date
-      name
-      rating
-      text
+    image {
+      type
+      width
+      height
+      uri
     }
+    description
+    averageRating
     type
     sizes {
+      width
+      height
       price
-      dimensions
+    }
+    reviews {
+      name
+      date
+      rating
+      text
     }
   }
 `;

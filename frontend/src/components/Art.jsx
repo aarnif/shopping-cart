@@ -92,7 +92,7 @@ const MobileAndTabletView = ({ artwork, navigate }) => {
         className="w-full h-auto bg-slate-300 dark:bg-slate-600 cursor-pointer"
         onClick={() => navigate(`/art/${id}`)}
       >
-        <ArtWorkImage image={image} title={title} artist={artist} />
+        <ArtWorkImage image={image.uri} title={title} artist={artist} />
       </button>
       <ArtWorkReviewsAndPrice averageRating={averageRating} sizes={sizes} />
     </div>
@@ -112,7 +112,7 @@ const DesktopView = ({ artwork, navigate }) => {
 
   return (
     <div className="relative mb-2 xl:mb-4 w-full hidden xl:flex flex-col group">
-      <ArtWorkImage image={image} title={title} artist={artist} />
+      <ArtWorkImage image={image.uri} title={title} artist={artist} />
       <button
         className="absolute inset-0 p-4 flex flex-col justify-between bg-black/50 cursor-pointer opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out"
         onClick={() => navigate(`/art/${id}`)}
@@ -201,7 +201,7 @@ const Art = () => {
         Math.min(...heightOfTheColumns)
       );
       columns[shortestColumn].push(artwork);
-      heightOfTheColumns[shortestColumn] += artwork.node.height;
+      heightOfTheColumns[shortestColumn] += artwork.node.image.height;
     });
 
     return columns;

@@ -100,7 +100,7 @@ const ArtWork = ({ handleAddItemToCart }) => {
 
   useEffect(() => {
     if (data) {
-      setSelectedSize(data.findArtWork.sizes[0].dimensions);
+      setSelectedSize(data.findArtWork.sizes[0]);
     }
   }, [data]);
 
@@ -115,9 +115,7 @@ const ArtWork = ({ handleAddItemToCart }) => {
   const { title, artist, image, description, sizes, reviews } =
     data?.findArtWork;
 
-  const selectedSizePrice = sizes.find(
-    (size) => size.dimensions === selectedSize
-  )?.price;
+  const selectedSizePrice = sizes.find((size) => size === selectedSize)?.price;
 
   return (
     <div className="py-24 md:py-28 xl:py-32 px-4 md:px-6 xl:px-8 w-full flex-grow flex flex-col items-center justify-start bg-white dark:bg-slate-900">
@@ -127,7 +125,7 @@ const ArtWork = ({ handleAddItemToCart }) => {
           onClick={() => setShowImageView(true)}
         >
           <img
-            src={image}
+            src={image.uri}
             alt={`${title} by ${artist}`}
             className="max-w-full max-h-[1000px] object-contain shadow-xl"
           />
@@ -148,20 +146,23 @@ const ArtWork = ({ handleAddItemToCart }) => {
           </p>
 
           <div className="w-full flex flex-wrap gap-2 justify-center items-center">
-            {sizes.map(({ dimensions }) => (
-              <button
-                key={dimensions}
-                onClick={() => setSelectedSize(dimensions)}
-                className={`border border-slate-400 dark:border-slate-500 text-slate-700 dark:text-slate-300 text-xs md:text-sm py-1.5 px-3 rounded-full cursor-pointer transition-all duration-300 ease-in-out 
+            {sizes.map((size) => {
+              // console.log("Size", size);
+              return (
+                <button
+                  key={size.width}
+                  onClick={() => setSelectedSize(size)}
+                  className={`border border-slate-400 dark:border-slate-500 text-slate-700 dark:text-slate-300 text-xs md:text-sm py-1.5 px-3 rounded-full cursor-pointer transition-all duration-300 ease-in-out 
                   ${
-                    selectedSize === dimensions
+                    selectedSize === size
                       ? "bg-slate-200 dark:bg-slate-600 border-slate-700 dark:border-slate-400"
                       : "hover:bg-slate-200 dark:hover:bg-slate-700 active:border-slate-700 dark:active:border-slate-400"
                   }`}
-              >
-                {dimensions}
-              </button>
-            ))}
+                >
+                  {`${size.width} x ${size.height} cm`}
+                </button>
+              );
+            })}
           </div>
 
           <h3
@@ -183,9 +184,7 @@ const ArtWork = ({ handleAddItemToCart }) => {
               onClick={() =>
                 handleAddItemToCart(
                   data.findArtWork,
-                  data.findArtWork.sizes.find(
-                    (size) => size.dimensions === selectedSize
-                  )
+                  data.findArtWork.sizes.find((size) => size === selectedSize)
                 )
               }
             >

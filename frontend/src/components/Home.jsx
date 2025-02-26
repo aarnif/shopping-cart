@@ -29,7 +29,7 @@ const ArtCard = ({ data, navigate }) => {
     >
       <div className="w-full h-[300px] bg-slate-300 dark:bg-slate-600 rounded-t-lg">
         <img
-          src={image}
+          src={image.uri}
           alt={`${title} by ${artist}`}
           className="h-full w-full object-cover rounded-t-lg"
         />

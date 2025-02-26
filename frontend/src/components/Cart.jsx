@@ -13,7 +13,7 @@ const CartItem = ({ item, handleAddItemToCart, handleRemoveItemFromCart }) => {
           <div className="flex-grow">
             <img
               className="w-auto max-h-[150px] md:max-h-[190px] xl:max-h-[230px] object-contain"
-              src={image}
+              src={image.uri}
               alt={title}
             />
           </div>
