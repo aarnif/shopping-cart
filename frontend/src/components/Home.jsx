@@ -24,7 +24,7 @@ const ArtCard = ({ data, navigate }) => {
     <div
       id="art-card"
       className={`w-full ${
-        type === "portrait" && "md:max-w-[400px]"
+        image.type === "portrait" && "md:max-w-[400px]"
       } flex flex-col bg-white dark:bg-slate-800 shadow-lg rounded-lg`}
     >
       <div className="w-full h-[300px] bg-slate-300 dark:bg-slate-600 rounded-t-lg">
