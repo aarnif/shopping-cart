@@ -13,6 +13,7 @@ export const ART_DETAILS = gql`
     }
     description
     averageRating
+    startingPrice
     sizes {
       width
       height

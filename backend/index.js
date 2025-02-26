@@ -1,10 +1,9 @@
-import Artwork from "./models/artwork.js";
+import { Artwork, Image, Size, Review } from "./models/index.js";
 
 import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
 
 import { connectToDatabase } from "./db.js";
-import artworks from "./data.js";
 
 const typeDefs = `
   type Image {
@@ -34,6 +33,7 @@ const typeDefs = `
     image: Image!
     description: String!
     averageRating: Float!
+    startingPrice: Float!
     type: String!
     sizes: [Size!]!
     reviews: [Review!]!
@@ -64,59 +64,55 @@ const typeDefs = `
   }
 `;
 
-const encodeCursor = (id) => Buffer.from(id.toString()).toString("base64");
-const decodeCursor = (cursor) =>
-  Buffer.from(cursor, "base64").toString("ascii");
-
-const sortComparators = {
-  title: (a, b) => a.title.localeCompare(b.title),
-  artist: (a, b) => a.artist.localeCompare(b.artist),
-  price: (a, b) => a.sizes[0].price - b.sizes[0].price,
-  rating: (a, b) => b.averageRating - a.averageRating,
-};
-
 const resolvers = {
   Query: {
-    artWorksCount: () => artworks.length,
-    // This resolver was generated with the help of ChatGPT o3-mini-high model
-    allArtWorks: (root, { sortBy = "title", first = 3, after }) => {
-      const sortedArtworks = [...artworks].sort(
-        sortComparators[sortBy] || sortComparators.title
-      );
+    artWorksCount: () => Artwork.count(),
+    allArtWorks: (root, { sortBy = "title", first = 3, after = null }) => {
+      sortBy = sortBy === "" ? "title" : sortBy;
+      let order;
 
-      const startIndex = after
-        ? sortedArtworks.findIndex(
-            (artwork) => artwork.id === decodeCursor(after)
-          ) + 1
-        : 0;
+      switch (sortBy) {
+        case "title":
+          order = [
+            ["title", "ASC"],
+            ["averageRating", "DESC"],
+          ];
+          break;
+        case "artist":
+          order = [
+            ["artist", "ASC"],
+            ["averageRating", "DESC"],
+          ];
+          break;
+        case "rating":
+          order = [
+            ["averageRating", "DESC"],
+            ["title", "ASC"],
+          ];
+          break;
+        case "price":
+          order = [
+            ["startingPrice", "ASC"],
+            ["title", "ASC"],
+          ];
+          break;
+      }
 
-      const paginatedArtworks = sortedArtworks.slice(
-        startIndex,
-        startIndex + first
-      );
-
-      const edges = paginatedArtworks.map((artwork) => ({
-        cursor: encodeCursor(artwork.id),
-        node: artwork,
-      }));
-
-      const startCursor = edges.length ? edges[0].cursor : null;
-      const endCursor = edges.length ? edges[edges.length - 1].cursor : null;
-      const hasNextPage = startIndex + first < sortedArtworks.length;
-
-      return {
-        totalCount: sortedArtworks.length,
-        edges,
-        pageInfo: {
-          startCursor,
-          endCursor,
-          hasNextPage,
-        },
-      };
+      return Artwork.paginate({
+        order,
+        limit: first,
+        after,
+        include: [Image, Size, Review],
+      });
     },
-    featuredArtWorks: () => artworks.slice(0, 4),
+    // Currently featured artworks are just the first 4 artworks based on the id
+    featuredArtWorks: async () =>
+      Artwork.findAll({
+        limit: 4,
+        include: [Image, Size, Review],
+      }),
     findArtWork: (root, args) =>
-      artworks.find((artwork) => artwork.id === args.id),
+      Artwork.findByPk(args.id, { include: [Image, Size, Review] }),
   },
 };
 

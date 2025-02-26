@@ -1,4 +1,7 @@
 import { Model, DataTypes } from "sequelize";
+import pkg from "sequelize-cursor-pagination";
+const { makePaginate } = pkg;
+
 import { sequelize } from "../db.js";
 
 class Artwork extends Model {}
@@ -25,6 +28,10 @@ Artwork.init(
       type: DataTypes.FLOAT,
       defaultValue: 0,
     },
+    startingPrice: {
+      type: DataTypes.FLOAT,
+      allowNull: false,
+    },
   },
   {
     sequelize,
@@ -33,5 +40,7 @@ Artwork.init(
     modelName: "artwork",
   }
 );
+
+Artwork.paginate = makePaginate(Artwork);
 
 export default Artwork;

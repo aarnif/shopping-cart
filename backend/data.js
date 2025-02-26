@@ -35,6 +35,7 @@ const artworks = [
         text: "Beautiful artwork, but the frame was slightly scratched upon arrival. Still a great piece!",
       },
     ],
+    startingPrice: 350,
   },
   {
     id: "845727d8-99c9-4035-99f9-76348903dd77",
@@ -72,6 +73,7 @@ const artworks = [
         text: "Even more beautiful in person than online. Great quality!",
       },
     ],
+    startingPrice: 300,
   },
   {
     id: "24771cf6-9196-444f-a5d2-3fa0e75e87bf",
@@ -103,6 +105,7 @@ const artworks = [
         text: "Absolutely love this piece! It fits perfectly in my dining room.",
       },
     ],
+    startingPrice: 250,
   },
   {
     id: "8b68fe4a-338d-4687-88e2-c7a354fa764a",
@@ -134,6 +137,7 @@ const artworks = [
         text: "A great addition to my office, but shipping took longer than expected.",
       },
     ],
+    startingPrice: 300,
   },
   {
     id: "cd609608-7554-436e-8aa2-2e0cebffe7d2",
@@ -171,6 +175,7 @@ const artworks = [
         text: "The colors are so rich and deep. Perfect for my bedroom!",
       },
     ],
+    startingPrice: 200,
   },
   {
     id: "d092bef3-665d-489a-b7f6-e6bb7bdaad8c",
@@ -195,6 +200,7 @@ const artworks = [
       { width: 100, height: 140, price: 875 },
     ],
     reviews: [],
+    startingPrice: 375,
   },
   {
     id: "d9e89855-4ee1-4e93-9e06-23d716f70df2",
@@ -219,6 +225,7 @@ const artworks = [
       { width: 100, height: 140, price: 900 },
     ],
     reviews: [],
+    startingPrice: 400,
   },
   {
     id: "aec7e977-6e59-410a-a58d-f4efe4327305",
@@ -243,6 +250,7 @@ const artworks = [
       { width: 100, height: 140, price: 920 },
     ],
     reviews: [],
+    startingPrice: 420,
   },
   {
     id: "c96bac5d-3d95-438f-8194-7616d0933efc",
@@ -267,6 +275,7 @@ const artworks = [
       { width: 100, height: 140, price: 930 },
     ],
     reviews: [],
+    startingPrice: 430,
   },
   {
     id: "ea7782cf-e921-42b5-a82c-a945145a98ad",
@@ -291,6 +300,7 @@ const artworks = [
       { width: 100, height: 140, price: 910 },
     ],
     reviews: [],
+    startingPrice: 410,
   },
   {
     id: "65724846-a5c0-42de-85ec-f09aacb1add8",
@@ -315,6 +325,7 @@ const artworks = [
       { width: 100, height: 140, price: 950 },
     ],
     reviews: [],
+    startingPrice: 450,
   },
   {
     id: "3d3c3c7e-eb45-4eb7-803d-4fb54f36caa7",
@@ -352,6 +363,7 @@ const artworks = [
         text: "Absolutely stunning work. The impressionist style makes it feel timeless and full of energy!",
       },
     ],
+    startingPrice: 320,
   },
   {
     id: "287efb19-e9e1-4ae9-9042-0375b3f9922f",
@@ -389,6 +401,7 @@ const artworks = [
         text: "The texture and colors are absolutely mesmerizing. Perfect for a nature lover!",
       },
     ],
+    startingPrice: 320,
   },
   {
     id: "b7db6f54-c9fa-4541-bf9a-aae5533b7312",
@@ -432,6 +445,7 @@ const artworks = [
         text: "This artwork captures everything I love about the countryside—charm, peace, and natural beauty.",
       },
     ],
+    startingPrice: 330,
   },
   {
     id: "562881bc-cc9f-4024-b21e-97ce84b249d5",
@@ -481,6 +495,7 @@ const artworks = [
         text: "The mix of dark tones with the golden light is so striking. Truly a masterpiece!",
       },
     ],
+    startingPrice: 340,
   },
   {
     id: "8cf3f676-16ad-4ac3-b1a6-b5a2f7a3e183",
@@ -530,6 +545,7 @@ const artworks = [
         text: "The atmosphere in this artwork is incredible! The way the lights reflect off the wet pavement is stunning.",
       },
     ],
+    startingPrice: 350,
   },
   {
     id: "de38e55a-f587-4104-94b1-648dd1740570",
@@ -585,6 +601,7 @@ const artworks = [
         text: "The glow of the lamplights and the golden leaves create such a cozy feeling. I love it!",
       },
     ],
+    startingPrice: 340,
   },
   {
     id: "47722883-1655-479c-b5b8-9441fccb168f",
@@ -640,6 +657,7 @@ const artworks = [
         text: "The way the city lights interact with the sunset is just breathtaking. It’s my favorite art piece now!",
       },
     ],
+    startingPrice: 360,
   },
   {
     id: "f28b2d8c-a0be-4b42-b07f-2fc48be0d8ef",
@@ -695,6 +713,7 @@ const artworks = [
         text: "A true masterpiece! The play of light on the water is so enchanting.",
       },
     ],
+    startingPrice: 350,
   },
   {
     id: "9f2c0d7f-522f-4551-aabf-0227c34a7aeb",
@@ -750,6 +769,7 @@ const artworks = [
         text: "It feels like stepping into a jungle. The textures and colors are just perfect.",
       },
     ],
+    startingPrice: 340,
   },
   {
     id: "51770d98-2eed-4bb5-a03f-3db6c1665b49",
@@ -805,6 +825,7 @@ const artworks = [
         text: "This is a conversation starter for sure! A masterpiece of modern cubism.",
       },
     ],
+    startingPrice: 370,
   },
   {
     id: "951b867b-fc6e-4453-92df-54a244180696",
@@ -860,6 +881,7 @@ const artworks = [
         text: "A bold and inspiring piece. It would make a great centerpiece in any collection!",
       },
     ],
+    startingPrice: 380,
   },
   {
     id: "8ee55375-0604-4928-81c8-6666e21299c9",
@@ -915,6 +937,7 @@ const artworks = [
         text: "It feels like stepping into a dystopian yet fascinating world. The brushstrokes add so much personality to the concrete.",
       },
     ],
+    startingPrice: 360,
   },
   {
     id: "3144b7d5-f99b-4511-b9de-60053b58bb30",
@@ -970,6 +993,7 @@ const artworks = [
         text: "A perfect balance of detail and impressionist expression. This piece brings so much serenity to my home!",
       },
     ],
+    startingPrice: 370,
   },
   {
     id: "ae278187-3bdc-405c-a2df-3c1a8ef12b12",
@@ -1025,6 +1049,7 @@ const artworks = [
         text: "This painting captures everything I love about Paris—romance, beauty, and timeless charm!",
       },
     ],
+    startingPrice: 380,
   },
   {
     id: "c4d69e95-89bb-49f4-96be-0630a575f55a",
@@ -1080,6 +1105,7 @@ const artworks = [
         text: "Absolutely mesmerizing! This painting brings the romance of Venice right into my home.",
       },
     ],
+    startingPrice: 390,
   },
   {
     id: "3916fef4-ecb3-4bd5-b8d3-0fa25aed0719",
@@ -1135,6 +1161,7 @@ const artworks = [
         text: "This artwork makes me feel like I’m standing in the middle of a sunlit valley. Absolutely stunning!",
       },
     ],
+    startingPrice: 380,
   },
   {
     id: "1809aee7-d229-48ef-86de-4acbae15ba4f",
@@ -1190,6 +1217,7 @@ const artworks = [
         text: "This piece transports me to the heart of Tibet. The colors and depth are stunning!",
       },
     ],
+    startingPrice: 400,
   },
   {
     id: "0387325d-689e-42e6-baca-3aa303ad0555",
@@ -1245,6 +1273,7 @@ const artworks = [
         text: "This painting captures the pure grandeur of the Himalayas. An absolute must-have for mountain lovers.",
       },
     ],
+    startingPrice: 410,
   },
   {
     id: "e2a3f354-2586-4d5f-860d-4432cdb94c2b",
@@ -1300,6 +1329,7 @@ const artworks = [
         text: "This is exactly what I needed for my beach house. It’s peaceful, bright, and absolutely gorgeous!",
       },
     ],
+    startingPrice: 380,
   },
   {
     id: "51047f0e-2235-446b-863f-1da3fa79aca7",
@@ -1355,6 +1385,7 @@ const artworks = [
         text: "Absolutely electrifying! This is the perfect statement piece for my living room.",
       },
     ],
+    startingPrice: 390,
   },
 ];
 
