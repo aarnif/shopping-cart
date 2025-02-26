@@ -13,4 +13,4 @@ const connectToDatabase = async () => {
   }
 };
 
-export default { sequelize, connectToDatabase };
+export { sequelize, connectToDatabase };

@@ -1,23 +1,10 @@
-import "dotenv/config";
-import { Sequelize } from "sequelize";
 import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
 
+import { connectToDatabase } from "./db.js";
 import artworks from "./data.js";
 
-const sequelize = new Sequelize(process.env.DATABASE_URL);
-
-const main = async () => {
-  try {
-    await sequelize.authenticate();
-    console.log("Connection has been established successfully.");
-    sequelize.close();
-  } catch (error) {
-    console.error("Unable to connect to the database:", error);
-  }
-};
-
-main();
+connectToDatabase();
 
 const typeDefs = `
   type Size {
