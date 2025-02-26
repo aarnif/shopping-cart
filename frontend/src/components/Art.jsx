@@ -38,7 +38,7 @@ const Heading = ({ selectedSort, setSelectedSort }) => {
         Art
       </h2>
       <div className="flex items-center gap-4">
-        <h2 className="text-base xl:text-lg font-bold text-slate-900 dark:text-slate-100">
+        <h2 className="hidden md:block md:text-base xl:text-lg font-bold text-slate-900 dark:text-slate-100">
           Sort By
         </h2>
         <ul className="flex gap-1 sm:gap-2">
