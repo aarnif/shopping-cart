@@ -216,7 +216,7 @@ const Art = () => {
     <div className="w-full py-24 md:py-28 xl:py-32 px-6 min-h-screen flex flex-col items-center justify-start bg-slate-100 dark:bg-slate-900">
       <Heading selectedSort={selectedSort} setSelectedSort={setSelectedSort} />
       {loading ? (
-        <div className="mt-8">
+        <div className="flex-grow flex justify-center items-center">
           <Loading />
         </div>
       ) : (
