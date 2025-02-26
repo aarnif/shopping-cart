@@ -13,7 +13,6 @@ export const ART_DETAILS = gql`
     }
     description
     averageRating
-    type
     sizes {
       width
       height
