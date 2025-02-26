@@ -1,11 +1,25 @@
-import { Artwork, Image, Size, Review } from "./models/index.js";
-
+import { format } from "date-fns";
+import { GraphQLScalarType } from "graphql";
 import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
 
+import { Artwork, Image, Size, Review } from "./models/index.js";
 import { connectToDatabase } from "./db.js";
 
+const dateScalar = new GraphQLScalarType({
+  name: "Date",
+  description: "Date custom scalar type",
+  serialize(value) {
+    if (value instanceof Date) {
+      return format(value, "dd-MM-yyyy");
+    }
+    throw Error("GraphQL Date Scalar serializer expected a `Date` object");
+  },
+});
+
 const typeDefs = `
+  scalar Date
+
   type Image {
     type: String!
     width: Int!
@@ -21,7 +35,7 @@ const typeDefs = `
     
   type Review {
     name: String!
-    date: String!
+    date: Date!
     rating: Int!
     text: String!
   }
@@ -65,6 +79,7 @@ const typeDefs = `
 `;
 
 const resolvers = {
+  Date: dateScalar,
   Query: {
     artWorksCount: () => Artwork.count(),
     allArtWorks: (root, { sortBy = "title", first = 3, after = null }) => {
