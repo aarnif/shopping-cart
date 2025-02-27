@@ -217,7 +217,7 @@ const Art = () => {
       <Heading selectedSort={selectedSort} setSelectedSort={setSelectedSort} />
       {loading ? (
         <div className="flex-grow flex justify-center items-center">
-          <Loading />
+          <Loading loadingText="Loading Art..." />
         </div>
       ) : (
         <>
