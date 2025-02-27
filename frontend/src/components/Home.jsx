@@ -117,26 +117,39 @@ const HeroContent = ({ navigate }) => {
   );
 };
 
-const MobileAndTabletContent = ({ data, navigate }) => {
+const MobileAndTabletContent = ({ loading, data, navigate }) => {
   return (
     <div className="block xl:hidden relative bg-slate-100 dark:bg-slate-900 before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-[100vh] before:bg-hero before:bg-cover before:bg-center before:bg-no-repeat">
       <div className="mt-20 md:mt-32 relative w-full px-8 md:px-12 py-8 flex flex-col">
         <HeroContent navigate={navigate} />
-        <ArtFeed data={data} navigate={navigate} />
+        {loading ? (
+          <div className="mt-20 md:mt-40 w-full flex justify-center items-start">
+            <Loading loadingText="Loading Art..." />
+          </div>
+        ) : (
+          <ArtFeed data={data} navigate={navigate} />
+        )}
       </div>
     </div>
   );
 };
 
-const DesktopContent = ({ data, navigate }) => {
+const DesktopContent = ({ loading, data, navigate }) => {
   return (
     <div className="w-full hidden xl:flex flex-col items-center bg-slate-100 dark:bg-slate-900">
       <div className="w-full h-screen flex justify-center items-center bg-hero bg-cover bg-center bg-no-repeat">
         <HeroContent navigate={navigate} />
       </div>
-      <div className="w-full px-12 py-8 max-w-[1200px]">
-        <ArtFeed data={data} navigate={navigate} />
-      </div>
+
+      {loading ? (
+        <div className="w-full h-screen flex justify-center items-center">
+          <Loading loadingText="Loading Art..." />
+        </div>
+      ) : (
+        <div className="w-full px-12 py-8 max-w-[1200px]">
+          <ArtFeed data={data} navigate={navigate} />
+        </div>
+      )}
     </div>
   );
 };
@@ -145,17 +158,18 @@ const Home = () => {
   const navigate = useNavigate();
   const { data, loading } = useQuery(FEATURED_ARTWORKS);
 
-  if (loading) {
-    return <Loading />;
-  }
-
   return (
     <>
       <MobileAndTabletContent
-        data={data.featuredArtWorks}
+        loading={loading}
+        data={data?.featuredArtWorks}
         navigate={navigate}
       />
-      <DesktopContent data={data.featuredArtWorks} navigate={navigate} />
+      <DesktopContent
+        loading={loading}
+        data={data?.featuredArtWorks}
+        navigate={navigate}
+      />
     </>
   );
 };
