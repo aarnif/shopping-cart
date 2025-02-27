@@ -1,6 +1,6 @@
 import { Sequelize } from "sequelize";
 import { Umzug, SequelizeStorage } from "umzug";
-import config from "./config.js";
+import config from "../config.js";
 
 const sequelize = new Sequelize(config.DATABASE_URL);
 

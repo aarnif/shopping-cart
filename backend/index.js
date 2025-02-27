@@ -5,6 +5,7 @@ import { startStandaloneServer } from "@apollo/server/standalone";
 
 import { Artwork, Image, Size, Review } from "./models/index.js";
 import { connectToDatabase } from "./db.js";
+import config from "../config.js";
 
 const dateScalar = new GraphQLScalarType({
   name: "Date",
@@ -138,10 +139,12 @@ const start = async () => {
     resolvers,
   });
 
+  const PORT = config.PORT;
+
   startStandaloneServer(server, {
-    listen: { port: 4000 },
-  }).then(({ url }) => {
-    console.log(`Server ready at ${url}`);
+    listen: { port: PORT },
+  }).then(() => {
+    console.log(`Server is now running on port ${PORT}`);
   });
 };
 
