@@ -88,8 +88,7 @@ const resolvers = {
   Date: dateScalar,
   Query: {
     artWorksCount: () => Artwork.count(),
-    allArtWorks: (root, { sortBy = "title", first = 3, after = null }) => {
-      sortBy = sortBy === "" ? "title" : sortBy;
+    allArtWorks: (root, { sortBy = "", first = 3, after = null }) => {
       let order;
 
       switch (sortBy) {
@@ -117,6 +116,8 @@ const resolvers = {
             ["title", "ASC"],
           ];
           break;
+        default:
+          order = [["id", "ASC"]];
       }
 
       return Artwork.paginate({
