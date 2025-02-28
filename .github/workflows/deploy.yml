@@ -20,6 +20,13 @@ jobs:
         run: npm install
       - name: Make build
         run: npm run build:ui
+      - name: Run test database
+        run: docker compose -f docker-compose.yml up -d
+      - name: Run server tests
+        run: npm run test:server
+        env:
+          NODE_ENV: test
+          TEST_DATABASE_URL: ${{ secrets.TEST_DATABASE_URL }}
 
   deploy:
     needs: [deployment_pipeline]

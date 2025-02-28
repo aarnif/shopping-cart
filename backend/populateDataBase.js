@@ -7,22 +7,13 @@ import { sequelize, connectToDatabase } from "./db.js";
 
 import artworks from "./data.js";
 
-const emptyDatabase = async () => {
-  console.log("Dropping tables...");
-
-  await Review.drop({ force: true });
-  console.log("Reviews table dropped!");
-  await Size.drop({ force: true });
-  console.log("Sizes table dropped!");
-  await Image.drop({ force: true });
-  console.log("Images table dropped!");
-  await Artwork.drop({ force: true });
-  console.log("Artworks table dropped!");
-
-  console.log("Tables dropped!");
+export const emptyDatabase = async () => {
+  console.log("Emptying database...");
+  await sequelize.drop({ force: true });
+  console.log("Database emptied!");
 };
 
-const addArtworks = async () => {
+export const addArtworks = async () => {
   console.log("Creating tables...");
   await sequelize.sync();
   console.log("Tables created!");
@@ -64,4 +55,6 @@ const main = async () => {
   console.log("Connection closed!");
 };
 
-main();
+if (process.env.NODE_ENV !== "test") {
+  main();
+}
