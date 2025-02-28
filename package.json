@@ -12,7 +12,7 @@
     "test:server": "NODE_ENV=test node --experimental-vm-modules node_modules/.bin/jest --runInBand --rootDir backend",
     "start:test:db": "docker compose -f docker-compose.yml up",
     "lint": "eslint frontend --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "test:e2e": "playwright test"
   },
   "dependencies": {
     "@apollo/client": "^3.13.1",

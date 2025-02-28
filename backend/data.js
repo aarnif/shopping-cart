@@ -1,6 +1,6 @@
 const artworks = [
   {
-    id: "c3d5718f-155f-4ad1-a970-e6383db94b18",
+    id: "1",
     title: "A Vision in Color",
     artist: "Liora Senn",
     image: {
@@ -38,7 +38,7 @@ const artworks = [
     startingPrice: 350,
   },
   {
-    id: "845727d8-99c9-4035-99f9-76348903dd77",
+    id: "2",
     title: "The Spirit of Freedom",
     artist: "Elias Varnen",
     image: {
@@ -76,7 +76,7 @@ const artworks = [
     startingPrice: 300,
   },
   {
-    id: "24771cf6-9196-444f-a5d2-3fa0e75e87bf",
+    id: "3",
     title: "Whispers of the Bloom",
     artist: "Camille Verdain",
     image: {
@@ -108,7 +108,7 @@ const artworks = [
     startingPrice: 250,
   },
   {
-    id: "8b68fe4a-338d-4687-88e2-c7a354fa764a",
+    id: "4",
     title: "Guardian of Healing",
     artist: "Lucien Moreau",
     image: {
@@ -140,7 +140,7 @@ const artworks = [
     startingPrice: 300,
   },
   {
-    id: "cd609608-7554-436e-8aa2-2e0cebffe7d2",
+    id: "5",
     title: "Sunflowers at Dusk",
     artist: "Elias Varnen",
     image: {
@@ -178,7 +178,7 @@ const artworks = [
     startingPrice: 200,
   },
   {
-    id: "d092bef3-665d-489a-b7f6-e6bb7bdaad8c",
+    id: "6",
     title: "Whispering Canopy",
     artist: "Marc Monnet",
     image: {
@@ -203,7 +203,7 @@ const artworks = [
     startingPrice: 375,
   },
   {
-    id: "d9e89855-4ee1-4e93-9e06-23d716f70df2",
+    id: "7",
     title: "Golden Metropolis",
     artist: "Elijah Carter",
     image: {
@@ -228,7 +228,7 @@ const artworks = [
     startingPrice: 400,
   },
   {
-    id: "aec7e977-6e59-410a-a58d-f4efe4327305",
+    id: "8",
     title: "Twilight Reflections",
     artist: "Nathaniel Harper",
     image: {
@@ -253,7 +253,7 @@ const artworks = [
     startingPrice: 420,
   },
   {
-    id: "c96bac5d-3d95-438f-8194-7616d0933efc",
+    id: "9",
     title: "Tempest’s Dance",
     artist: "Isla Davenport",
     image: {
@@ -278,7 +278,7 @@ const artworks = [
     startingPrice: 430,
   },
   {
-    id: "ea7782cf-e921-42b5-a82c-a945145a98ad",
+    id: "10",
     title: "Meadow Serenity",
     artist: "Eleanor Marchand",
     image: {
@@ -303,7 +303,7 @@ const artworks = [
     startingPrice: 410,
   },
   {
-    id: "65724846-a5c0-42de-85ec-f09aacb1add8",
+    id: "11",
     title: "Majestic Peaks",
     artist: "Julian Ashford",
     image: {
@@ -328,7 +328,7 @@ const artworks = [
     startingPrice: 450,
   },
   {
-    id: "3d3c3c7e-eb45-4eb7-803d-4fb54f36caa7",
+    id: "12",
     title: "Whispering Falls",
     artist: "Elias Varnen",
     image: {
@@ -366,7 +366,7 @@ const artworks = [
     startingPrice: 320,
   },
   {
-    id: "287efb19-e9e1-4ae9-9042-0375b3f9922f",
+    id: "13",
     title: "Golden Horizon",
     artist: "Elias Varnen",
     image: {
@@ -404,7 +404,7 @@ const artworks = [
     startingPrice: 320,
   },
   {
-    id: "b7db6f54-c9fa-4541-bf9a-aae5533b7312",
+    id: "14",
     title: "The Cozy Haven",
     artist: "Livia Marceau",
     image: {
@@ -448,7 +448,7 @@ const artworks = [
     startingPrice: 330,
   },
   {
-    id: "562881bc-cc9f-4024-b21e-97ce84b249d5",
+    id: "15",
     title: "Tempest Unleashed",
     artist: "Victor Ardent",
     image: {
@@ -498,7 +498,7 @@ const artworks = [
     startingPrice: 340,
   },
   {
-    id: "8cf3f676-16ad-4ac3-b1a6-b5a2f7a3e183",
+    id: "16",
     title: "City Lights",
     artist: "Marcello Fontaine",
     image: {
@@ -548,7 +548,7 @@ const artworks = [
     startingPrice: 350,
   },
   {
-    id: "de38e55a-f587-4104-94b1-648dd1740570",
+    id: "17",
     title: "Autumn Serenity",
     artist: "Elara Duvall",
     image: {
@@ -604,7 +604,7 @@ const artworks = [
     startingPrice: 340,
   },
   {
-    id: "47722883-1655-479c-b5b8-9441fccb168f",
+    id: "18",
     title: "Urban Heights",
     artist: "Sebastian Moreau",
     image: {
@@ -660,7 +660,7 @@ const artworks = [
     startingPrice: 360,
   },
   {
-    id: "f28b2d8c-a0be-4b42-b07f-2fc48be0d8ef",
+    id: "19",
     title: "Reflections of Stillness",
     artist: "Isabelle Laurent",
     image: {
@@ -716,7 +716,7 @@ const artworks = [
     startingPrice: 350,
   },
   {
-    id: "9f2c0d7f-522f-4551-aabf-0227c34a7aeb",
+    id: "20",
     title: "Emerald Wilderness",
     artist: "Lucien Navarro",
     image: {
@@ -772,7 +772,7 @@ const artworks = [
     startingPrice: 340,
   },
   {
-    id: "51770d98-2eed-4bb5-a03f-3db6c1665b49",
+    id: "21",
     title: "Fragmented Identity",
     artist: "Nico Vargas",
     image: {
@@ -828,7 +828,7 @@ const artworks = [
     startingPrice: 370,
   },
   {
-    id: "951b867b-fc6e-4453-92df-54a244180696",
+    id: "22",
     title: "Defender of the Nation",
     artist: "Viktor Sokolov",
     image: {
@@ -884,7 +884,7 @@ const artworks = [
     startingPrice: 380,
   },
   {
-    id: "8ee55375-0604-4928-81c8-6666e21299c9",
+    id: "23",
     title: "Monolithic Silence",
     artist: "Adrian Kovacs",
     image: {
@@ -940,7 +940,7 @@ const artworks = [
     startingPrice: 360,
   },
   {
-    id: "3144b7d5-f99b-4511-b9de-60053b58bb30",
+    id: "24",
     title: "Majestic Cliffs",
     artist: "William Ashford",
     image: {
@@ -996,7 +996,7 @@ const artworks = [
     startingPrice: 370,
   },
   {
-    id: "ae278187-3bdc-405c-a2df-3c1a8ef12b12",
+    id: "25",
     title: "Parisian Elegance",
     artist: "Juliette Morel",
     image: {
@@ -1052,7 +1052,7 @@ const artworks = [
     startingPrice: 380,
   },
   {
-    id: "c4d69e95-89bb-49f4-96be-0630a575f55a",
+    id: "26",
     title: "Eternal Venice",
     artist: "Alessandro Fiorini",
     image: {
@@ -1108,7 +1108,7 @@ const artworks = [
     startingPrice: 390,
   },
   {
-    id: "3916fef4-ecb3-4bd5-b8d3-0fa25aed0719",
+    id: "27",
     title: "Valley of Light",
     artist: "Matteo Lavigne",
     image: {
@@ -1164,7 +1164,7 @@ const artworks = [
     startingPrice: 380,
   },
   {
-    id: "1809aee7-d229-48ef-86de-4acbae15ba4f",
+    id: "28",
     title: "Sacred Heights of Tibet",
     artist: "Tenzing Norbu",
     image: {
@@ -1220,7 +1220,7 @@ const artworks = [
     startingPrice: 400,
   },
   {
-    id: "0387325d-689e-42e6-baca-3aa303ad0555",
+    id: "29",
     title: "Eternal Peaks of the Himalayas",
     artist: "Surya Patel",
     image: {
@@ -1276,7 +1276,7 @@ const artworks = [
     startingPrice: 410,
   },
   {
-    id: "e2a3f354-2586-4d5f-860d-4432cdb94c2b",
+    id: "30",
     title: "Tranquil Shoreline",
     artist: "Emilia Laurent",
     image: {
@@ -1332,7 +1332,7 @@ const artworks = [
     startingPrice: 380,
   },
   {
-    id: "51047f0e-2235-446b-863f-1da3fa79aca7",
+    id: "31",
     title: "Tempest in the Sky",
     artist: "Elias Varnen",
     image: {
