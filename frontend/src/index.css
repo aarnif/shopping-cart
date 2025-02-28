@@ -25,9 +25,9 @@
 }
 
 @supports ((animation-timeline: scroll()) and (animation-range: 0% 100%)) {
-  @keyframes fade-in-y {
+  @keyframes fade-in {
     to {
-      transform: translateY(0);
+      transform: translate(0, 0);
       opacity: 1;
     }
   }
@@ -47,13 +47,20 @@
 
   #art-card {
     view-timeline: --art-card;
-  }
-
-  #art-card {
     opacity: 0;
     transform: translateY(30%);
-    animation: fade-in-y both linear;
+    animation: fade-in both linear;
     animation-timeline: --art-card;
     animation-range: cover 5% cover 40%;
+  }
+
+  @media (width >= 768px) {
+    #art-card {
+      transform: translateX(-30%);
+    }
+
+    #art-card:nth-child(even) {
+      transform: translateX(30%);
+    }
   }
 }
