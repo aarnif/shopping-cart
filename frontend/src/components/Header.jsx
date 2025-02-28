@@ -8,17 +8,23 @@ import ToggleDarkMode from "./ToggleDarkMode";
 const Title = () => {
   const navigate = useNavigate();
   return (
-    <h1 className="w-full text-rose-700 text-center md:text-left font-roboto-condensed text-xl md:text-2xl xl:text-3xl font-bold">
-      <button className="cursor-pointer" onClick={() => navigate("/")}>
+    <button className="w-full cursor-pointer" onClick={() => navigate("/")}>
+      <h1
+        data-testid="page-header"
+        className=" text-rose-700 text-center md:text-left font-roboto-condensed text-xl md:text-2xl xl:text-3xl font-bold"
+      >
         Artful Finds
-      </button>
-    </h1>
+      </h1>
+    </button>
   );
 };
 
 const MobileHeaderNav = ({ handleShowMenu }) => {
   return (
-    <nav className="md:hidden w-full bg-white dark:bg-slate-950">
+    <nav
+      className="md:hidden w-full bg-white dark:bg-slate-950"
+      data-testid="mobile-nav"
+    >
       <ul className="w-full flex justify-between items-center">
         <li className="flex justify-center items-center">
           <button
@@ -62,7 +68,7 @@ const HeaderNav = ({ shoppingCart, numberOfItemsInCart }) => {
   ];
 
   return (
-    <nav className="hidden md:flex w-full">
+    <nav className="hidden md:flex w-full" data-testid="desktop-nav">
       <Title />
       <ul
         id={location.pathname == "/" ? "nav-items" : ""}
