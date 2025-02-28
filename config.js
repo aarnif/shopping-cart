@@ -1,9 +1,12 @@
 import "dotenv/config";
 
-const DATABASE_URL = process.env.DATABASE_URL;
+const DATABASE_URL =
+  process.env.NODE_ENV === "test"
+    ? process.env.TEST_DATABASE_URL
+    : process.env.DATABASE_URL;
 const PORT = process.env.PORT || 4000;
 const SERVER_URL =
-  process.env.NODE_ENV === "development"
+  process.env.NODE_ENV === "test" || process.env.NODE_ENV === "development"
     ? `http://localhost:${PORT}`
     : process.env.SERVER_URL;
 
