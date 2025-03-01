@@ -139,11 +139,14 @@ const MobileAndTabletContent = ({ loading, data, navigate }) => {
 
 const DesktopContent = ({ loading, data, navigate }) => {
   return (
-    <div className="w-full hidden xl:flex flex-col items-center bg-slate-100 dark:bg-slate-900">
-      <div className="w-full h-screen flex justify-center items-center bg-fixed bg-hero bg-cover bg-center bg-no-repeat">
+    <div className="w-full hidden xl:flex flex-col items-center bg-black">
+      <div
+        id="hero"
+        className="w-full h-screen flex justify-center items-center bg-fixed bg-hero bg-cover bg-center bg-no-repeat"
+      >
         <HeroContent navigate={navigate} />
       </div>
-      <div className="w-full border-t-4 border-rose-700">
+      <div className="relative w-full flex justify-center items-center border-t-4 border-rose-700 bg-slate-100 dark:bg-slate-900">
         {loading ? (
           <div className="w-full h-screen flex justify-center items-center">
             <Loading loadingText="Loading Art..." />
