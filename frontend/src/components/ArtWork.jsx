@@ -147,7 +147,6 @@ const ArtWork = ({ handleAddItemToCart }) => {
 
           <div className="w-full flex flex-wrap gap-2 justify-center items-center">
             {sizes.map((size) => {
-              // console.log("Size", size);
               return (
                 <button
                   key={size.width}
@@ -208,7 +207,7 @@ const ArtWork = ({ handleAddItemToCart }) => {
       </div>
       {showImageView && (
         <FullScreenImageView
-          fullScreenImageUri={image}
+          fullScreenImageUri={image.uri}
           setShowImageView={setShowImageView}
         />
       )}
