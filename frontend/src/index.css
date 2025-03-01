@@ -38,6 +38,10 @@
     }
   }
 
+  #art-card {
+    view-timeline: --art-card;
+  }
+
   #nav-items {
     color: white;
     animation: fade-to-black both linear;
