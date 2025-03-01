@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useQuery } from "@apollo/client";
 import { useScroll, useMotionValueEvent } from "framer-motion";
 
@@ -135,6 +135,23 @@ const ArtCard = ({ artwork }) => {
   );
 };
 
+const DelayedArtCards = ({ column, delay = 200 }) => {
+  const [visibleCount, setVisibleCount] = useState(0);
+
+  useEffect(() => {
+    if (visibleCount < column.length) {
+      const timer = setTimeout(() => {
+        setVisibleCount(visibleCount + 1);
+      }, delay);
+      return () => clearTimeout(timer);
+    }
+  }, [visibleCount, column.length, delay]);
+
+  return column
+    .slice(0, visibleCount)
+    .map((edge, index) => <ArtCard key={index} artwork={edge.node} />);
+};
+
 const Art = () => {
   const numberOfArtworksToBeFetched = 20;
   const width = useResponsiveWidth();
@@ -227,9 +244,7 @@ const Art = () => {
           >
             {artWorks.map((column, index) => (
               <div key={index}>
-                {column.map((edge, index) => (
-                  <ArtCard key={index} artwork={edge.node} />
-                ))}
+                <DelayedArtCards column={column} />
               </div>
             ))}
           </div>
