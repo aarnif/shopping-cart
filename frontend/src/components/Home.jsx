@@ -76,7 +76,10 @@ const ArtCard = ({ data, navigate }) => {
 const ArtFeed = ({ data, navigate }) => {
   return (
     <div className="my-12 md:my-16">
-      <h2 className="mb-2 md:mb-4 text-white xl:text-slate-900 xl:dark:text-slate-200 text-center font-roboto-condensed text-lg md:text-xl xl:text-2xl font-semibold">
+      <h2
+        id="art-feed-header"
+        className="mb-2 md:mb-4 text-white xl:text-slate-900 xl:dark:text-slate-200 text-center font-roboto-condensed text-lg md:text-xl xl:text-2xl font-semibold"
+      >
         This Month&apos;s Featured Artworks
       </h2>
       <div className="w-full flex flex-col gap-8">
@@ -119,7 +122,7 @@ const HeroContent = ({ navigate }) => {
 
 const MobileAndTabletContent = ({ loading, data, navigate }) => {
   return (
-    <div className="block xl:hidden relative bg-slate-100 dark:bg-slate-900 before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-[100vh] before:bg-hero before:bg-cover before:bg-center before:bg-no-repeat">
+    <div className="block xl:hidden relative bg-slate-100 dark:bg-slate-900 before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-[100vh] before:bg-hero before:bg-cover before:bg-center before:bg-no-repeat before:border-b-4 before:border-solid before:border-rose-700">
       <div className="mt-20 md:mt-32 relative w-full px-8 md:px-12 py-8 flex flex-col">
         <HeroContent navigate={navigate} />
         {loading ? (
@@ -136,20 +139,24 @@ const MobileAndTabletContent = ({ loading, data, navigate }) => {
 
 const DesktopContent = ({ loading, data, navigate }) => {
   return (
-    <div className="w-full hidden xl:flex flex-col items-center bg-slate-100 dark:bg-slate-900">
-      <div className="w-full h-screen flex justify-center items-center bg-hero bg-cover bg-center bg-no-repeat">
+    <div className="w-full hidden xl:flex flex-col items-center bg-black">
+      <div
+        id="hero"
+        className="w-full h-screen flex justify-center items-center bg-fixed bg-hero bg-cover bg-center bg-no-repeat"
+      >
         <HeroContent navigate={navigate} />
       </div>
-
-      {loading ? (
-        <div className="w-full h-screen flex justify-center items-center">
-          <Loading loadingText="Loading Art..." />
-        </div>
-      ) : (
-        <div className="w-full px-12 py-8 max-w-[1200px]">
-          <ArtFeed data={data} navigate={navigate} />
-        </div>
-      )}
+      <div className="relative w-full flex justify-center items-center border-t-4 border-rose-700 bg-slate-100 dark:bg-slate-900">
+        {loading ? (
+          <div className="w-full h-screen flex justify-center items-center">
+            <Loading loadingText="Loading Art..." />
+          </div>
+        ) : (
+          <div className="w-full px-12 py-8 max-w-[1200px]">
+            <ArtFeed data={data} navigate={navigate} />
+          </div>
+        )}
+      </div>
     </div>
   );
 };

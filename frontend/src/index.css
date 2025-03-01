@@ -32,10 +32,28 @@
     }
   }
 
+  @keyframes fade-out {
+    to {
+      opacity: 0.3;
+      scale: 1;
+    }
+  }
+
   @keyframes fade-to-black {
     to {
       color: black;
     }
+  }
+
+  #hero {
+    scale: 1.05;
+    animation: fade-out both linear;
+    animation-timeline: scroll();
+    animation-range: 0vh 50vh;
+  }
+
+  #art-card {
+    view-timeline: --art-card;
   }
 
   #nav-items {
@@ -46,7 +64,6 @@
   }
 
   #art-card {
-    view-timeline: --art-card;
     opacity: 0;
     transform: translateY(30%);
     animation: fade-in both linear;
