@@ -35,7 +35,6 @@
   @keyframes fade-out {
     to {
       opacity: 0.3;
-      scale: 1;
     }
   }
 
@@ -46,7 +45,6 @@
   }
 
   #hero {
-    scale: 1.05;
     animation: fade-out both linear;
     animation-timeline: scroll();
     animation-range: 0vh 50vh;
