@@ -35,7 +35,13 @@
   @keyframes fade-out {
     to {
       opacity: 0.3;
-      scale: 1;
+    }
+  }
+
+  @keyframes scale-out {
+    100% {
+      transform: scale(0.98) translateY(10px);
+      opacity: 0.5;
     }
   }
 
@@ -45,8 +51,7 @@
     }
   }
 
-  #hero {
-    scale: 1.05;
+  #hero-background {
     animation: fade-out both linear;
     animation-timeline: scroll();
     animation-range: 0vh 50vh;
@@ -78,6 +83,17 @@
 
     #art-card:nth-child(even) {
       transform: translateX(30%);
+    }
+  }
+
+  @media (width >= 1280px) {
+    #hero-content {
+      position: fixed;
+      transform: scale(1) translateY(0);
+      animation: scale-out both linear;
+      animation-timeline: scroll();
+      animation-range: 0vh 50vh;
+      transform-origin: center;
     }
   }
 }
