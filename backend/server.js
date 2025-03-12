@@ -54,7 +54,6 @@ const typeDefs = `
       description: String!
       averageRating: Float!
       startingPrice: Float!
-      type: String!
       sizes: [Size!]!
       reviews: [Review!]!
     }

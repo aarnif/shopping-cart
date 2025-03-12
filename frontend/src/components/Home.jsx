@@ -14,7 +14,6 @@ const ArtCard = ({ data, navigate }) => {
     artist,
     image,
     description,
-    type,
     sizes,
     reviews,
     averageRating,
@@ -77,6 +76,7 @@ const ArtFeed = ({ data, navigate }) => {
   return (
     <div className="my-12 md:my-16">
       <h2
+        data-testid="art-feed-header"
         id="art-feed-header"
         className="mb-2 md:mb-4 text-white xl:text-slate-900 xl:dark:text-slate-200 text-center font-roboto-condensed text-lg md:text-xl xl:text-2xl font-semibold"
       >
@@ -99,6 +99,7 @@ const ArtFeed = ({ data, navigate }) => {
 const HeroContent = ({ navigate }) => {
   return (
     <div
+      data-testid="hero-content"
       id="hero-content"
       className="flex justify-center items-center flex-col"
     >
@@ -127,7 +128,10 @@ const HeroContent = ({ navigate }) => {
 
 const MobileAndTabletContent = ({ loading, data, navigate }) => {
   return (
-    <div className="block xl:hidden relative bg-slate-100 dark:bg-slate-900 before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-[100vh] before:bg-hero before:bg-cover before:bg-center before:bg-no-repeat before:border-b-4 before:border-solid before:border-rose-700">
+    <div
+      data-testid="mobile-home-content"
+      className="block xl:hidden relative bg-slate-100 dark:bg-slate-900 before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-[100vh] before:bg-hero before:bg-cover before:bg-center before:bg-no-repeat before:border-b-4 before:border-solid before:border-rose-700"
+    >
       <div className="mt-20 md:mt-32 relative w-full px-8 md:px-12 py-8 flex flex-col">
         <HeroContent navigate={navigate} />
         {loading ? (
@@ -144,7 +148,10 @@ const MobileAndTabletContent = ({ loading, data, navigate }) => {
 
 const DesktopContent = ({ loading, data, navigate }) => {
   return (
-    <div className="w-full hidden xl:flex flex-col items-center bg-black">
+    <div
+      data-testid="desktop-home-content"
+      className="w-full hidden xl:flex flex-col items-center bg-black"
+    >
       <div
         id="hero-background"
         className="w-full h-screen flex justify-center items-center bg-fixed bg-hero bg-cover bg-center bg-no-repeat"
