@@ -14,7 +14,6 @@ const ArtCard = ({ data, navigate }) => {
     artist,
     image,
     description,
-    type,
     sizes,
     reviews,
     averageRating,
