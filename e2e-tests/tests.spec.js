@@ -1,7 +1,7 @@
 // @ts-check
 import { test, expect } from "@playwright/test";
 
-test.describe("Example app", () => {
+test.describe("Shopping cart", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto("http://localhost:5173");
   });
