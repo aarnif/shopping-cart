@@ -1,6 +1,10 @@
 // @ts-check
 import { test, expect } from "@playwright/test";
 
+import helpers from "./helpers.js";
+
+const { addItemToCart } = helpers;
+
 test.describe("Shopping cart", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto("http://localhost:5173");
@@ -70,12 +74,7 @@ test.describe("Shopping cart", () => {
 
   test("adds item to cart and displays latest item modal", async ({ page }) => {
     await page.setViewportSize({ width: 1280, height: 800 }); // Does not work currently without this line.
-    const desktopNav = page.getByTestId("desktop-nav");
-    await desktopNav.getByTestId("nav-item-shop").click();
-    const artItem = page.getByTestId("art-item-1").first();
-    await artItem.click();
-
-    await page.getByTestId("add-to-cart-button").click();
+    await addItemToCart(page);
 
     const latestItemModalOverlay = page.getByTestId(
       "latest-item-modal-overlay"
@@ -98,12 +97,7 @@ test.describe("Shopping cart", () => {
   test("navigates to cart when clicking checkout in latest item modal", async ({
     page,
   }) => {
-    const desktopNav = page.getByTestId("desktop-nav");
-    await desktopNav.getByTestId("nav-item-shop").click();
-    const artItem = page.getByTestId("art-item-1").first();
-    await artItem.click();
-
-    await page.getByTestId("add-to-cart-button").click();
+    await addItemToCart(page);
 
     const latestItemModalOverlay = page.getByTestId(
       "latest-item-modal-overlay"
