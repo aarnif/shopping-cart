@@ -133,7 +133,10 @@ const ArtWork = ({ handleAddItemToCart }) => {
 
         <div className="w-full flex flex-col gap-4 md:max-w-[450px]">
           <div>
-            <h2 className="text-slate-900 dark:text-slate-100 text-lg md:text-xl font-bold text-center font-roboto-condensed">
+            <h2
+              data-testid="art-work-title"
+              className="text-slate-900 dark:text-slate-100 text-lg md:text-xl font-bold text-center font-roboto-condensed"
+            >
               {title}
             </h2>
             <h3 className="text-slate-700 dark:text-slate-300 text-base italic text-center">
@@ -141,7 +144,10 @@ const ArtWork = ({ handleAddItemToCart }) => {
             </h3>
           </div>
 
-          <p className="text-slate-700 dark:text-slate-300 text-base">
+          <p
+            data-testid="art-work-description"
+            className="text-slate-700 dark:text-slate-300 text-base"
+          >
             {description}
           </p>
 

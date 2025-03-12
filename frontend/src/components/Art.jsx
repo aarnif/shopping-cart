@@ -131,7 +131,11 @@ const ArtCard = ({ artwork }) => {
   const navigate = useNavigate();
 
   return (
-    <div key={artwork.id} className="break-inside-avoid animate-fade-in">
+    <div
+      key={artwork.id}
+      data-testid={`art-item-${artwork.id}`}
+      className="break-inside-avoid animate-fade-in"
+    >
       <MobileAndTabletView artwork={artwork} navigate={navigate} />
       <DesktopView artwork={artwork} navigate={navigate} />
     </div>

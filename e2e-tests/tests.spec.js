@@ -54,4 +54,17 @@ test.describe("Shopping cart", () => {
       await expect(page.getByTestId(path.visibleElement)).toBeVisible();
     }
   });
+
+  test("navigates to single art work page", async ({ page }) => {
+    const desktopNav = page.getByTestId("desktop-nav");
+    await desktopNav.getByTestId("nav-item-shop").click();
+    const artItem = page.getByTestId("art-item-1").first();
+    await artItem.click();
+
+    const artWorkTitle = page.getByTestId("art-work-title");
+    await expect(artWorkTitle).toBeVisible();
+
+    const artWorkDescription = page.getByTestId("art-work-description");
+    await expect(artWorkDescription).toBeVisible();
+  });
 });
