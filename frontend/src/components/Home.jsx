@@ -76,6 +76,7 @@ const ArtFeed = ({ data, navigate }) => {
   return (
     <div className="my-12 md:my-16">
       <h2
+        data-testid="art-feed-header"
         id="art-feed-header"
         className="mb-2 md:mb-4 text-white xl:text-slate-900 xl:dark:text-slate-200 text-center font-roboto-condensed text-lg md:text-xl xl:text-2xl font-semibold"
       >

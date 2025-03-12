@@ -70,4 +70,22 @@ describe("<App />", () => {
     const heroContent = within(desktopHomeContent).getByTestId("hero-content");
     expect(heroContent).toBeInTheDocument();
   });
+
+  test("renders featured art work", async () => {
+    renderAppComponent();
+
+    const desktopHomeContent = screen.getByTestId("desktop-home-content");
+    expect(desktopHomeContent).toBeInTheDocument();
+
+    expect(
+      within(desktopHomeContent).getByText(/Loading Art/i)
+    ).toBeInTheDocument();
+
+    await waitFor(() => {
+      const artFeedHeader =
+        within(desktopHomeContent).getByTestId("art-feed-header");
+      expect(artFeedHeader).toBeInTheDocument();
+      expect(artFeedHeader).toHaveTextContent("This Month's Featured Artworks");
+    });
+  });
 });
