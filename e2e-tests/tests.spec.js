@@ -68,6 +68,33 @@ test.describe("Shopping cart", () => {
     await expect(artWorkDescription).toBeVisible();
   });
 
+  test("adds item to cart and displays latest item modal", async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 800 }); // Does not work currently without this line.
+    const desktopNav = page.getByTestId("desktop-nav");
+    await desktopNav.getByTestId("nav-item-shop").click();
+    const artItem = page.getByTestId("art-item-1").first();
+    await artItem.click();
+
+    await page.getByTestId("add-to-cart-button").click();
+
+    const latestItemModalOverlay = page.getByTestId(
+      "latest-item-modal-overlay"
+    );
+    const latestItemModal = page.getByTestId("latest-item-modal");
+    const continueShoppingButton = page.getByTestId("continue-shopping-button");
+
+    await expect(latestItemModalOverlay).toBeVisible();
+    await expect(latestItemModal).toBeVisible();
+    await expect(continueShoppingButton).toBeVisible();
+
+    await expect(page.getByTestId("cart-count")).toContainText("1");
+
+    await page.getByTestId("continue-shopping-button").click();
+
+    await expect(latestItemModalOverlay).not.toBeVisible();
+    await expect(latestItemModal).not.toBeVisible();
+  });
+
   test("navigates to cart when clicking checkout in latest item modal", async ({
     page,
   }) => {
