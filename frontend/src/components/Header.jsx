@@ -50,20 +50,37 @@ const HeaderNav = ({ shoppingCart, numberOfItemsInCart }) => {
   const location = useLocation();
 
   const navItems = [
-    { name: "home", text: "Home", callback: () => navigate("/") },
-    { name: "about", text: "Who We Are", callback: () => {} },
-    { name: "shop", text: "Shop", callback: () => navigate("/art") },
+    {
+      name: "home",
+      text: "Home",
+      callback: () => navigate("/"),
+      testId: "nav-item-home",
+    },
+    {
+      name: "about",
+      text: "Who We Are",
+      callback: () => {},
+      testId: "nav-item-about",
+    },
+    {
+      name: "shop",
+      text: "Shop",
+      callback: () => navigate("/art"),
+      testId: "nav-item-shop",
+    },
     {
       name: "cart",
       text: (
         <FaShoppingCart className="w-6 h-6 dark:text-slate-100 fill-current" />
       ),
       callback: () => navigate("/cart"),
+      testId: "nav-item-cart",
     },
     {
       name: "mode",
       text: <ToggleDarkMode />,
       callback: () => {},
+      testId: "nav-item-mode",
     },
   ];
 
@@ -80,10 +97,12 @@ const HeaderNav = ({ shoppingCart, numberOfItemsInCart }) => {
               <li
                 key={item.name}
                 className="relative flex justify-center items-center"
+                data-testid={item.testId}
               >
                 <button
                   className="flex justify-center items-center cursor-pointer transition-all duration-300 ease-in-out hover:animate-rotate-45-degrees"
                   onClick={item.callback}
+                  data-testid={`${item.testId}-button`}
                 >
                   {item.text}
                 </button>
@@ -95,6 +114,7 @@ const HeaderNav = ({ shoppingCart, numberOfItemsInCart }) => {
                         ? "animate-scale-in"
                         : "animate-zoom-in-and-out"
                     }`}
+                    data-testid="cart-count"
                   >
                     {numberOfItemsInCart}
                   </div>
@@ -106,6 +126,7 @@ const HeaderNav = ({ shoppingCart, numberOfItemsInCart }) => {
               <li
                 key={item.name}
                 className="flex justify-center items-center cursor-pointer"
+                data-testid={item.testId}
               >
                 {item.text}
               </li>
@@ -115,10 +136,12 @@ const HeaderNav = ({ shoppingCart, numberOfItemsInCart }) => {
               <li
                 key={item.name}
                 className="flex justify-center items-center font-medium"
+                data-testid={item.testId}
               >
                 <button
                   className="cursor-pointer text-base dark:text-slate-100 font-medium hover:underline"
                   onClick={item.callback}
+                  data-testid={`${item.testId}-button`}
                 >
                   {item.text}
                 </button>

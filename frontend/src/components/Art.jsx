@@ -233,7 +233,10 @@ const Art = () => {
   );
 
   return (
-    <div className="w-full py-24 md:py-28 xl:py-32 px-6 min-h-screen flex flex-col items-center justify-start bg-slate-100 dark:bg-slate-900">
+    <div
+      data-testid="art-page"
+      className="w-full py-24 md:py-28 xl:py-32 px-6 min-h-screen flex flex-col items-center justify-start bg-slate-100 dark:bg-slate-900"
+    >
       <Heading selectedSort={selectedSort} setSelectedSort={setSelectedSort} />
       {loading ? (
         <div className="flex-grow flex justify-center items-center">

@@ -147,7 +147,10 @@ const Cart = ({
   handleShowAlertModal,
 }) => {
   return (
-    <div className="py-24 md:py-28 xl:py-32 w-full flex-grow flex flex-col items-center justify-start bg-slate-100 dark:bg-slate-900">
+    <div
+      data-testid="cart-page"
+      className="py-24 md:py-28 xl:py-32 w-full flex-grow flex flex-col items-center justify-start bg-slate-100 dark:bg-slate-900"
+    >
       <div className="w-full max-w-[1200px] flex flex-col items-center gap-4 p-4">
         {shoppingCart.length > 0 ? (
           <>

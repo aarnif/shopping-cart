@@ -24,6 +24,34 @@ test.describe("Shopping cart", () => {
   }) => {
     await page.getByRole("button", { name: "Buy Here" }).click();
     await expect(page).toHaveURL(/\/art$/);
-    await expect(page.getByTestId("art-page-header")).toBeVisible();
+    await expect(page.getByTestId("art-page")).toBeVisible();
+  });
+
+  test("navigates through desktop navigation menu", async ({ page }) => {
+    const desktopNav = page.getByTestId("desktop-nav");
+
+    const navigationPaths = [
+      {
+        navItem: "nav-item-shop",
+        expectedUrl: /\/art$/,
+        visibleElement: "art-page",
+      },
+      {
+        navItem: "nav-item-cart",
+        expectedUrl: /\/cart$/,
+        visibleElement: "cart-page",
+      },
+      {
+        navItem: "nav-item-home",
+        expectedUrl: /\/$/,
+        visibleElement: "desktop-home-content",
+      },
+    ];
+
+    for (const path of navigationPaths) {
+      await desktopNav.getByTestId(path.navItem).click();
+      await expect(page).toHaveURL(path.expectedUrl);
+      await expect(page.getByTestId(path.visibleElement)).toBeVisible();
+    }
   });
 });
