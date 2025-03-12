@@ -18,4 +18,12 @@ test.describe("Shopping cart", () => {
     await expect(header).toBeVisible();
     await expect(header).toHaveText("Artful Finds");
   });
+
+  test("navigates from home to art page using hero button", async ({
+    page,
+  }) => {
+    await page.getByRole("button", { name: "Buy Here" }).click();
+    await expect(page).toHaveURL(/\/art$/);
+    await expect(page.getByTestId("art-page-header")).toBeVisible();
+  });
 });

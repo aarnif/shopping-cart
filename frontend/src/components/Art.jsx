@@ -34,7 +34,10 @@ const Heading = ({ selectedSort, setSelectedSort }) => {
 
   return (
     <div className="mb-4 w-full max-w-[1400px] flex justify-between items-center">
-      <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-100">
+      <h2
+        data-testid="art-page-header"
+        className="text-2xl font-bold text-slate-900 dark:text-slate-100"
+      >
         Art
       </h2>
       <div className="flex items-center gap-4">
