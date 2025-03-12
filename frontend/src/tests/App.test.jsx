@@ -281,4 +281,24 @@ describe("<App />", () => {
     const desktopNavTitle = within(desktopNav).getByText("Artful Finds");
     expect(desktopNavTitle).toBeInTheDocument();
   });
+
+  test("renders mobile home", async () => {
+    renderAppComponent();
+
+    const mobileHomeContent = screen.getByTestId("mobile-home-content");
+    expect(mobileHomeContent).toBeInTheDocument();
+
+    const heroContent = within(mobileHomeContent).getByTestId("hero-content");
+    expect(heroContent).toBeInTheDocument();
+  });
+
+  test("renders desktop home", async () => {
+    renderAppComponent();
+
+    const desktopHomeContent = screen.getByTestId("desktop-home-content");
+    expect(desktopHomeContent).toBeInTheDocument();
+
+    const heroContent = within(desktopHomeContent).getByTestId("hero-content");
+    expect(heroContent).toBeInTheDocument();
+  });
 });
