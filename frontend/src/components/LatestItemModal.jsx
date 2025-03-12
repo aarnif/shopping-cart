@@ -36,12 +36,14 @@ const LatestItemModal = ({ latestItem, setShowLatestItemModal }) => {
   return (
     <motion.div
       key="overlay"
+      data-testid="latest-item-modal-overlay"
       className="z-10 fixed inset-0 bg-black/50 flex justify-center md:justify-end items-end"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
     >
       <motion.div
+        data-testid="latest-item-modal"
         key="latestItemModal"
         variants={
           isMobile ? modalVariantsMobile : modalVariantsTabletAndDesktop
@@ -95,12 +97,14 @@ const LatestItemModal = ({ latestItem, setShowLatestItemModal }) => {
         </div>
         <div className="w-full p-4 flex flex-col gap-2">
           <button
+            data-testid="checkout-button"
             className="w-full py-2 px-4 bg-slate-800 dark:bg-slate-200 rounded-lg shadow-lg cursor-pointer flex justify-center items-center gap-2 text-white dark:text-slate-800 text-sm md:text-base xl:text-lg font-bold hover:bg-slate-900 dark:hover:bg-slate-300 active:bg-slate-900 dark:active:bg-slate-300 active:inset-shadow-sm transition-all duration-300 ease-in-out"
             onClick={proceedToCheckout}
           >
             Checkout
           </button>
           <button
+            data-testid="continue-shopping-button"
             className="w-full py-2 px-4 flex justify-center items-center rounded-lg cursor-pointer border-[0.5px] border-slate-900 dark:border-slate-200 text-slate-700 dark:text-slate-200 text-sm md:text-base xl:text-lg font-medium hover:bg-slate-200 dark:hover:bg-slate-700 active:bg-slate-200 dark:active:bg-slate-700 active:inset-shadow-sm transition-all duration-300 ease-in-out"
             onClick={continueShopping}
           >

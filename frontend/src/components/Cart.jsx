@@ -6,6 +6,7 @@ const CartItem = ({ item, handleAddItemToCart, handleRemoveItemFromCart }) => {
   return (
     <div
       key={id}
+      data-testid={`cart-item-${id}`}
       className="w-full bg-white dark:bg-slate-800 rounded-lg shadow-xl"
     >
       <div className="p-4 flex flex-col gap-4">

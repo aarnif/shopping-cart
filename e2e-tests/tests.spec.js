@@ -67,4 +67,34 @@ test.describe("Shopping cart", () => {
     const artWorkDescription = page.getByTestId("art-work-description");
     await expect(artWorkDescription).toBeVisible();
   });
+
+  test("navigates to cart when clicking checkout in latest item modal", async ({
+    page,
+  }) => {
+    const desktopNav = page.getByTestId("desktop-nav");
+    await desktopNav.getByTestId("nav-item-shop").click();
+    const artItem = page.getByTestId("art-item-1").first();
+    await artItem.click();
+
+    await page.getByTestId("add-to-cart-button").click();
+
+    const latestItemModalOverlay = page.getByTestId(
+      "latest-item-modal-overlay"
+    );
+    const latestItemModal = page.getByTestId("latest-item-modal");
+    const checkOutButton = page.getByTestId("checkout-button");
+
+    await expect(latestItemModalOverlay).toBeVisible();
+    await expect(latestItemModal).toBeVisible();
+    await expect(checkOutButton).toBeVisible();
+
+    await checkOutButton.click();
+
+    await expect(page).toHaveURL(/\/cart$/);
+    await expect(page.getByTestId("cart-page")).toBeVisible();
+    await expect(page.getByTestId("cart-count")).toContainText("1");
+
+    const cartItem = page.locator('[data-testid^="cart-item"]').first();
+    await expect(cartItem).toBeVisible();
+  });
 });
