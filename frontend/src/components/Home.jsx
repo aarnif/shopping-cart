@@ -14,9 +14,9 @@ const ArtCard = ({ data, navigate }) => {
     artist,
     image,
     description,
-    sizes,
-    reviews,
     averageRating,
+    startingPrice,
+    reviewsCount,
   } = data;
 
   return (
@@ -48,12 +48,12 @@ const ArtCard = ({ data, navigate }) => {
         <div className="w-full p-2 md:p-4 bg-slate-50 dark:bg-slate-700 flex justify-between items-center rounded-b-lg">
           <div className="flex flex-col gap-2">
             <h4 className="text-slate-900 dark:text-white text-base md:text-lg font-bold">
-              {sizes[0].price} €
+              {startingPrice} €
             </h4>
             <div className="flex gap-2 items-center">
               <StarRating rating={averageRating} />
               <p className="text-slate-700 dark:text-gray-200 text-xs md:text-base font-medium">
-                {reviews.length} Reviews
+                {reviewsCount} Reviews
               </p>
             </div>
           </div>

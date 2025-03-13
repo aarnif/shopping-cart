@@ -52,11 +52,19 @@ export const ALL_ARTWORKS = gql`
 export const FEATURED_ARTWORKS = gql`
   query FeaturedArtWorks {
     featuredArtWorks {
-      ...ArtDetails
+      id
+      title
+      artist
+      image {
+        type
+        uri
+      }
+      description
+      averageRating
+      startingPrice
+      reviewsCount
     }
   }
-
-  ${ART_DETAILS}
 `;
 
 export const FIND_ARTWORK = gql`
