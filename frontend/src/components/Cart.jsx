@@ -6,6 +6,7 @@ const CartItem = ({ item, handleAddItemToCart, handleRemoveItemFromCart }) => {
   return (
     <div
       key={id}
+      data-testid={`cart-item-${id}`}
       className="w-full bg-white dark:bg-slate-800 rounded-lg shadow-xl"
     >
       <div className="p-4 flex flex-col gap-4">
@@ -147,7 +148,10 @@ const Cart = ({
   handleShowAlertModal,
 }) => {
   return (
-    <div className="py-24 md:py-28 xl:py-32 w-full flex-grow flex flex-col items-center justify-start bg-slate-100 dark:bg-slate-900">
+    <div
+      data-testid="cart-page"
+      className="py-24 md:py-28 xl:py-32 w-full flex-grow flex flex-col items-center justify-start bg-slate-100 dark:bg-slate-900"
+    >
       <div className="w-full max-w-[1200px] flex flex-col items-center gap-4 p-4">
         {shoppingCart.length > 0 ? (
           <>

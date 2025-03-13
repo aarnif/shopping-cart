@@ -133,7 +133,10 @@ const ArtWork = ({ handleAddItemToCart }) => {
 
         <div className="w-full flex flex-col gap-4 md:max-w-[450px]">
           <div>
-            <h2 className="text-slate-900 dark:text-slate-100 text-lg md:text-xl font-bold text-center font-roboto-condensed">
+            <h2
+              data-testid="art-work-title"
+              className="text-slate-900 dark:text-slate-100 text-lg md:text-xl font-bold text-center font-roboto-condensed"
+            >
               {title}
             </h2>
             <h3 className="text-slate-700 dark:text-slate-300 text-base italic text-center">
@@ -141,7 +144,10 @@ const ArtWork = ({ handleAddItemToCart }) => {
             </h3>
           </div>
 
-          <p className="text-slate-700 dark:text-slate-300 text-base">
+          <p
+            data-testid="art-work-description"
+            className="text-slate-700 dark:text-slate-300 text-base"
+          >
             {description}
           </p>
 
@@ -179,6 +185,7 @@ const ArtWork = ({ handleAddItemToCart }) => {
               Back
             </button>
             <button
+              data-testid="add-to-cart-button"
               className="w-full flex-grow basis-[50%] border bg-slate-800 dark:bg-slate-700 border-slate-800 dark:border-slate-700 text-white font-bold text-sm md:text-base xl:text-lg py-2 px-4 rounded-lg shadow-xl cursor-pointer hover:bg-slate-900 dark:hover:bg-slate-600 hover:border-slate-900 dark:hover:border-slate-600 active:bg-slate-900 dark:active:bg-slate-600 active:border-black dark:active:border-slate-600 active:inset-shadow-sm transition-all duration-300 ease-in-out"
               onClick={() =>
                 handleAddItemToCart(
