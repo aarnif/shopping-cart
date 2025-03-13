@@ -54,6 +54,7 @@ const typeDefs = `
       description: String!
       averageRating: Float!
       startingPrice: Float!
+      reviewsCount: Int!
       sizes: [Size!]!
       reviews: [Review!]!
     }
@@ -134,6 +135,15 @@ const resolvers = {
       }),
     findArtWork: (root, args) =>
       Artwork.findByPk(args.id, { include: [Image, Size, Review] }),
+  },
+  ArtWork: {
+    startingPrice: (artwork) => artwork.sizes[0].price,
+    averageRating: (artwork) =>
+      !artwork.reviews.length
+        ? 0
+        : artwork.reviews.reduce((acc, review) => acc + review.rating, 0) /
+          artwork.reviews.length,
+    reviewsCount: (artwork) => artwork.reviews.length,
   },
 };
 
