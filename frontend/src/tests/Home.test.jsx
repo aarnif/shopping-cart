@@ -4,8 +4,6 @@ import { MockedProvider } from "@apollo/client/testing";
 import Home from "../components/Home.jsx";
 import { FEATURED_ARTWORKS } from "../graphql/queries";
 
-import data from "../../../backend/data.js";
-
 const mocks = [
   {
     request: {
@@ -76,7 +74,7 @@ const mocks = [
   },
 ];
 
-const renderArtComponent = () => {
+const renderHomeComponent = () => {
   render(
     <MockedProvider mocks={mocks} addTypename={false}>
       <MemoryRouter>
@@ -87,13 +85,19 @@ const renderArtComponent = () => {
 };
 
 describe("<Home />", () => {
+  test("displays loading state initially", () => {
+    renderHomeComponent();
+    const loadingElements = screen.getAllByTestId("loading");
+    expect(loadingElements[0]).toBeInTheDocument();
+  });
+
   test("renders desktop content", async () => {
-    renderArtComponent();
+    renderHomeComponent();
     expect(screen.getByTestId("desktop-home-content")).toBeInTheDocument();
   });
 
   test("renders mobile content", async () => {
-    renderArtComponent();
+    renderHomeComponent();
     expect(screen.getByTestId("mobile-home-content")).toBeInTheDocument();
   });
 });
