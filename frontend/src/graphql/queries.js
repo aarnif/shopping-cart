@@ -55,13 +55,11 @@ export const FEATURED_ARTWORKS = gql`
       id
       title
       artist
-      image {
-        type
-        uri
-      }
       description
-      averageRating
+      imageUri
+      imageType
       startingPrice
+      averageRating
       reviewsCount
     }
   }
