@@ -76,17 +76,17 @@ const ArtWorkTitle = ({ title, artist }) => (
   </div>
 );
 
-const ArtWorkReviewsAndPrice = ({ averageRating, sizes }) => (
+const ArtWorkReviewsAndPrice = ({ averageRating, startingPrice }) => (
   <div className="flex justify-between items-center">
     <StarRating rating={averageRating} />
     <h4 className="text-slate-900 dark:text-slate-200 xl:text-slate-200 text-base sm:text-lg font-bold">
-      {sizes[0].price} €
+      {startingPrice} €
     </h4>
   </div>
 );
 
 const MobileAndTabletView = ({ artwork, navigate }) => {
-  const { id, title, artist, image, sizes, averageRating } = artwork;
+  const { id, title, artist, image, startingPrice, averageRating } = artwork;
 
   return (
     <div className="mb-2 w-full flex xl:hidden flex-col gap-2">
@@ -97,7 +97,10 @@ const MobileAndTabletView = ({ artwork, navigate }) => {
       >
         <ArtWorkImage image={image.uri} title={title} artist={artist} />
       </button>
-      <ArtWorkReviewsAndPrice averageRating={averageRating} sizes={sizes} />
+      <ArtWorkReviewsAndPrice
+        averageRating={averageRating}
+        startingPrice={startingPrice}
+      />
     </div>
   );
 };
@@ -111,7 +114,7 @@ const ArtWorkImage = ({ image, title, artist }) => (
 );
 
 const DesktopView = ({ artwork, navigate }) => {
-  const { id, title, artist, image, sizes, averageRating } = artwork;
+  const { id, title, artist, image, startingPrice, averageRating } = artwork;
 
   return (
     <div className="relative mb-2 xl:mb-4 w-full hidden xl:flex flex-col group">
@@ -121,7 +124,10 @@ const DesktopView = ({ artwork, navigate }) => {
         onClick={() => navigate(`/art/${id}`)}
       >
         <ArtWorkTitle title={title} artist={artist} />
-        <ArtWorkReviewsAndPrice averageRating={averageRating} sizes={sizes} />
+        <ArtWorkReviewsAndPrice
+          averageRating={averageRating}
+          startingPrice={startingPrice}
+        />
       </button>
     </div>
   );

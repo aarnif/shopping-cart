@@ -54,8 +54,20 @@ const typeDefs = `
       description: String!
       averageRating: Float!
       startingPrice: Float!
+      reviewsCount: Int!
       sizes: [Size!]!
       reviews: [Review!]!
+    }
+
+    type ArtWorkOverview {
+      id: ID!
+      title: String!
+      artist: String!
+      description: String!
+      image: Image!
+      averageRating: Float!
+      startingPrice: Float!
+      reviewsCount: Int!
     }
   
     type ArtWorksConnection {
@@ -66,7 +78,7 @@ const typeDefs = `
    
     type ArtWorkEdge {
       cursor: ID!
-      node: ArtWork!
+      node: ArtWorkOverview!
     }
   
     type PageInfo {
@@ -78,10 +90,16 @@ const typeDefs = `
     type Query {
       artWorksCount: Int!
       allArtWorks(sortBy: String, first: Int, after: ID): ArtWorksConnection!
-      featuredArtWorks: [ArtWork!]!
+      featuredArtWorks: [ArtWorkOverview!]!
       findArtWork(id: ID!): ArtWork
     }
   `;
+
+const artWorkResolvers = {
+  reviewsCount: (artwork) => artwork.getReviewCount(),
+  startingPrice: (artwork) => artwork.getStartingPrice(),
+  averageRating: (artwork) => artwork.getAverageRating(),
+};
 
 const resolvers = {
   Date: dateScalar,
@@ -123,18 +141,24 @@ const resolvers = {
         order,
         limit: first,
         after,
-        include: [Image, Size, Review],
+        include: [Image],
       });
     },
+
     // Currently featured artworks are just the first 4 artworks based on the id
-    featuredArtWorks: async () =>
+    featuredArtWorks: () =>
       Artwork.findAll({
+        attributes: ["id", "title", "artist", "description"],
+        include: [{ model: Image, attributes: ["type", "uri"] }],
+        order: [["id", "ASC"]],
         limit: 4,
-        include: [Image, Size, Review],
       }),
+
     findArtWork: (root, args) =>
       Artwork.findByPk(args.id, { include: [Image, Size, Review] }),
   },
+  ArtWorkOverview: artWorkResolvers,
+  ArtWork: artWorkResolvers,
 };
 
 const start = async () => {
