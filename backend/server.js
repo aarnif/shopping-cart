@@ -9,7 +9,7 @@ import http from "http";
 import { format } from "date-fns";
 
 import { Artwork, Image, Size, Review } from "./models/index.js";
-import { sequelize, connectToDatabase } from "./db.js";
+import { connectToDatabase } from "./db.js";
 import config from "../config.js";
 
 const dateScalar = new GraphQLScalarType({
@@ -59,13 +59,12 @@ const typeDefs = `
       reviews: [Review!]!
     }
 
-    type ArtworkOverview {
+    type ArtWorkOverview {
       id: ID!
       title: String!
       artist: String!
       description: String!
-      imageUri: String!
-      imageType: String!
+      image: Image!
       averageRating: Float!
       startingPrice: Float!
       reviewsCount: Int!
@@ -79,7 +78,7 @@ const typeDefs = `
    
     type ArtWorkEdge {
       cursor: ID!
-      node: ArtWork!
+      node: ArtWorkOverview!
     }
   
     type PageInfo {
@@ -91,10 +90,16 @@ const typeDefs = `
     type Query {
       artWorksCount: Int!
       allArtWorks(sortBy: String, first: Int, after: ID): ArtWorksConnection!
-      featuredArtWorks: [ArtworkOverview!]!
+      featuredArtWorks: [ArtWorkOverview!]!
       findArtWork(id: ID!): ArtWork
     }
   `;
+
+const artWorkResolvers = {
+  reviewsCount: (artwork) => artwork.getReviewCount(),
+  startingPrice: (artwork) => artwork.getStartingPrice(),
+  averageRating: (artwork) => artwork.getAverageRating(),
+};
 
 const resolvers = {
   Date: dateScalar,
@@ -136,73 +141,24 @@ const resolvers = {
         order,
         limit: first,
         after,
-        include: [Image, Size, Review],
+        include: [Image],
       });
     },
 
     // Currently featured artworks are just the first 4 artworks based on the id
-    featuredArtWorks: async () =>
+    featuredArtWorks: () =>
       Artwork.findAll({
-        attributes: [
-          "id",
-          "title",
-          "artist",
-          "description",
-          [sequelize.literal("image.uri"), "image_uri"],
-          [sequelize.literal("image.type"), "image_type"],
-          [sequelize.fn("MIN", sequelize.col("sizes.price")), "min_price"],
-          [
-            sequelize.fn(
-              "COUNT",
-              sequelize.fn("DISTINCT", sequelize.col("reviews.id"))
-            ),
-            "reviews_count",
-          ],
-          [
-            sequelize.fn(
-              "COALESCE",
-              sequelize.fn("AVG", sequelize.col("reviews.rating")),
-              0
-            ),
-            "avg_rating",
-          ],
-        ],
-        include: [
-          {
-            model: Image,
-            attributes: [],
-            required: true,
-            duplicating: false,
-          },
-          {
-            model: Size,
-            attributes: [],
-            required: true,
-            duplicating: false,
-          },
-          {
-            model: Review,
-            attributes: [],
-            required: true,
-            duplicating: false,
-          },
-        ],
-        group: ["artwork.id", "image.id"],
+        attributes: ["id", "title", "artist", "description"],
+        include: [{ model: Image, attributes: ["type", "uri"] }],
         order: [["id", "ASC"]],
         limit: 4,
-        raw: true,
       }),
 
     findArtWork: (root, args) =>
       Artwork.findByPk(args.id, { include: [Image, Size, Review] }),
   },
-  ArtworkOverview: {
-    imageUri: (artwork) => artwork.image_uri,
-    imageType: (artwork) => artwork.image_type,
-    startingPrice: (artwork) => artwork.min_price,
-    averageRating: (artwork) => artwork.avg_rating,
-    reviewsCount: (artwork) => artwork.reviews_count,
-  },
+  ArtWorkOverview: artWorkResolvers,
+  ArtWork: artWorkResolvers,
 };
 
 const start = async () => {

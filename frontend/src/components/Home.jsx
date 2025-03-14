@@ -12,8 +12,7 @@ const ArtCard = ({ data, navigate }) => {
     id,
     title,
     artist,
-    imageUri,
-    imageType,
+    image,
     description,
     averageRating,
     startingPrice,
@@ -24,12 +23,12 @@ const ArtCard = ({ data, navigate }) => {
     <div
       id="art-card"
       className={`w-full ${
-        imageType === "portrait" && "md:max-w-[400px]"
+        image.type === "portrait" && "md:max-w-[400px]"
       } flex flex-col bg-white dark:bg-slate-800 shadow-lg rounded-lg`}
     >
       <div className="w-full h-[300px] bg-slate-300 dark:bg-slate-600 rounded-t-lg">
         <img
-          src={imageUri}
+          src={image.uri}
           alt={`${title} by ${artist}`}
           className="h-full w-full object-cover rounded-t-lg"
         />
