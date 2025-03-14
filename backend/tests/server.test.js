@@ -15,7 +15,7 @@ const requestData = async (queryData) =>
 
 const fetchItems = async (sortBy = "title", first = 20, after = null) => {
   const query = `
-    query AllArtWorks($sortBy: String, $first: Int, $after: ID) {
+     query AllArtWorks($sortBy: String, $first: Int, $after: ID) {
       allArtWorks(sortBy: $sortBy, first: $first, after: $after) {
         totalCount
         pageInfo {
@@ -23,7 +23,6 @@ const fetchItems = async (sortBy = "title", first = 20, after = null) => {
           endCursor
           hasNextPage
         }
-        totalCount
         edges {
           cursor
           node {
@@ -39,17 +38,6 @@ const fetchItems = async (sortBy = "title", first = 20, after = null) => {
             description
             averageRating
             startingPrice
-            sizes {
-              width
-              height
-              price
-            }
-            reviews {
-              name
-              date
-              rating
-              text
-            }
           }
         }
       }
@@ -59,7 +47,6 @@ const fetchItems = async (sortBy = "title", first = 20, after = null) => {
     query,
     variables: { sortBy, first, after },
   });
-  console.log("Response: ", response.body);
   return response.body.data.allArtWorks;
 };
 
