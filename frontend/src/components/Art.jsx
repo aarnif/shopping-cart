@@ -256,6 +256,7 @@ const Art = () => {
         <>
           <div
             key={"art"}
+            data-testid="art-page-content"
             className="w-full max-w-[1400px] grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4"
           >
             {artWorks.map((column, index) => (
