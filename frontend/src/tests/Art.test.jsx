@@ -394,9 +394,227 @@ const mocks = [
       },
     },
   },
+  {
+    request: {
+      query: ALL_ARTWORKS,
+      variables: { sortBy: "title", first: 20, after: "WzIwXQ==" },
+    },
+    result: {
+      data: {
+        allArtWorks: {
+          totalCount: 31,
+          pageInfo: {
+            startCursor: "WzIxXQ==",
+            endCursor: "WzMxXQ==",
+            hasNextPage: false,
+          },
+          edges: [
+            {
+              cursor: "WzIxXQ==",
+              node: {
+                id: "21",
+                title: "Crimson Sunset",
+                artist: "Camille Dubois",
+                image: {
+                  type: "landscape",
+                  width: 1792,
+                  height: 1024,
+                  uri: "/images/crimson_sunset.webp",
+                },
+                description:
+                  "Fiery hues of red and orange paint the sky as the sun dips below the horizon. Expressive brushstrokes capture the fleeting beauty of twilight, casting a warm glow over the tranquil landscape. An evocative scene that celebrates the magic of nature’s daily spectacle.",
+                averageRating: 4.9,
+                startingPrice: 360,
+              },
+            },
+            {
+              cursor: "WzIyXQ==",
+              node: {
+                id: "22",
+                title: "Mystic River",
+                artist: "Antoine Chevalier",
+                image: {
+                  type: "landscape",
+                  width: 1792,
+                  height: 1024,
+                  uri: "/images/mystic_river.webp",
+                },
+                description:
+                  "Mist hangs low over the still waters of a secluded river, as ancient trees line the banks. Soft, diffused light filters through the canopy, creating an ethereal atmosphere. Expressive brushstrokes capture the mystery and tranquility of this hidden sanctuary.",
+                averageRating: 4.7,
+                startingPrice: 350,
+              },
+            },
+            {
+              cursor: "WzIzXQ==",
+              node: {
+                id: "23",
+                title: "Azure Coast",
+                artist: "Sophie Bernard",
+                image: {
+                  type: "landscape",
+                  width: 1792,
+                  height: 1024,
+                  uri: "/images/azure_coast.webp",
+                },
+                description:
+                  "Turquoise waters meet the rugged cliffs of a sun-drenched coastline. The vibrant blues and greens of the sea contrast with the warm earth tones of the rocks. Expressive brushstrokes capture the energy and beauty of this idyllic Mediterranean scene.",
+                averageRating: 4.8,
+                startingPrice: 370,
+              },
+            },
+            {
+              cursor: "WzI0XQ==",
+              node: {
+                id: "24",
+                title: "Enchanted Forest",
+                artist: "Thierry Lambert",
+                image: {
+                  type: "square",
+                  width: 1024,
+                  height: 1024,
+                  uri: "/images/enchanted_forest.webp",
+                },
+                description:
+                  "Sunlight filters through the dense canopy of an ancient forest, casting dappled shadows on the mossy ground. Towering trees reach towards the sky, their branches intertwined to create a magical atmosphere. Expressive brushstrokes capture the mystery and wonder of this enchanted woodland.",
+                averageRating: 4.9,
+                startingPrice: 380,
+              },
+            },
+            {
+              cursor: "WzI1XQ==",
+              node: {
+                id: "25",
+                title: "Lavender Fields",
+                artist: "Genevieve Dubois",
+                image: {
+                  type: "landscape",
+                  width: 1792,
+                  height: 1024,
+                  uri: "/images/lavender_fields.webp",
+                },
+                description:
+                  "Rolling hills of lavender stretch as far as the eye can see, their fragrant blooms swaying gently in the breeze. The soft purple hues of the flowers contrast with the golden sunlight, creating a scene of serene beauty. Expressive brushstrokes capture the essence of this idyllic Provençal landscape.",
+                averageRating: 4.8,
+                startingPrice: 390,
+              },
+            },
+            {
+              cursor: "WzI2XQ==",
+              node: {
+                id: "26",
+                title: "Snowy Peaks",
+                artist: "Philippe Moreau",
+                image: {
+                  type: "landscape",
+                  width: 1792,
+                  height: 1024,
+                  uri: "/images/snowy_peaks.webp",
+                },
+                description:
+                  "Majestic snow-capped mountains rise above a pristine alpine valley. The crisp white peaks contrast with the deep blue sky, creating a scene of breathtaking beauty. Expressive brushstrokes capture the grandeur and serenity of this winter wonderland.",
+                averageRating: 4.9,
+                startingPrice: 400,
+              },
+            },
+            {
+              cursor: "WzI3XQ==",
+              node: {
+                id: "27",
+                title: "Sunflower Meadow",
+                artist: "Celine Arnauld",
+                image: {
+                  type: "landscape",
+                  width: 1792,
+                  height: 1024,
+                  uri: "/images/sunflower_meadow.webp",
+                },
+                description:
+                  "A vibrant meadow filled with sunflowers stretches towards the horizon, their golden faces turned towards the sun. The warm hues of the flowers contrast with the deep blue sky, creating a scene of joyful abundance. Expressive brushstrokes capture the essence of this summer paradise.",
+                averageRating: 4.7,
+                startingPrice: 410,
+              },
+            },
+            {
+              cursor: "WzI4XQ==",
+              node: {
+                id: "28",
+                title: "Tropical Lagoon",
+                artist: "Jean-Luc Picard",
+                image: {
+                  type: "landscape",
+                  width: 1792,
+                  height: 1024,
+                  uri: "/images/tropical_lagoon.webp",
+                },
+                description:
+                  "Turquoise waters lap against the white sandy beaches of a secluded tropical lagoon. Palm trees sway gently in the breeze, their fronds casting dappled shadows on the sand. Expressive brushstrokes capture the tranquility and beauty of this island paradise.",
+                averageRating: 4.8,
+                startingPrice: 420,
+              },
+            },
+            {
+              cursor: "WzI5XQ==",
+              node: {
+                id: "29",
+                title: "Autumn Orchard",
+                artist: "Margot Dubois",
+                image: {
+                  type: "landscape",
+                  width: 1792,
+                  height: 1024,
+                  uri: "/images/autumn_orchard.webp",
+                },
+                description:
+                  "Apple trees laden with ripe fruit stand in neat rows in an autumn orchard. The warm hues of the leaves contrast with the deep blue sky, creating a scene of rustic charm. Expressive brushstrokes capture the essence of this bountiful harvest.",
+                averageRating: 4.9,
+                startingPrice: 430,
+              },
+            },
+            {
+              cursor: "WzMwXQ==",
+              node: {
+                id: "30",
+                title: "Starry Night",
+                artist: "Gaspard Monet",
+                image: {
+                  type: "landscape",
+                  width: 1792,
+                  height: 1024,
+                  uri: "/images/starry_night.webp",
+                },
+                description:
+                  "A swirling night sky filled with stars illuminates a sleeping village below. The vibrant blues and yellows of the heavens contrast with the dark earth tones of the landscape. Expressive brushstrokes capture the mystery and wonder of this celestial scene.",
+                averageRating: 4.7,
+                startingPrice: 440,
+              },
+            },
+            {
+              cursor: "WzMxXQ==",
+              node: {
+                id: "31",
+                title: "Winter Cabin",
+                artist: "Elise Martin",
+                image: {
+                  type: "square",
+                  width: 1024,
+                  height: 1024,
+                  uri: "/images/winter_cabin.webp",
+                },
+                description:
+                  "A cozy cabin nestled in a snowy forest glows with warm light from within. The crisp white snow contrasts with the deep green trees, creating a scene of peaceful solitude. Expressive brushstrokes capture the tranquility and beauty of this winter retreat.",
+                averageRating: 4.8,
+                startingPrice: 450,
+              },
+            },
+          ],
+        },
+      },
+    },
+  },
 ];
 
-const renderArtComponent = () => {
+const renderArtComponent = (mocks) => {
   render(
     <MockedProvider mocks={mocks} addTypename={false}>
       <MemoryRouter>
@@ -408,8 +626,16 @@ const renderArtComponent = () => {
 
 describe("<Art />", () => {
   test("displays art page loading state initially", () => {
-    renderArtComponent();
+    renderArtComponent(mocks);
     const mobileContainer = screen.getByTestId("art-page");
     expect(within(mobileContainer).getByTestId("loading")).toBeInTheDocument();
+  });
+
+  test("displays art page content", async () => {
+    renderArtComponent(mocks);
+
+    await waitFor(() => {
+      expect(screen.getByTestId("art-page-content")).toBeInTheDocument();
+    });
   });
 });
