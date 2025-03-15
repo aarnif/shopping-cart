@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor, within } from "@testing-library/react";
 import { MemoryRouter } from "react-router";
 import { MockedProvider } from "@apollo/client/testing";
 import Home from "../components/Home.jsx";
@@ -74,6 +74,8 @@ const mocks = [
   },
 ];
 
+const artworks = mocks[0].result.data.featuredArtWorks;
+
 const renderHomeComponent = () => {
   render(
     <MockedProvider mocks={mocks} addTypename={false}>
@@ -85,10 +87,16 @@ const renderHomeComponent = () => {
 };
 
 describe("<Home />", () => {
-  test("displays loading state initially", () => {
+  test("displays mobile loading state initially", () => {
     renderHomeComponent();
-    const loadingElements = screen.getAllByTestId("loading");
-    expect(loadingElements[0]).toBeInTheDocument();
+    const mobileContainer = screen.getByTestId("desktop-home-content");
+    expect(within(mobileContainer).getByTestId("loading")).toBeInTheDocument();
+  });
+
+  test("displays desktop loading state initially", () => {
+    renderHomeComponent();
+    const desktopContainer = screen.getByTestId("desktop-home-content");
+    expect(within(desktopContainer).getByTestId("loading")).toBeInTheDocument();
   });
 
   test("renders desktop content", async () => {
@@ -99,5 +107,35 @@ describe("<Home />", () => {
   test("renders mobile content", async () => {
     renderHomeComponent();
     expect(screen.getByTestId("mobile-home-content")).toBeInTheDocument();
+  });
+
+  test("renders featured artworks in desktop view after loading", async () => {
+    renderHomeComponent();
+
+    await waitFor(() => {
+      const desktopContainer = screen.getByTestId("desktop-home-content");
+      expect(desktopContainer.textContent).toContain(artworks[0].title);
+    });
+
+    const desktopContainer = screen.getByTestId("desktop-home-content");
+
+    artworks.forEach((artwork) => {
+      expect(desktopContainer).toHaveTextContent(artwork.title);
+    });
+  });
+
+  test("renders featured artworks in mobile view after loading", async () => {
+    renderHomeComponent();
+
+    await waitFor(() => {
+      const mobileContainer = screen.getByTestId("mobile-home-content");
+      expect(mobileContainer.textContent).toContain(artworks[0].title);
+    });
+
+    const mobileContainer = screen.getByTestId("mobile-home-content");
+
+    artworks.forEach((artwork) => {
+      expect(mobileContainer).toHaveTextContent(artwork.title);
+    });
   });
 });
