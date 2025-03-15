@@ -89,9 +89,13 @@ const MobileAndTabletView = ({ artwork, navigate }) => {
   const { id, title, artist, image, startingPrice, averageRating } = artwork;
 
   return (
-    <div className="mb-2 w-full flex xl:hidden flex-col gap-2">
+    <div
+      data-testid={`art-item-${id}-mobile-view`}
+      className="mb-2 w-full flex xl:hidden flex-col gap-2"
+    >
       <ArtWorkTitle title={title} artist={artist} />
       <button
+        data-testid={`art-item-${id}-button`}
         className="w-full h-auto bg-slate-300 dark:bg-slate-600 cursor-pointer"
         onClick={() => navigate(`/art/${id}`)}
       >
@@ -117,9 +121,13 @@ const DesktopView = ({ artwork, navigate }) => {
   const { id, title, artist, image, startingPrice, averageRating } = artwork;
 
   return (
-    <div className="relative mb-2 xl:mb-4 w-full hidden xl:flex flex-col group">
+    <div
+      data-testid={`art-item-${id}-desktop-view`}
+      className="relative mb-2 xl:mb-4 w-full hidden xl:flex flex-col group"
+    >
       <ArtWorkImage image={image.uri} title={title} artist={artist} />
       <button
+        data-testid={`art-item-${id}-button`}
         className="absolute inset-0 p-4 flex flex-col justify-between bg-black/50 cursor-pointer opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out"
         onClick={() => navigate(`/art/${id}`)}
       >

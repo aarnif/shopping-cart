@@ -614,7 +614,7 @@ const mocks = [
   },
 ];
 
-const renderArtComponent = (mocks) => {
+const renderArtComponent = () => {
   render(
     <MockedProvider mocks={mocks} addTypename={false}>
       <MemoryRouter>
@@ -622,6 +622,15 @@ const renderArtComponent = (mocks) => {
       </MemoryRouter>
     </MockedProvider>
   );
+};
+
+const setViewport = (width, height) => {
+  Object.defineProperty(window, "innerWidth", { value: width, writable: true });
+  Object.defineProperty(window, "innerHeight", {
+    value: height,
+    writable: true,
+  });
+  window.dispatchEvent(new Event("resize"));
 };
 
 const scrollDown = () => {
@@ -636,13 +645,13 @@ const scrollDown = () => {
 
 describe("<Art />", () => {
   test("displays art page loading state initially", () => {
-    renderArtComponent(mocks);
+    renderArtComponent();
     const artContainer = screen.getByTestId("art-page");
     expect(within(artContainer).getByTestId("loading")).toBeInTheDocument();
   });
 
   test("displays art page content", async () => {
-    renderArtComponent(mocks);
+    renderArtComponent();
 
     await waitFor(() => {
       expect(screen.getByTestId("art-page-content")).toBeInTheDocument();
@@ -652,7 +661,7 @@ describe("<Art />", () => {
 
   test("more artworks are fetched when scrolling down", async () => {
     const timeOut = 3000;
-    renderArtComponent(mocks);
+    renderArtComponent();
 
     scrollDown();
 
@@ -671,5 +680,34 @@ describe("<Art />", () => {
       },
       { timeout: timeOut }
     );
+  });
+
+  test("single art item buy link navigates to art work page", async () => {
+    const navigate = vi.fn();
+    useNavigate.mockReturnValue(navigate);
+
+    renderArtComponent();
+
+    await waitFor(() => {
+      const desktopArtItemView = screen.getByTestId("art-item-1-desktop-view");
+      expect(desktopArtItemView).toBeInTheDocument();
+      within(desktopArtItemView).getByTestId(`art-item-1-button`).click();
+      expect(navigate).toHaveBeenCalledWith("/art/1");
+    });
+  });
+
+  test("single art item buy link navigates to art work page", async () => {
+    setViewport(375, 667);
+    const navigate = vi.fn();
+    useNavigate.mockReturnValue(navigate);
+
+    renderArtComponent();
+
+    await waitFor(() => {
+      const mobileArtItemView = screen.getByTestId("art-item-1-mobile-view");
+      expect(mobileArtItemView).toBeInTheDocument();
+      within(mobileArtItemView).getByTestId(`art-item-1-button`).click();
+      expect(navigate).toHaveBeenCalledWith("/art/1");
+    });
   });
 });
