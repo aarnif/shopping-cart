@@ -177,4 +177,34 @@ describe("<Home />", () => {
       expect(navigate).toHaveBeenCalledWith("/art");
     });
   });
+
+  test("mobile single art work buy link navigates to art work page", async () => {
+    const navigate = vi.fn();
+    useNavigate.mockReturnValue(navigate);
+
+    renderHomeComponent();
+
+    await waitFor(() => {
+      const mobileContainer = screen.getByTestId("mobile-home-content");
+      const heroBuyButton =
+        within(mobileContainer).getByTestId(`artwork-1-buy-button`);
+      heroBuyButton.click();
+      expect(navigate).toHaveBeenCalledWith("/art/1");
+    });
+  });
+
+  test("desktop single art work buy link navigates to art work page", async () => {
+    const navigate = vi.fn();
+    useNavigate.mockReturnValue(navigate);
+
+    renderHomeComponent();
+
+    await waitFor(() => {
+      const desktopContainer = screen.getByTestId("desktop-home-content");
+      const heroBuyButton =
+        within(desktopContainer).getByTestId(`artwork-1-buy-button`);
+      heroBuyButton.click();
+      expect(navigate).toHaveBeenCalledWith("/art/1");
+    });
+  });
 });
