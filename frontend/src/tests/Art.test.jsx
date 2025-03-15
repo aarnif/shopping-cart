@@ -624,11 +624,21 @@ const renderArtComponent = (mocks) => {
   );
 };
 
+const scrollDown = () => {
+  global.window.scrollY = document.documentElement.scrollHeight;
+  global.window.dispatchEvent(
+    new Event("scroll", {
+      bubbles: true,
+      cancelable: true,
+    })
+  );
+};
+
 describe("<Art />", () => {
   test("displays art page loading state initially", () => {
     renderArtComponent(mocks);
-    const mobileContainer = screen.getByTestId("art-page");
-    expect(within(mobileContainer).getByTestId("loading")).toBeInTheDocument();
+    const artContainer = screen.getByTestId("art-page");
+    expect(within(artContainer).getByTestId("loading")).toBeInTheDocument();
   });
 
   test("displays art page content", async () => {
@@ -636,6 +646,30 @@ describe("<Art />", () => {
 
     await waitFor(() => {
       expect(screen.getByTestId("art-page-content")).toBeInTheDocument();
+      expect(screen.getByTestId("art-item-1")).toBeInTheDocument();
     });
+  });
+
+  test("more artworks are fetched when scrolling down", async () => {
+    const timeOut = 3000;
+    renderArtComponent(mocks);
+
+    scrollDown();
+
+    await waitFor(
+      () => {
+        expect(screen.getByTestId("art-item-21")).toBeInTheDocument();
+      },
+      { timeout: timeOut }
+    );
+
+    scrollDown();
+
+    await waitFor(
+      () => {
+        expect(screen.getByTestId("art-item-31")).toBeInTheDocument();
+      },
+      { timeout: timeOut }
+    );
   });
 });
