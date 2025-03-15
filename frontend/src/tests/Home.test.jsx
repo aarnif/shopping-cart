@@ -1,8 +1,17 @@
 import { render, screen, waitFor, within } from "@testing-library/react";
-import { MemoryRouter } from "react-router";
+import { describe, test, vi, expect } from "vitest";
+import { MemoryRouter, useNavigate } from "react-router";
 import { MockedProvider } from "@apollo/client/testing";
 import Home from "../components/Home.jsx";
 import { FEATURED_ARTWORKS } from "../graphql/queries";
+
+vi.mock("react-router", async () => {
+  const actual = await vi.importActual("react-router");
+  return {
+    ...actual,
+    useNavigate: vi.fn(),
+  };
+});
 
 const mocks = [
   {
@@ -136,6 +145,36 @@ describe("<Home />", () => {
 
     artworks.forEach((artwork) => {
       expect(mobileContainer).toHaveTextContent(artwork.title);
+    });
+  });
+
+  test("desktop hero buy link navigates to shop page", async () => {
+    const navigate = vi.fn();
+    useNavigate.mockReturnValue(navigate);
+
+    renderHomeComponent();
+
+    await waitFor(() => {
+      const desktopContainer = screen.getByTestId("desktop-home-content");
+      const heroBuyButton =
+        within(desktopContainer).getByTestId("hero-buy-button");
+      heroBuyButton.click();
+      expect(navigate).toHaveBeenCalledWith("/art");
+    });
+  });
+
+  test("mobile hero buy link navigates to shop page", async () => {
+    const navigate = vi.fn();
+    useNavigate.mockReturnValue(navigate);
+
+    renderHomeComponent();
+
+    await waitFor(() => {
+      const mobileContainer = screen.getByTestId("mobile-home-content");
+      const heroBuyButton =
+        within(mobileContainer).getByTestId("hero-buy-button");
+      heroBuyButton.click();
+      expect(navigate).toHaveBeenCalledWith("/art");
     });
   });
 });

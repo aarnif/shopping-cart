@@ -113,6 +113,7 @@ const HeroContent = ({ navigate }) => {
           artistic expression.
         </h1>
         <button
+          data-testid="hero-buy-button"
           className="flex gap-2 mt-4 px-4 py-2 justify-center items-center text-base md:text-lg xl:text-xl text-white font-bold 
           bg-rose-700 border-2 border-rose-700 rounded-lg cursor-pointer hover:bg-rose-800
           hover:border-rose-800 active:border-rose-900 active:inset-shadow-sm transition-all duration-300 ease-in-out"
