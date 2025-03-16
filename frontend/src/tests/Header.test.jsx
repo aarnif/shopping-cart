@@ -13,11 +13,7 @@ vi.mock("react-router", async () => {
 
 const handleShowMenu = vi.fn();
 
-const shoppingCart = [];
-
-const numberOfItemsInCart = 0;
-
-const renderHeaderComponent = () => {
+const renderHeaderComponent = (shoppingCart = [], numberOfItemsInCart = 0) => {
   render(
     <MemoryRouter>
       <Header
@@ -85,5 +81,12 @@ describe("<Header />", () => {
 
       expect(navigate).toHaveBeenCalledWith(expectedPath);
     });
+  });
+
+  test("cart displays item count when not empty", () => {
+    renderHeaderComponent([{ id: 1 }, { id: 2 }], 2);
+    const cartCount = screen.getByTestId("nav-item-cart");
+    expect(cartCount).toBeInTheDocument();
+    expect(cartCount.textContent).toBe("2");
   });
 });
