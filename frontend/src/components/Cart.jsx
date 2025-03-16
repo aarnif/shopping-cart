@@ -73,6 +73,8 @@ const OrderSummary = ({ shoppingCart, handleShowAlertModal }) => {
   );
   const shippingCost = 9.99;
 
+  console.log("Shopping Cart: ", shoppingCart);
+
   return (
     <div className="p-4 flex flex-col items-center gap-4 bg-white dark:bg-slate-800 rounded-lg shadow-xl">
       <h2 className="text-center text-slate-800 dark:text-slate-100 font-bold">
@@ -122,13 +124,17 @@ const EmptyCart = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="pt-8 md:pt-12 xl:pt-16 px-4 flex flex-col items-center gap-4">
+    <div
+      data-testid="empty-cart"
+      className="pt-8 md:pt-12 xl:pt-16 px-4 flex flex-col items-center gap-4"
+    >
       <div className="flex flex-col items-center gap-1">
         <h2 className="text-slate-700 dark:text-slate-300 text-base xl:text-lg font-medium">
           Looks like your cart is still empty.
         </h2>
       </div>
       <button
+        data-testid="start-shopping-button"
         className="py-2 px-4 max-w-[200px] flex justify-center items-center gap-2 text-base xl:text-lg text-white font-bold bg-rose-700 
         border-2 border-rose-700 rounded-lg cursor-pointer hover:bg-rose-800
         hover:border-rose-800 active:border-rose-900 active:inset-shadow-sm transition-all duration-300 ease-in-out"
