@@ -46,6 +46,7 @@ const CartItem = ({ item, handleAddItemToCart, handleRemoveItemFromCart }) => {
             </button>
             <div
               key={quantity}
+              data-testid={`cart-item-${id}-quantity`}
               className="w-5 h-6 md:w-6 flex justify-center items-center text-sm md:text-base text-slate-700 dark:text-slate-200 font-medium animate-zoom-in-and-out"
             >
               {quantity}
@@ -72,8 +73,6 @@ const OrderSummary = ({ shoppingCart, handleShowAlertModal }) => {
     0
   );
   const shippingCost = 9.99;
-
-  console.log("Shopping Cart: ", shoppingCart);
 
   return (
     <div className="p-4 flex flex-col items-center gap-4 bg-white dark:bg-slate-800 rounded-lg shadow-xl">
