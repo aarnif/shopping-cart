@@ -123,4 +123,39 @@ describe("<Cart />", () => {
       ).toHaveTextContent(item.quantity.toString());
     }
   });
+
+  test("displays total cost of all items in cart", () => {
+    renderCartComponent(shoppingCart);
+    const totalCost = shoppingCart.reduce(
+      (acc, item) => acc + item.size.price * item.quantity,
+      0
+    );
+    expect(screen.getByTestId("total-cost")).toHaveTextContent(
+      `${totalCost} €`
+    );
+  });
+
+  test("adds item to cart when plus button is clicked", () => {
+    renderCartComponent(shoppingCart);
+
+    const firstItem = shoppingCart[0];
+    const addButton = screen.getByTestId(`cart-item-${firstItem.id}-add`);
+
+    addButton.click();
+
+    expect(handleAddItemToCart).toHaveBeenCalledTimes(1);
+    expect(handleAddItemToCart).toHaveBeenCalledWith(firstItem, firstItem.size);
+  });
+
+  test("removes item from cart when minus button is clicked", () => {
+    renderCartComponent(shoppingCart);
+
+    const firstItem = shoppingCart[0];
+    const removeButton = screen.getByTestId(`cart-item-${firstItem.id}-remove`);
+
+    removeButton.click();
+
+    expect(handleRemoveItemFromCart).toHaveBeenCalledTimes(1);
+    expect(handleRemoveItemFromCart).toHaveBeenCalledWith(firstItem.id);
+  });
 });

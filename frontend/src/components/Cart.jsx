@@ -39,6 +39,7 @@ const CartItem = ({ item, handleAddItemToCart, handleRemoveItemFromCart }) => {
         <div className="w-full flex justify-between items-center">
           <div className="flex bg-slate-100 dark:bg-slate-700 rounded-full shadow-lg">
             <button
+              data-testid={`cart-item-${id}-remove`}
               className="w-6 h-6 flex justify-center items-center rounded-l-full cursor-pointer hover:bg-slate-200 dark:hover:bg-slate-600 active:bg-slate-200 dark:active:bg-slate-600 active:inset-shadow-sm transition-all duration-300 ease-in-out"
               onClick={() => handleRemoveItemFromCart(item.id)}
             >
@@ -52,6 +53,7 @@ const CartItem = ({ item, handleAddItemToCart, handleRemoveItemFromCart }) => {
               {quantity}
             </div>
             <button
+              data-testid={`cart-item-${id}-add`}
               className="w-6 h-6 flex justify-center items-center rounded-r-full cursor-pointer hover:bg-slate-200 dark:hover:bg-slate-600 active:bg-slate-200 dark:active:bg-slate-600 active:inset-shadow-sm transition-all duration-300 ease-in-out"
               onClick={() => handleAddItemToCart(item, size)}
             >
@@ -84,7 +86,10 @@ const OrderSummary = ({ shoppingCart, handleShowAlertModal }) => {
           <p className="text-center text-slate-700 dark:text-slate-300 text-sm md:text-base">
             Items
           </p>
-          <p className="text-center text-slate-700 dark:text-slate-300 text-sm md:text-base">
+          <p
+            data-testid="total-cost"
+            className="text-center text-slate-700 dark:text-slate-300 text-sm md:text-base"
+          >
             {totalItemsCost} €
           </p>
         </div>
