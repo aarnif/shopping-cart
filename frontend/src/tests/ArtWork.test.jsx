@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor, within } from "@testing-library/react";
 import { describe, test, vi, expect } from "vitest";
 import { MemoryRouter, useMatch, useNavigate } from "react-router";
 import { MockedProvider } from "@apollo/client/testing";
@@ -101,8 +101,32 @@ const renderArtWorkComponent = () => {
 };
 
 describe("<ArtWork />", () => {
-  test("displays art page loading state initially", () => {
+  test("displays loading state initially", () => {
     renderArtWorkComponent();
     expect(screen.getByTestId("loading")).toBeInTheDocument();
+  });
+
+  test("displays art work page after loading", async () => {
+    const match = useMatch("/art/:id").params;
+
+    renderArtWorkComponent();
+    await waitFor(() => {
+      expect(screen.getByTestId(`artwork-${match.id}`)).toBeInTheDocument();
+    });
+  });
+
+  test("back button navigates back to shop page", async () => {
+    const match = useMatch("/art/:id").params;
+    const navigate = vi.fn();
+    useNavigate.mockReturnValue(navigate);
+
+    renderArtWorkComponent();
+
+    await waitFor(() => {
+      const artWorkView = screen.getByTestId(`artwork-${match.id}`);
+      expect(artWorkView).toBeInTheDocument();
+      within(artWorkView).getByTestId("back-button").click();
+      expect(navigate).toHaveBeenCalledWith("/art");
+    });
   });
 });
