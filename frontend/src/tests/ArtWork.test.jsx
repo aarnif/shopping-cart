@@ -163,4 +163,19 @@ describe("<ArtWork />", () => {
       `${nextSize.width} x ${nextSize.height} cm`
     );
   });
+
+  test("add to cart button works", async () => {
+    const user = userEvent.setup();
+    const defaultSize = artWork.sizes[0];
+
+    renderArtWorkComponent();
+
+    await waitFor(() => {
+      expect(screen.getByTestId("add-to-cart-button")).toBeInTheDocument();
+    });
+
+    await user.click(screen.getByTestId("add-to-cart-button"));
+
+    expect(handleAddItemToCart).toHaveBeenCalledWith(artWork, defaultSize);
+  });
 });
