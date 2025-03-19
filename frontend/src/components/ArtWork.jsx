@@ -158,6 +158,9 @@ const ArtWork = ({ handleAddItemToCart }) => {
             {sizes.map((size) => {
               return (
                 <button
+                  data-testid={
+                    selectedSize === size ? "selected-size" : size.width
+                  }
                   key={size.width}
                   onClick={() => setSelectedSize(size)}
                   className={`border border-slate-400 dark:border-slate-500 text-slate-700 dark:text-slate-300 text-xs md:text-sm py-1.5 px-3 rounded-full cursor-pointer transition-all duration-300 ease-in-out 

@@ -2,6 +2,7 @@ import { render, screen, waitFor, within } from "@testing-library/react";
 import { describe, test, vi, expect } from "vitest";
 import { MemoryRouter, useMatch, useNavigate } from "react-router";
 import { MockedProvider } from "@apollo/client/testing";
+import userEvent from "@testing-library/user-event";
 import ArtWork from "../components/ArtWork.jsx";
 import { FIND_ARTWORK } from "../graphql/queries.js";
 
@@ -77,13 +78,13 @@ const mocks = [
   },
 ];
 
-const artWorkId = mocks[0].result.data.findArtWork.id;
+const artWork = mocks[0].result.data.findArtWork;
 
 vi.mock("react-router", async () => {
   const actual = await vi.importActual("react-router");
   return {
     ...actual,
-    useMatch: () => ({ params: { id: artWorkId } }),
+    useMatch: () => ({ params: { id: artWork.id } }),
     useNavigate: vi.fn(),
   };
 });
@@ -116,6 +117,7 @@ describe("<ArtWork />", () => {
   });
 
   test("back button navigates back to shop page", async () => {
+    const user = userEvent.setup();
     const match = useMatch("/art/:id").params;
     const navigate = vi.fn();
     useNavigate.mockReturnValue(navigate);
@@ -125,8 +127,40 @@ describe("<ArtWork />", () => {
     await waitFor(() => {
       const artWorkView = screen.getByTestId(`artwork-${match.id}`);
       expect(artWorkView).toBeInTheDocument();
-      within(artWorkView).getByTestId("back-button").click();
-      expect(navigate).toHaveBeenCalledWith("/art");
     });
+
+    await user.click(screen.getByTestId("back-button"));
+    expect(navigate).toHaveBeenCalledWith("/art");
+  });
+
+  test("default size is selected", async () => {
+    const defaultSize = artWork.sizes[0];
+
+    renderArtWorkComponent();
+
+    await waitFor(() => {
+      const selectedSize = screen.getByTestId("selected-size");
+      expect(selectedSize).toBeInTheDocument();
+      expect(selectedSize).toHaveTextContent(
+        `${defaultSize.width} x ${defaultSize.height} cm`
+      );
+    });
+  });
+
+  test("change selected size works", async () => {
+    const user = userEvent.setup();
+    const nextSize = artWork.sizes[1];
+
+    renderArtWorkComponent();
+
+    await waitFor(() => {
+      expect(screen.getByTestId(nextSize.width)).toBeInTheDocument();
+    });
+
+    await user.click(screen.getByTestId(nextSize.width));
+
+    expect(screen.getByTestId("selected-size")).toHaveTextContent(
+      `${nextSize.width} x ${nextSize.height} cm`
+    );
   });
 });
