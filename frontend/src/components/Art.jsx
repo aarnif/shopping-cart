@@ -48,6 +48,11 @@ const Heading = ({ selectedSort, setSelectedSort }) => {
           {buttons.map((button) => (
             <li key={button.name}>
               <button
+                data-testid={
+                  selectedSort === button.name
+                    ? "selected-sort"
+                    : `sort-by-${button.text.toLowerCase()}`
+                }
                 className={`flex py-1.25 px-2.5 justify-center items-center text-sm xl:text-base text-slate-900 dark:text-slate-100 font-medium ${
                   selectedSort === button.name
                     ? "bg-slate-200 dark:bg-slate-600"
