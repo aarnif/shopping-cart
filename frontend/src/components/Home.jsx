@@ -132,7 +132,7 @@ const MobileAndTabletContent = ({ loading, data, navigate }) => {
   return (
     <div
       data-testid="mobile-home-content"
-      className="block xl:hidden relative bg-slate-100 dark:bg-slate-900 before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-[100vh] before:bg-hero before:bg-cover before:bg-center before:bg-no-repeat before:border-b-4 before:border-solid before:border-rose-700"
+      className="block xl:hidden relative bg-gradient-to-b from-slate-100 to-slate-50 dark:from-slate-900 dark:to-slate-800 before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-[100vh] before:bg-hero before:bg-cover before:bg-center before:bg-no-repeat before:border-b-4 before:border-solid before:border-rose-700"
     >
       <div className="mt-20 md:mt-32 relative w-full px-8 md:px-12 py-8 flex flex-col">
         <HeroContent navigate={navigate} />
@@ -160,7 +160,7 @@ const DesktopContent = ({ loading, data, navigate }) => {
       >
         <HeroContent navigate={navigate} />
       </div>
-      <div className="relative w-full flex justify-center items-center border-t-4 border-rose-700 bg-slate-100 dark:bg-slate-900">
+      <div className="relative w-full flex justify-center items-center border-t-4 border-rose-700 bg-gradient-to-b from-slate-100 to-slate-50 dark:from-slate-900 dark:to-slate-800">
         {loading ? (
           <div className="w-full h-screen flex justify-center items-center">
             <Loading loadingText="Loading Art..." />

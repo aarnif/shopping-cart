@@ -106,7 +106,7 @@ const ArtWork = ({ handleAddItemToCart }) => {
 
   if (loading) {
     return (
-      <div className="p-4 w-full flex-grow flex flex-col items-center justify-center bg-white dark:bg-slate-900">
+      <div className="p-4 w-full flex-grow flex flex-col items-center justify-center bg-gradient-to-b from-slate-100 to-slate-50 dark:from-slate-900 dark:to-slate-800">
         <Loading />
       </div>
     );
@@ -120,7 +120,7 @@ const ArtWork = ({ handleAddItemToCart }) => {
   return (
     <div
       data-testid={`artwork-${id}`}
-      className="py-24 md:py-28 xl:py-32 px-4 md:px-6 xl:px-8 w-full flex-grow flex flex-col items-center justify-start bg-white dark:bg-slate-900"
+      className="py-24 md:py-28 xl:py-32 px-4 md:px-6 xl:px-8 w-full flex-grow flex flex-col items-center justify-start bg-gradient-to-b from-slate-100 to-slate-50 dark:from-slate-900 dark:to-slate-800"
     >
       <div className="w-full max-w-[1400px] flex flex-col justify-center items-center md:flex-row gap-4 md:gap-8 xl:gap-16 animate-fade-from-down">
         <button
