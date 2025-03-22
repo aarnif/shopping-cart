@@ -11,10 +11,10 @@ const AlertModal = ({ title, message, handleClose }) => {
       exit={{ opacity: 0 }}
     >
       <motion.div
-        key={"latestItemModal"}
-        initial={{ y: "100vh" }}
-        animate={{ y: 0 }}
-        exit={{ y: "100vh" }}
+        key={"alertModal"}
+        initial={{ y: 50, opacity: 0 }}
+        animate={{ y: 0, opacity: 1, duration: 0.4 }}
+        exit={{ y: 50, opacity: 0 }}
         transition={{ type: "tween", ease: "easeOut", duration: 0.3 }}
         className="bg-yellow-50 rounded-lg border-t border-yellow-900"
       >
