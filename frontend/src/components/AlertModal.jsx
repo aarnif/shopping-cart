@@ -18,7 +18,10 @@ const AlertModal = ({ title, message, handleClose }) => {
         transition={{ type: "tween", ease: "easeOut", duration: 0.3 }}
         className="bg-yellow-50 rounded-lg border-t border-yellow-900"
       >
-        <div className="w-full p-4 md:p-6 flex flex-col gap-4">
+        <div
+          data-testid="alert-modal"
+          className="w-full p-4 md:p-6 flex flex-col gap-4"
+        >
           <div className="flex justify-start items-center gap-3">
             <div className="w-8.5 h-8.5 md:w-10 md:h-10 flex justify-center items-center rounded-full bg-yellow-300">
               <div className="w-6 h-6 md:w-7 md:h-7 flex justify-center items-center rounded-full bg-yellow-100 border-2 border-yellow-400">
