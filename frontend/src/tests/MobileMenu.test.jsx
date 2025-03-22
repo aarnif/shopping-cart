@@ -12,12 +12,12 @@ vi.mock("react-router", async () => {
   };
 });
 
-const handleShowMenu = vi.fn();
+const handleShowMobileMenu = vi.fn();
 
 const renderMenuComponent = () => {
   render(
     <MemoryRouter>
-      <MobileMenu handleShowMenu={handleShowMenu} />
+      <MobileMenu handleShowMobileMenu={handleShowMobileMenu} />
     </MemoryRouter>
   );
 };
@@ -42,6 +42,6 @@ describe("<Menu />", () => {
 
     await user.click(screen.getByTestId("home-button"));
     expect(navigate).toHaveBeenCalledWith("/");
-    expect(handleShowMenu).toHaveBeenCalledTimes(1);
+    expect(handleShowMobileMenu).toHaveBeenCalledTimes(1);
   });
 });
