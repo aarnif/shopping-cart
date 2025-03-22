@@ -107,7 +107,7 @@ const ArtWork = ({ handleAddItemToCart }) => {
   if (loading) {
     return (
       <div className="p-4 w-full flex-grow flex flex-col items-center justify-center bg-gradient-to-b from-slate-100 to-slate-50 dark:from-slate-900 dark:to-slate-800">
-        <Loading />
+        <Loading loadingText="Loading Artwork..." />
       </div>
     );
   }
