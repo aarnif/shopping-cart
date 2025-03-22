@@ -3,6 +3,7 @@ import { describe, test, expect, vi } from "vitest";
 import userEvent from "@testing-library/user-event";
 import { useNavigate } from "react-router";
 import LatestItemModal from "../components/LatestItemModal";
+import mockData from "./mocks/data.js";
 
 vi.mock("react-router", async () => {
   const actual = await vi.importActual("react-router");
@@ -12,25 +13,7 @@ vi.mock("react-router", async () => {
   };
 });
 
-const latestItem = {
-  id: "49c12b35-8947-48b7-a23f-d0dfb33e28d0",
-  title: "A Vision in Color",
-  artist: "Liora Senn",
-  image: {
-    __typename: "Image",
-    type: "portrait",
-    width: 1024,
-    height: 1792,
-    uri: "/images/a_vision_in_color.webp",
-  },
-  size: {
-    __typename: "Size",
-    width: 40,
-    height: 55,
-    price: 350,
-  },
-  quantity: 1,
-};
+const { latestItem } = mockData;
 
 const renderLatestItemModal = (setShowLatestItemModal = () => {}) => {
   render(
