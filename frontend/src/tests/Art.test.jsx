@@ -1,4 +1,4 @@
-import { render, screen, waitFor, within } from "@testing-library/react";
+import { render, screen, waitFor, within, act } from "@testing-library/react";
 import { describe, test, vi, expect } from "vitest";
 import { MemoryRouter, useNavigate } from "react-router";
 import { MockedProvider } from "@apollo/client/testing";
@@ -1262,12 +1262,14 @@ describe("<Art />", () => {
     });
   });
 
-  // Fix this test (not working all the time)
+  // Fix this test (not working all the time, timeOut issue)
   test("more artworks are fetched when scrolling down", async () => {
     const timeOut = 3000;
     renderArtComponent();
 
-    scrollDown();
+    await act(async () => {
+      scrollDown();
+    });
 
     await waitFor(
       () => {
@@ -1276,7 +1278,9 @@ describe("<Art />", () => {
       { timeout: timeOut }
     );
 
-    scrollDown();
+    await act(async () => {
+      scrollDown();
+    });
 
     await waitFor(
       () => {
