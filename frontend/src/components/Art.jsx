@@ -258,7 +258,7 @@ const Art = () => {
   return (
     <div
       data-testid="art-page"
-      className="w-full py-24 md:py-28 xl:py-32 px-6 min-h-screen flex flex-col items-center justify-start bg-slate-100 dark:bg-slate-900"
+      className="w-full py-24 md:py-28 xl:py-32 px-6 min-h-screen flex flex-col items-center justify-start bg-gradient-to-b from-slate-100 to-slate-50 dark:from-slate-900 dark:to-slate-800"
     >
       <Heading selectedSort={selectedSort} setSelectedSort={setSelectedSort} />
       {loading ? (

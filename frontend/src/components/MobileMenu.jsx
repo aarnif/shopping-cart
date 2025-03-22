@@ -81,7 +81,7 @@ const MobileMenu = ({ handleShowMobileMenu }) => {
   return (
     <motion.div
       data-testid="mobile-menu"
-      className="z-10 fixed inset-0 p-8 flex flex-col gap-6 bg-slate-100 dark:bg-slate-900"
+      className="z-10 fixed inset-0 p-8 flex flex-col gap-6 bg-gradient-to-b from-slate-100 to-slate-50 dark:from-slate-900 dark:to-slate-800"
       initial={{ x: "-100vw" }}
       animate={{ x: 0 }}
       exit={{ x: "-100vw" }}
