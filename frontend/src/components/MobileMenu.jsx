@@ -25,7 +25,7 @@ const MenuItem = ({ item }) => {
   );
 };
 
-const Menu = ({ handleShowMenu }) => {
+const MobileMenu = ({ handleShowMobileMenu }) => {
   const navigate = useNavigate();
   const menuItems = [
     {
@@ -34,7 +34,7 @@ const Menu = ({ handleShowMenu }) => {
       icon: (
         <FaArrowLeft className="w-6 h-6 text-slate-900 dark:text-slate-200 fill-current" />
       ),
-      callback: handleShowMenu,
+      callback: handleShowMobileMenu,
     },
     {
       dataTestId: "home-button",
@@ -44,7 +44,7 @@ const Menu = ({ handleShowMenu }) => {
       ),
       callback: () => {
         navigate("/");
-        handleShowMenu();
+        handleShowMobileMenu();
       },
     },
     {
@@ -62,7 +62,7 @@ const Menu = ({ handleShowMenu }) => {
       ),
       callback: () => {
         navigate("/art");
-        handleShowMenu();
+        handleShowMobileMenu();
       },
     },
     {
@@ -73,7 +73,7 @@ const Menu = ({ handleShowMenu }) => {
       ),
       callback: () => {
         navigate("/cart");
-        handleShowMenu();
+        handleShowMobileMenu();
       },
     },
   ];
@@ -99,4 +99,4 @@ const Menu = ({ handleShowMenu }) => {
   );
 };
 
-export default Menu;
+export default MobileMenu;

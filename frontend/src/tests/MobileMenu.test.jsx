@@ -2,8 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { describe, test, expect, vi } from "vitest";
 import { MemoryRouter, useNavigate } from "react-router";
 import userEvent from "@testing-library/user-event";
-import Menu from "../components/Menu.jsx";
-import path from "path";
+import MobileMenu from "../components/MobileMenu.jsx";
 
 vi.mock("react-router", async () => {
   const actual = await vi.importActual("react-router");
@@ -18,7 +17,7 @@ const handleShowMenu = vi.fn();
 const renderMenuComponent = () => {
   render(
     <MemoryRouter>
-      <Menu handleShowMenu={handleShowMenu} />
+      <MobileMenu handleShowMenu={handleShowMenu} />
     </MemoryRouter>
   );
 };
