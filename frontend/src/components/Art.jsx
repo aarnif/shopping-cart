@@ -48,6 +48,11 @@ const Heading = ({ selectedSort, setSelectedSort }) => {
           {buttons.map((button) => (
             <li key={button.name}>
               <button
+                data-testid={
+                  selectedSort === button.name
+                    ? "selected-sort"
+                    : `sort-by-${button.text.toLowerCase()}`
+                }
                 className={`flex py-1.25 px-2.5 justify-center items-center text-sm xl:text-base text-slate-900 dark:text-slate-100 font-medium ${
                   selectedSort === button.name
                     ? "bg-slate-200 dark:bg-slate-600"
@@ -89,9 +94,13 @@ const MobileAndTabletView = ({ artwork, navigate }) => {
   const { id, title, artist, image, startingPrice, averageRating } = artwork;
 
   return (
-    <div className="mb-2 w-full flex xl:hidden flex-col gap-2">
+    <div
+      data-testid={`art-item-${id}-mobile-view`}
+      className="mb-2 w-full flex xl:hidden flex-col gap-2"
+    >
       <ArtWorkTitle title={title} artist={artist} />
       <button
+        data-testid={`art-item-${id}-button`}
         className="w-full h-auto bg-slate-300 dark:bg-slate-600 cursor-pointer"
         onClick={() => navigate(`/art/${id}`)}
       >
@@ -117,9 +126,13 @@ const DesktopView = ({ artwork, navigate }) => {
   const { id, title, artist, image, startingPrice, averageRating } = artwork;
 
   return (
-    <div className="relative mb-2 xl:mb-4 w-full hidden xl:flex flex-col group">
+    <div
+      data-testid={`art-item-${id}-desktop-view`}
+      className="relative mb-2 xl:mb-4 w-full hidden xl:flex flex-col group"
+    >
       <ArtWorkImage image={image.uri} title={title} artist={artist} />
       <button
+        data-testid={`art-item-${id}-button`}
         className="absolute inset-0 p-4 flex flex-col justify-between bg-black/50 cursor-pointer opacity-0 group-hover:opacity-100 transition-all duration-300 ease-in-out"
         onClick={() => navigate(`/art/${id}`)}
       >
@@ -256,6 +269,7 @@ const Art = () => {
         <>
           <div
             key={"art"}
+            data-testid="art-page-content"
             className="w-full max-w-[1400px] grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4"
           >
             {artWorks.map((column, index) => (

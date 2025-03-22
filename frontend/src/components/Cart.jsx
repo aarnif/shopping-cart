@@ -39,6 +39,7 @@ const CartItem = ({ item, handleAddItemToCart, handleRemoveItemFromCart }) => {
         <div className="w-full flex justify-between items-center">
           <div className="flex bg-slate-100 dark:bg-slate-700 rounded-full shadow-lg">
             <button
+              data-testid={`cart-item-${id}-remove`}
               className="w-6 h-6 flex justify-center items-center rounded-l-full cursor-pointer hover:bg-slate-200 dark:hover:bg-slate-600 active:bg-slate-200 dark:active:bg-slate-600 active:inset-shadow-sm transition-all duration-300 ease-in-out"
               onClick={() => handleRemoveItemFromCart(item.id)}
             >
@@ -46,11 +47,13 @@ const CartItem = ({ item, handleAddItemToCart, handleRemoveItemFromCart }) => {
             </button>
             <div
               key={quantity}
+              data-testid={`cart-item-${id}-quantity`}
               className="w-5 h-6 md:w-6 flex justify-center items-center text-sm md:text-base text-slate-700 dark:text-slate-200 font-medium animate-zoom-in-and-out"
             >
               {quantity}
             </div>
             <button
+              data-testid={`cart-item-${id}-add`}
               className="w-6 h-6 flex justify-center items-center rounded-r-full cursor-pointer hover:bg-slate-200 dark:hover:bg-slate-600 active:bg-slate-200 dark:active:bg-slate-600 active:inset-shadow-sm transition-all duration-300 ease-in-out"
               onClick={() => handleAddItemToCart(item, size)}
             >
@@ -83,7 +86,10 @@ const OrderSummary = ({ shoppingCart, handleShowAlertModal }) => {
           <p className="text-center text-slate-700 dark:text-slate-300 text-sm md:text-base">
             Items
           </p>
-          <p className="text-center text-slate-700 dark:text-slate-300 text-sm md:text-base">
+          <p
+            data-testid="total-cost"
+            className="text-center text-slate-700 dark:text-slate-300 text-sm md:text-base"
+          >
             {totalItemsCost} €
           </p>
         </div>
@@ -122,13 +128,17 @@ const EmptyCart = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="pt-8 md:pt-12 xl:pt-16 px-4 flex flex-col items-center gap-4">
+    <div
+      data-testid="empty-cart"
+      className="pt-8 md:pt-12 xl:pt-16 px-4 flex flex-col items-center gap-4"
+    >
       <div className="flex flex-col items-center gap-1">
         <h2 className="text-slate-700 dark:text-slate-300 text-base xl:text-lg font-medium">
           Looks like your cart is still empty.
         </h2>
       </div>
       <button
+        data-testid="start-shopping-button"
         className="py-2 px-4 max-w-[200px] flex justify-center items-center gap-2 text-base xl:text-lg text-white font-bold bg-rose-700 
         border-2 border-rose-700 rounded-lg cursor-pointer hover:bg-rose-800
         hover:border-rose-800 active:border-rose-900 active:inset-shadow-sm transition-all duration-300 ease-in-out"

@@ -34,3 +34,6 @@ dist-ssr
 
 # SQL-files
 *.sql
+
+# Test coverage
+coverage

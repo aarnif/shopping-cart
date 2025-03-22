@@ -12,7 +12,7 @@ import Art from "./components/Art";
 import ArtWork from "./components/ArtWork";
 import Cart from "./components/Cart";
 import Footer from "./components/Footer";
-import Menu from "./components/Menu";
+import MobileMenu from "./components/MobileMenu";
 import LatestItemModal from "./components/LatestItemModal";
 import AlertModal from "./components/AlertModal";
 
@@ -25,7 +25,7 @@ const App = () => {
   const [latestItem, setLatestItem] = useState(null);
   const [showMenu, setShowMenu] = useState(false);
 
-  const handleShowMenu = () => {
+  const handleShowMobileMenu = () => {
     setShowMenu(!showMenu);
   };
 
@@ -97,7 +97,7 @@ const App = () => {
   return (
     <div className="w-full min-h-screen flex flex-col animate-fade-in">
       <Header
-        handleShowMenu={handleShowMenu}
+        handleShowMenu={handleShowMobileMenu}
         shoppingCart={shoppingCart}
         numberOfItemsInCart={numberOfItemsInCart}
       />
@@ -122,7 +122,7 @@ const App = () => {
       </Routes>
       <Footer />
       <AnimatePresence>
-        {showMenu && <Menu handleShowMenu={handleShowMenu} />}
+        {showMenu && <MobileMenu handleShowMobileMenu={handleShowMobileMenu} />}
         {showLatestItemModal && (
           <LatestItemModal
             latestItem={latestItem}

@@ -112,13 +112,16 @@ const ArtWork = ({ handleAddItemToCart }) => {
     );
   }
 
-  const { title, artist, image, description, sizes, reviews } =
+  const { id, title, artist, image, description, sizes, reviews } =
     data?.findArtWork;
 
   const selectedSizePrice = sizes.find((size) => size === selectedSize)?.price;
 
   return (
-    <div className="py-24 md:py-28 xl:py-32 px-4 md:px-6 xl:px-8 w-full flex-grow flex flex-col items-center justify-start bg-white dark:bg-slate-900">
+    <div
+      data-testid={`artwork-${id}`}
+      className="py-24 md:py-28 xl:py-32 px-4 md:px-6 xl:px-8 w-full flex-grow flex flex-col items-center justify-start bg-white dark:bg-slate-900"
+    >
       <div className="w-full max-w-[1400px] flex flex-col justify-center items-center md:flex-row gap-4 md:gap-8 xl:gap-16 animate-fade-from-down">
         <button
           className="flex justify-center cursor-pointer"
@@ -155,6 +158,9 @@ const ArtWork = ({ handleAddItemToCart }) => {
             {sizes.map((size) => {
               return (
                 <button
+                  data-testid={
+                    selectedSize === size ? "selected-size" : size.width
+                  }
                   key={size.width}
                   onClick={() => setSelectedSize(size)}
                   className={`border border-slate-400 dark:border-slate-500 text-slate-700 dark:text-slate-300 text-xs md:text-sm py-1.5 px-3 rounded-full cursor-pointer transition-all duration-300 ease-in-out 
@@ -179,6 +185,7 @@ const ArtWork = ({ handleAddItemToCart }) => {
 
           <div className="w-full flex flex-col md:flex-row gap-2 justify-center items-center">
             <button
+              data-testid="back-button"
               className="w-full flex-grow basis-[50%] border border-slate-400 dark:border-slate-500 text-slate-700 dark:text-slate-300 font-semibold text-sm md:text-base xl:text-lg py-2 px-4 rounded-lg cursor-pointer hover:bg-slate-100 dark:hover:bg-slate-700 active:border-slate-500 dark:active:border-slate-400 active:bg-slate-100 dark:active:bg-slate-700 active:inset-shadow-sm transition-all duration-300 ease-in-out"
               onClick={() => navigate("/art")}
             >

@@ -4,6 +4,7 @@ import { AiOutlineLoading } from "react-icons/ai";
 const Loading = ({ maxHeight = null, loadingText = "" }) => {
   return (
     <div
+      data-testid="loading"
       className="w-full h-full flex flex-col justify-center items-center"
       style={{ maxHeight: maxHeight }}
     >

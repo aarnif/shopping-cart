@@ -25,17 +25,20 @@ const ToggleDarkMode = () => {
 
   return (
     <button
+      data-testid="toggle-dark-mode-button"
       key="toggle-dark-mode"
       onClick={changeTheme}
       className="flex justify-center items-center cursor-pointer transition-all duration-300 ease-in-out"
     >
       {theme === "dark" ? (
         <HiMoon
+          data-testid="dark-mode"
           key="dark"
           className="w-6 h-6 dark:text-slate-100 fill-current animate-scale-in"
         />
       ) : (
         <IoSunnyOutline
+          data-testid="light-mode"
           key="light"
           className="w-6 h-6 dark:text-slate-100 fill-current animate-scale-in"
         />
