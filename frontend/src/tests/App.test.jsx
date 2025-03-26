@@ -2,6 +2,7 @@ import { render, screen, waitFor } from "@testing-library/react";
 import { describe, test, vi, expect } from "vitest";
 import { MemoryRouter, useMatch } from "react-router";
 import { MockedProvider } from "@apollo/client/testing";
+import userEvent from "@testing-library/user-event";
 import App from "../App.jsx";
 import mockData from "./mocks/data.js";
 
@@ -51,5 +52,44 @@ describe("<App />", () => {
   test("displays cart page route", async () => {
     renderAppComponent([], "/cart");
     expect(screen.getByTestId("cart-page")).toBeInTheDocument();
+  });
+
+  test("displays mobile shopping cart button", () => {
+    renderAppComponent(featureArtWorks, "/");
+    expect(
+      screen.getByTestId("mobile-shopping-cart-button")
+    ).toBeInTheDocument();
+  });
+
+  test("mobile shopping cart button is not visible on cart page", () => {
+    renderAppComponent([], "/cart");
+    expect(
+      screen.queryByTestId("mobile-shopping-cart-button")
+    ).not.toBeInTheDocument();
+  });
+
+  test("display mobile menu works", async () => {
+    const user = userEvent.setup();
+    renderAppComponent(featureArtWorks, "/");
+    await user.click(screen.getByTestId("show-mobile-menu-button"));
+    expect(screen.getByTestId("mobile-menu")).toBeInTheDocument();
+
+    await user.click(screen.getByTestId("back-button"));
+    await waitFor(() => {
+      expect(screen.queryByTestId("mobile-menu")).not.toBeInTheDocument();
+    });
+  });
+
+  test("shows latest item modal when adding item to cart", async () => {
+    const user = userEvent.setup();
+    renderAppComponent(artWork, "/art/1");
+    await waitFor(() => {
+      expect(
+        screen.getByTestId(`artwork-${singleArtWork.id}`)
+      ).toBeInTheDocument();
+    });
+
+    await user.click(screen.getByTestId("add-to-cart-button"));
+    expect(screen.getByTestId("latest-item-modal")).toBeInTheDocument();
   });
 });

@@ -139,6 +139,7 @@ const App = () => {
       </AnimatePresence>
       {location.pathname !== "/cart" && (
         <button
+          data-testid="mobile-shopping-cart-button"
           className="fixed bottom-4 right-4 flex sm:hidden p-3 justify-center items-center text-white font-bold bg-rose-700 border-2 border-rose-700
              rounded-full shadow-xl cursor-pointer active:border-rose-900 active:inset-shadow-sm transition-all duration-300 ease-in-out"
           onClick={() => navigate("/cart")}
@@ -146,6 +147,7 @@ const App = () => {
           <FaShoppingCart className="w-6 h-6 fill-current" />
           {shoppingCart.length > 0 && (
             <div
+              data-testid="mobile-shopping-cart-item-count"
               key={numberOfItemsInCart}
               className={`absolute -bottom-1 -right-1 w-4.5 h-4.5 flex justify-center items-center bg-green-700 text-white text-xs font-bold rounded-full ${
                 numberOfItemsInCart === 1
