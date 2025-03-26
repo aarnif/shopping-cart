@@ -28,6 +28,7 @@ const MobileHeaderNav = ({ handleShowMenu }) => {
       <ul className="w-full flex justify-between items-center">
         <li className="flex justify-center items-center">
           <button
+            data-testid="show-mobile-menu-button"
             className="flex justify-center items-center cursor-pointer transition-all duration-300 ease-in-out"
             onClick={handleShowMenu}
           >
