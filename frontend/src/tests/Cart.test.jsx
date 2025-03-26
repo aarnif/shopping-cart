@@ -14,64 +14,6 @@ vi.mock("react-router", async () => {
 
 const handleAddItemToCart = vi.fn();
 const handleRemoveItemFromCart = vi.fn();
-//   {
-//     id: "ac3016c7-30f3-4921-82e5-0873e56c47d4",
-//     title: "A Vision in Color",
-//     artist: "Liora Senn",
-//     image: {
-//       __typename: "Image",
-//       type: "portrait",
-//       width: 1024,
-//       height: 1792,
-//       uri: "/images/a_vision_in_color.webp",
-//     },
-//     size: {
-//       __typename: "Size",
-//       width: 40,
-//       height: 55,
-//       price: 350,
-//     },
-//     quantity: 1,
-//   },
-//   {
-//     id: "e906bd64-9392-4f0f-aa53-87d9466e3b9c",
-//     title: "Eternal Peaks of the Himalayas",
-//     artist: "Surya Patel",
-//     image: {
-//       __typename: "Image",
-//       type: "square",
-//       width: 1024,
-//       height: 1024,
-//       uri: "/images/eternal_peaks_of_the_himalayas.webp",
-//     },
-//     size: {
-//       __typename: "Size",
-//       width: 50,
-//       height: 50,
-//       price: 520,
-//     },
-//     quantity: 2,
-//   },
-//   {
-//     id: "6f6478df-0cb8-4fa0-a764-e7330789dd1d",
-//     title: "Golden Metropolis",
-//     artist: "Elijah Carter",
-//     image: {
-//       __typename: "Image",
-//       type: "portrait",
-//       width: 1024,
-//       height: 1792,
-//       uri: "/images/golden_metropolis.webp",
-//     },
-//     size: {
-//       __typename: "Size",
-//       width: 85,
-//       height: 120,
-//       price: 800,
-//     },
-//     quantity: 1,
-//   },
-// ];
 
 const { shoppingCart } = mockData;
 
