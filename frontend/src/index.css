@@ -70,19 +70,19 @@
 
   #art-card {
     opacity: 0;
-    transform: translateY(30%);
+    transform: translateY(10%);
     animation: fade-in both linear;
     animation-timeline: --art-card;
-    animation-range: cover 5% cover 40%;
+    animation-range: cover 5% cover 30%;
   }
 
   @media (width >= 768px) {
     #art-card {
-      transform: translateX(-30%);
+      transform: translateX(-10%);
     }
 
     #art-card:nth-child(even) {
-      transform: translateX(30%);
+      transform: translateX(10%);
     }
   }
 

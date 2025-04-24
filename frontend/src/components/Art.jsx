@@ -1,9 +1,10 @@
 import { useNavigate } from "react-router";
 import { useState, useEffect } from "react";
 import { useQuery } from "@apollo/client";
-import { useScroll, useMotionValueEvent } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 import useResponsiveWidth from "../hooks/useResponsiveWidth.js";
+import useInfiniteScroll from "../hooks/useInfiniteScroll.js";
 import { ALL_ARTWORKS } from "../graphql/queries.js";
 import Loading from "./Loading.jsx";
 import StarRating from "./StarRating";
@@ -194,18 +195,12 @@ const Art = () => {
   // Number of columns based on the screen width, use tailwinds css md and xl as breakpoints
   const numberOfColumns = width >= 1280 ? 3 : width >= 768 ? 2 : 1;
 
-  // Infinite scroll that loads more artworks when the user reaches the bottom of the page
-  const { scrollYProgress } = useScroll();
-  useMotionValueEvent(scrollYProgress, "change", (progress) => {
-    if (progress >= 0.99) {
-      loadMore();
-    }
-  });
-
-  const loadMore = () => {
+  const loadMore = async () => {
     if (!data?.allArtWorks?.pageInfo?.hasNextPage) return;
 
-    fetchMore({
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+
+    return fetchMore({
       variables: {
         after: data.allArtWorks.pageInfo.endCursor,
         sortBy: selectedSort,
@@ -233,6 +228,11 @@ const Art = () => {
       },
     });
   };
+
+  const isLoadingMore = useInfiniteScroll(
+    loadMore,
+    data?.allArtWorks?.pageInfo?.hasNextPage
+  );
 
   // Split the artworks into columns based on their height in order to balance column heights in the mansonry layout
   const splitArrayIntoColumns = (arr, numberOfCols = 3) => {
@@ -278,11 +278,38 @@ const Art = () => {
               </div>
             ))}
           </div>
-          {!data.allArtWorks.pageInfo.hasNextPage && (
-            <div className="mt-8 text-slate-700 dark:text-slate-300 text-sm font-medium">
-              No more artworks available.
-            </div>
-          )}
+          <AnimatePresence>
+            {isLoadingMore ? (
+              <motion.div
+                key="loading-more-art"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="mt-8 flex justify-center items-center"
+              >
+                <Loading
+                  iconSize="w-6 h-6 md:w-8 md:h-8 xl:w-10 xl:h-10"
+                  loadingText="Loading More Art..."
+                  fontSize="text-sm"
+                />
+              </motion.div>
+            ) : (
+              !data?.allArtWorks?.pageInfo?.hasNextPage &&
+              data?.allArtWorks?.edges.length > 0 && (
+                <motion.div
+                  key="no-more-artworks-available"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="mt-8 flex justify-center items-center"
+                >
+                  <p className="text-slate-700 dark:text-slate-300 text-sm font-medium">
+                    No more artworks available.
+                  </p>
+                </motion.div>
+              )
+            )}
+          </AnimatePresence>
         </>
       )}
     </div>
