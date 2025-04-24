@@ -198,8 +198,6 @@ const Art = () => {
   const loadMore = async () => {
     if (!data?.allArtWorks?.pageInfo?.hasNextPage) return;
 
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-
     return fetchMore({
       variables: {
         after: data.allArtWorks.pageInfo.endCursor,
